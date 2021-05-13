@@ -7,7 +7,9 @@ export async function createRestaurant (req, res) {
     location
   });
   try {
-    await restaurant.save();
+    const saveReponse = await restaurant.save();
+    res.statusCode = 201;
+    res.end(JSON.stringify(saveReponse));
   } catch(e) {
     console.log(e);
   }

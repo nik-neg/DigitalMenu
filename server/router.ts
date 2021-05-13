@@ -27,10 +27,10 @@ export default function router(req, res) {
       data += chunk;
     });
     req.on('end', () => {
-      res.write(data);
+      // res.write(data);
       req.body = data;
       createRestaurant(req, res);
-      res.end();
+      // res.end();
     });
   }
 }
