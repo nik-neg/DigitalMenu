@@ -10,5 +10,5 @@ export const RestaurantSchema = new mongoose.Schema({
   location: { type: String, required: true },
 });
 
-const Restaurant = mongoose.model<IRestaurant>('Customer', RestaurantSchema);
+const Restaurant = mongoose.model<IRestaurant>('Restaurant', RestaurantSchema);
 export default Restaurant;
