@@ -3,14 +3,15 @@ import {
   showRestaurants
 } from './controllers/restaurant.controller';
 
-const asyncWrapper = async (func: Function, req: any, res: any, data?: Object) => {
+import {
+  createMenu
+} from './controllers/menu.controller'
+
+const asyncWrapper = async (func: Function, req: any, res: any, data?: any, id?: string, key?: string) => {
+  if (key) data[key] = id;
   req.body = data;
   await func(req, res);
 }
-
-const createDishUrl = "/restaurants/609eeeb25b97930b9382367e/menu";
-const createDishStart  = /^\/restaurants/.test(createDishUrl);
-const createDishEnd = /menu$/.test(createDishUrl);
 
 const checkRoute = (start: string, end: string, route: string) => {
   const regexStart = new RegExp("^\/" + start + "\/", "g");
@@ -19,8 +20,6 @@ const checkRoute = (start: string, end: string, route: string) => {
   // console.log(regexEnd.test(route))
   return regexStart.test(route) && regexEnd.test(route);
 }
-
-
 
 export default function router(req: any, res: any) {
   if (req.method === 'GET' && req.url === '/restaurants') {
@@ -49,17 +48,16 @@ export default function router(req: any, res: any) {
       data = await JSON.parse(data);
       await asyncWrapper(createRestaurant, req, res, data);
     });
-  } else if (req.method === 'POST' && checkRoute('restaurants', 'menu', req.url)) { // && req.url === '/restaurants/:id/menu'
-    console.log('CREATE MENU');
-    var path = req.url.split("/")[2];
-    console.log(path)
-    // let data = '';
-    // req.on('data', (chunk: Buffer) => {
-    //   data += chunk;
-    // });
-    // req.on('end', async () => {
-    //   req.body = await JSON.parse(data); //data !== DEFAULT_REQUEST ? await JSON.parse(data) : 'DEFAULT_REQUEST';
-    //   createRestaurant(req, res);
-    // });
+  } else if (req.method === 'POST' && checkRoute('restaurants', 'menu', req.url)) {
+    var restaurantId = req.url.split("/")[2];
+    // console.log(restaurantId)
+    let data = '';
+    req.on('data', (chunk: Buffer) => {
+      data += chunk;
+    });
+    req.on('end', async () => {
+      data = await JSON.parse(data);
+      await asyncWrapper(createMenu, req, res, data, restaurantId, 'restaurantId');
+    });
   }
 }
