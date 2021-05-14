@@ -13,7 +13,7 @@ const validateInput = (obj: Object, rules:any) => {
 }
 
 export async function createRestaurant (req: any, res: any) {
-  if (req.body === 'DEFAULT_REQUEST') return;
+  // if (req.body === 'DEFAULT_REQUEST') return;
   let requestObject = req.body
   let validation = validateInput(requestObject, rules);
   try {

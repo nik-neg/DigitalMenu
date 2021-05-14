@@ -13,7 +13,7 @@ const port = 3000;
 (async () => {
   try {
     connect();
-    const server = http.createServer((req, res) => {
+    const server = http.createServer((req: http.IncomingMessage, res: any) => {
       router(req, res);
     });
     server.listen(port, hostname, () => {

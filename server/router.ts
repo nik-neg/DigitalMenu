@@ -2,7 +2,7 @@ import { createRestaurant } from './controllers/restaurant.controller';
 
 import RestaurantDTO from './models/restaurant/dto/create-restaurant.dto';
 
-const DEFAULT_REQUEST = '1:1';
+// const DEFAULT_REQUEST = '1:1';
 
 export default function router(req: any, res: any) {
   if (req.method === 'GET' && req.url === '/') {
@@ -25,14 +25,13 @@ export default function router(req: any, res: any) {
       // res.write(JSON.parse(data).greeting);
       res.end();
     });
-  } else if (req.method === 'POST') {
-    console.log('POST');
+  } else if (req.method === 'POST' && req.url === '/restaurants') {
     let data = '';
     req.on('data', (chunk: Buffer) => {
       data += chunk;
     });
     req.on('end', async () => {
-      req.body = data !== DEFAULT_REQUEST ? await JSON.parse(data) : 'DEFAULT_REQUEST';
+      req.body = await JSON.parse(data); //data !== DEFAULT_REQUEST ? await JSON.parse(data) : 'DEFAULT_REQUEST';
       createRestaurant(req, res);
     });
   }
