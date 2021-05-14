@@ -31,9 +31,19 @@ export default function router(req: any, res: any) {
       data += chunk;
     });
     req.on('end', async () => {
-      req.body = await JSON.parse(data); //data !== DEFAULT_REQUEST ? await JSON.parse(data) : 'DEFAULT_REQUEST';
+      req.body = await JSON.parse(data); // data !== DEFAULT_REQUEST ? await JSON.parse(data) : 'DEFAULT_REQUEST';
       createRestaurant(req, res);
     });
+  } else if (req.method === 'POST' && req.url === '/restaurants/:id/menu') {
+    console.log('CREATE MENU');
+    // let data = '';
+    // req.on('data', (chunk: Buffer) => {
+    //   data += chunk;
+    // });
+    // req.on('end', async () => {
+    //   req.body = await JSON.parse(data); //data !== DEFAULT_REQUEST ? await JSON.parse(data) : 'DEFAULT_REQUEST';
+    //   createRestaurant(req, res);
+    // });
   }
 }
 

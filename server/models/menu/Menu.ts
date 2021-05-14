@@ -2,13 +2,14 @@ import mongoose from 'mongoose';
 
 export interface IMenu extends mongoose.Document {
   name: string;
-  location: string;
-};
+  restaurant: { type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' };
+  dishes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Dish' }];
+}
 
 export const MenuSchema = new mongoose.Schema({
   name: { type: String, required: true },
-  price: { type: Number, required: true },
-  location: { type: String, required: true },
+  restaurant: { type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' },
+  dishes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Dish' }],
 });
 
 const Menu = mongoose.model<IMenu>('Menu', MenuSchema);

@@ -1,12 +1,11 @@
-import * as http from 'http'
+import * as http from 'http';
 
+import * as dotenv from 'dotenv';
 import router from './router';
 
 import { connect } from './models/db';
 
-import * as dotenv from 'dotenv';
-
-dotenv.config({ path: __dirname + '/.env' });
+dotenv.config({ path: `${__dirname}/.env` });
 const hostname = 'localhost';
 const port = 3000;
 
@@ -23,5 +22,3 @@ const port = 3000;
     console.log(e);
   }
 })();
-
-
