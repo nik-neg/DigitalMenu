@@ -1,28 +1,36 @@
 import Restaurant from '../models/restaurant/Restaurant';
 import RestaurantDTO from '../models/restaurant/dto/create-restaurant.dto';
 
+import Validator from 'validatorjs';
+
+// validation rules for create-restaurant-dto
+let rules = {
+  name: 'required|string',
+  location: 'required|string',
+};
+const validateInput = (obj: Object, rules:any) => {
+  return new Validator(obj, rules);
+}
+
 export async function createRestaurant (req: any, res: any) {
-  console.log(req.body)
-  // const { name, location } = req.body; //JSON.parse(req.body);
-
-  // const dto = new RestaurantDTO(name, location);
-  // console.log(dto, typeof dto.location);
-  // console.log(req.body)
-
-  // try {
-  //   // throw new Error('Something bad happened');
-  //   let restaurant = new Restaurant();
-  //   restaurant.name = dto.name;
-  //   restaurant.location = dto.location;
-  //   console.log(typeof restaurant.location)
-
-  //   const saveReponse = await restaurant.save();
-  //   console.log(saveReponse)
-  //   res.statusCode = 201;
-  //   res.end(JSON.stringify(saveReponse));
-  // } catch(e) {
-  //   console.log(e);
-  //   res.statusCode = 400;
-  //   res.end(JSON.stringify({ message: 'Could not create user' }));
-  // }
+  if (req.body === 'DEFAULT_REQUEST') return;
+  let requestObject = req.body
+  let validation = validateInput(requestObject, rules);
+  try {
+    if (validation.passes()) {
+      const dto = new RestaurantDTO(requestObject.name, requestObject.location);
+      let restaurant = new Restaurant({
+        name: dto.name,
+        location: dto.location
+      });
+      const saveReponse = await restaurant.save();
+      res.statusCode = 201;
+      res.end(JSON.stringify(saveReponse));
+    } else {
+      throw new Error('invalid parameter');
+    }
+  } catch(error) {
+    res.statusCode = 400;
+    res.end(JSON.stringify({ error: 'Could not create restaurant' }));
+  }
 }

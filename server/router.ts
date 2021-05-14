@@ -2,7 +2,7 @@ import { createRestaurant } from './controllers/restaurant.controller';
 
 import RestaurantDTO from './models/restaurant/dto/create-restaurant.dto';
 
-import Validator from 'validatorjs';
+const DEFAULT_REQUEST = '1:1';
 
 export default function router(req: any, res: any) {
   if (req.method === 'GET' && req.url === '/') {
@@ -12,7 +12,7 @@ export default function router(req: any, res: any) {
       data += chunk;
     });
     req.on('end', () => {
-      res.write(JSON.parse(data).greeting);
+      // res.write(JSON.parse(data).greeting);
       res.end();
     });
   } else if (req.method === 'GET') {
@@ -22,7 +22,7 @@ export default function router(req: any, res: any) {
       data += chunk;
     });
     req.on('end', () => {
-      res.write(JSON.parse(data).greeting);
+      // res.write(JSON.parse(data).greeting);
       res.end();
     });
   } else if (req.method === 'POST') {
@@ -31,20 +31,14 @@ export default function router(req: any, res: any) {
     req.on('data', (chunk: Buffer) => {
       data += chunk;
     });
-    req.on('end', () => {
-      data = JSON.parse(data);
-
-      let rules = {
-        name: 'required|string',
-        location: 'required|string',
-      };
-
-      let validation = new Validator(data, rules);
-      console.log(validation.passes()); // true
-
-      // const dto = new RestaurantDTO(name, location);
-      // req.body = dto;
-      // createRestaurant(req, res);
+    req.on('end', async () => {
+      req.body = data !== DEFAULT_REQUEST ? await JSON.parse(data) : 'DEFAULT_REQUEST';
+      createRestaurant(req, res);
     });
   }
 }
+
+// const asyncWrapper = async (func: Function, req: any, res: any, data: Object) => {
+//   req.body = data;
+//   await func(req, res);
+// }
