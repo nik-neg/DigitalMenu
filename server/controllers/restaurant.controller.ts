@@ -10,7 +10,7 @@ const rules = {
 const validateInput = (obj: Object, rules: any) => new Validator(obj, rules);
 
 export async function createRestaurant(req: any, res: any) {
-  // if (req.body === 'DEFAULT_REQUEST') return;
+  console.log("CREATE")
   const requestObject = req.body;
   const validation = validateInput(requestObject, rules);
   try {
@@ -31,3 +31,15 @@ export async function createRestaurant(req: any, res: any) {
     res.end(JSON.stringify({ error: 'Could not create restaurant' }));
   }
 }
+
+export async function showRestaurants(req: any, res: any) {
+  try {
+    const findReponse = await Restaurant.find().exec();
+    res.statusCode = 200;
+    res.end(JSON.stringify(findReponse));
+  } catch (error) {
+    res.statusCode = 400;
+    res.end(JSON.stringify({ error: 'Could not find any restaurants' }));
+  }
+}
+
