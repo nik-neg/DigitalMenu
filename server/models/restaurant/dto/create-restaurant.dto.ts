@@ -1,6 +1,5 @@
 export default class RestaurantDTO {
   readonly name: string;
-
   readonly location: string;
 
   constructor(name:string, location:string) {

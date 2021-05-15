@@ -5,12 +5,12 @@ import DishDTO from '../models/dish/dto/create-dish.dto';
 import mongoose from 'mongoose';
 import Menu from '../models/menu/Menu';
 
-// validation rules for create-restaurant-dto
+// validation rules for create-dish-dto
 const rules = {
   name: 'required|string',
   price: 'required|numeric',
   imagePath: 'required|string',
-  menu: 'required|string',
+  menuId: 'required|string',
 };
 const validateInput = (obj: Object, rules: any) => new Validator(obj, rules);
 
@@ -19,12 +19,12 @@ export async function createDish(req: any, res: any) {
   const validation = validateInput(requestObject, rules);
   try {
     if (validation.passes()) {
-      const dto = new DishDTO(requestObject.name, requestObject.price, requestObject.imagePath, requestObject.menu);
+      const dto = new DishDTO(requestObject.name, requestObject.price, requestObject.imagePath, requestObject.menuId);
       const dish = new Dish({
         name: dto.name,
         price: dto.price,
         imagePath: dto.imagePath,
-        menus: [requestObject.menu]
+        menus: [requestObject.menuId]
       });
       const saveDishReponse = await dish.save();
       helperUpdateMenuRelation(requestObject.menuId, saveDishReponse._id);
