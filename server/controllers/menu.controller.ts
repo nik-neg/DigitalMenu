@@ -38,13 +38,13 @@ export async function createMenu(req: any, res: any) {
 }
 
 const helperUpdateRestauranRelation =
-async ( restaurantId: {
-  type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' },
+async (
+  restaurantId: { type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' },
   menuId: { type: mongoose.Schema.Types.ObjectId, ref: 'Menu' }
   ) => {
   const restaurant = await Restaurant.findOne({_id: restaurantId }).exec();
   if (restaurant) {
-    restaurant.menu.push(menuId);
+    restaurant.menus.push(menuId);
     await restaurant.save();
   }
 }

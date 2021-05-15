@@ -11,8 +11,8 @@ import {
   createDish
 } from './controllers/dish.controller';
 
-const asyncWrapper = async (func: Function, req: any, res: any, data?: any, id?: string, key?: string) => { // k, v => obj ?
-  if (key) data[key] = id;
+const asyncWrapper = async (func: Function, req: any, res: any, data?: any, idKey?: string, idValue?: string, ) => { // k, v => obj ?
+  if (idKey) data[idKey] = idValue;
   req.body = data;
   await func(req, res);
 }
@@ -60,18 +60,18 @@ export default function router(req: any, res: any) {
     });
     req.on('end', async () => {
       data = await JSON.parse(data);
-      await asyncWrapper(createMenu, req, res, data, restaurantId, 'restaurantId');
+      await asyncWrapper(createMenu, req, res, data, 'restaurantId', restaurantId,);
     });
   }
   else if (req.method === 'POST' && checkRoute('menu', 'dish', req.url)) {
-    const menuId = req.url.split("/")[2];
+    const menu = req.url.split("/")[2];
     let data = '';
     req.on('data', (chunk: Buffer) => {
       data += chunk;
     });
     req.on('end', async () => {
       data = await JSON.parse(data);
-      await asyncWrapper(createDish, req, res, data, menuId, 'menuId');
+      await asyncWrapper(createDish, req, res, data, 'menu', menu,);
     });
   }
 }
