@@ -5,7 +5,9 @@ import DishDTO from '../models/dish/dto/create-dish.dto';
 // validation rules for create-restaurant-dto
 const rules = {
   name: 'required|string',
-  restaurantId: 'required|string',
+  price: 'required|numeric',
+  imagePath: 'required|string',
+  menu: 'required|string',
 };
 const validateInput = (obj: Object, rules: any) => new Validator(obj, rules);
 

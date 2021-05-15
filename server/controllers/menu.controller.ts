@@ -3,6 +3,8 @@ import Menu from '../models/menu/Menu';
 import MenuDTO from '../models/menu/dto/create-menu.dto';
 import Restaurant from '../models/restaurant/Restaurant';
 
+import mongoose from 'mongoose';
+
 // validation rules for create-menu-dto
 const rules = {
   name: 'required|string',
@@ -23,12 +25,7 @@ export async function createMenu(req: any, res: any) {
         restaurant: dto.restaurant
       });
       const saveMenuReponse = await menu.save();
-
-      const restaurant = await Restaurant.findOne({_id: requestObject.restaurantId }).exec();
-      if (restaurant) {
-        restaurant.menu.push(saveMenuReponse._id);
-        await restaurant.save();
-      }
+      await helperUpdateRestauranRelation(requestObject.restaurantId, saveMenuReponse._id);
       res.statusCode = 201;
       res.end(JSON.stringify(saveMenuReponse));
     } else {
@@ -37,5 +34,17 @@ export async function createMenu(req: any, res: any) {
   } catch (error) {
     res.statusCode = 400;
     res.end(JSON.stringify({ error: 'Could not create menu' }));
+  }
+}
+
+const helperUpdateRestauranRelation =
+async ( restaurantId: {
+  type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' },
+  menuId: { type: mongoose.Schema.Types.ObjectId, ref: 'Menu' }
+  ) => {
+  const restaurant = await Restaurant.findOne({_id: restaurantId }).exec();
+  if (restaurant) {
+    restaurant.menu.push(menuId);
+    await restaurant.save();
   }
 }
