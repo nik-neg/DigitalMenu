@@ -7,7 +7,7 @@ import {
   createMenu
 } from './controllers/menu.controller'
 
-const asyncWrapper = async (func: Function, req: any, res: any, data?: any, id?: string, key?: string) => {
+const asyncWrapper = async (func: Function, req: any, res: any, data?: any, id?: string, key?: string) => { // k, v => obj ?
   if (key) data[key] = id;
   req.body = data;
   await func(req, res);
