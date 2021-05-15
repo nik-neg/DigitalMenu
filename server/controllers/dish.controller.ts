@@ -16,28 +16,27 @@ const validateInput = (obj: Object, rules: any) => new Validator(obj, rules);
 
 export async function createDish(req: any, res: any) {
   const requestObject = req.body;
-  console.log(requestObject)
   const validation = validateInput(requestObject, rules);
-  console.log(validation.passes())
-  // try {
-  //   if (validation.passes()) {
-  //     const dto = new DishDTO(requestObject.name, requestObject.menuId, requestObject.imagePath);
-  //     const dish = new Dish({
-  //       name: dto.name,
-  //       price: dto.price,
-  //       imagePath: dto.imagePath,
-  //     });
-  //     const saveDishReponse = await dish.save();
-  //     helperUpdateMenuRelation(requestObject.menuId, saveDishReponse._id);
-  //     res.statusCode = 201;
-  //     res.end(JSON.stringify(saveDishReponse));
-  //   } else {
-  //     throw new Error('invalid parameter');
-  //   }
-  // } catch (error) {
-  //   res.statusCode = 400;
-  //   res.end(JSON.stringify({ error: 'Could not create menu' }));
-  // }
+  try {
+    if (validation.passes()) {
+      const dto = new DishDTO(requestObject.name, requestObject.price, requestObject.imagePath, requestObject.menu);
+      const dish = new Dish({
+        name: dto.name,
+        price: dto.price,
+        imagePath: dto.imagePath,
+        menus: [requestObject.menu]
+      });
+      const saveDishReponse = await dish.save();
+      helperUpdateMenuRelation(requestObject.menuId, saveDishReponse._id);
+      res.statusCode = 201;
+      res.end(JSON.stringify(saveDishReponse));
+    } else {
+      throw new Error('invalid parameter');
+    }
+  } catch (error) {
+    res.statusCode = 400;
+    res.end(JSON.stringify({ error: 'Could not create dish' }));
+  }
 }
 const helperUpdateMenuRelation =
 async (
