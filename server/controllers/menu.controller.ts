@@ -22,14 +22,15 @@ export async function createMenu(req: any, res: any) {
         price: dto.price,
         restaurant: dto.restaurant
       });
-      const saveReponse = await menu.save();
+      const saveMenuReponse = await menu.save();
 
       const restaurant = await Restaurant.findOne({_id: requestObject.restaurantId }).exec();
       if (restaurant) {
-        restaurant.menu.push(requestObject.restaurantId);
+        restaurant.menu.push(saveMenuReponse._id);
+        await restaurant.save();
       }
       res.statusCode = 201;
-      res.end(JSON.stringify(saveReponse));
+      res.end(JSON.stringify(saveMenuReponse));
     } else {
       throw new Error('invalid parameter');
     }
