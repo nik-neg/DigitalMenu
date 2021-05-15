@@ -2,7 +2,7 @@ import Validator from 'validatorjs';
 import Menu from '../models/menu/Menu';
 import MenuDTO from '../models/menu/dto/create-menu.dto';
 
-// validation rules for create-restaurant-dto
+// validation rules for create-menu-dto
 const rules = {
   name: 'required|string',
   restaurantId: 'required|string',

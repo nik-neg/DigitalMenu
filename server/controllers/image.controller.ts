@@ -19,7 +19,7 @@ export async function retrieveImage (req: any, res: any) {
   gridfs.mongo = mongoose.mongo;
   var connection = mongoose.connection;
   var gfs = gridfs(connection.db);
-  gfs.exist({ filename: req.params.id }, function (err: any, file: File) {
+  gfs.exist({ filename: req.params.id }, function (err: any, file: any) {
     if (err || !file) {
       res.send('File Not Found');
     } else {
