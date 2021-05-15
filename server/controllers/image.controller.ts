@@ -1,7 +1,7 @@
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-var gridfs = require('gridfs-stream');
+const gridfs = require('gridfs-stream');
 
 export async function saveImage (req: any, res: any) {
   try {
@@ -17,13 +17,13 @@ export async function saveImage (req: any, res: any) {
 export async function retrieveImage (req: any, res: any) {
   // console.log('RETRIEVE IMAGE')
   gridfs.mongo = mongoose.mongo;
-  var connection = mongoose.connection;
-  var gfs = gridfs(connection.db);
+  const connection = mongoose.connection;
+  const gfs = gridfs(connection.db);
   gfs.exist({ filename: req.params.id }, function (err: any, file: any) {
     if (err || !file) {
       res.send('File Not Found');
     } else {
-      var readstream = gfs.createReadStream({ filename: req.params.id });
+      const readstream = gfs.createReadStream({ filename: req.params.id });
       readstream.pipe(res);
     }
   });

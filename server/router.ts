@@ -53,7 +53,7 @@ export default function router(req: any, res: any) {
       await asyncWrapper(createRestaurant, req, res, data);
     });
   } else if (req.method === 'POST' && checkRoute('restaurants', 'menu', req.url)) {
-    var restaurantId = req.url.split("/")[2];
+    const restaurantId = req.url.split("/")[2];
     let data = '';
     req.on('data', (chunk: Buffer) => {
       data += chunk;
@@ -64,7 +64,7 @@ export default function router(req: any, res: any) {
     });
   }
   else if (req.method === 'POST' && checkRoute('menu', 'dish', req.url)) {
-    var menuId = req.url.split("/")[2];
+    const menuId = req.url.split("/")[2];
     let data = '';
     req.on('data', (chunk: Buffer) => {
       data += chunk;

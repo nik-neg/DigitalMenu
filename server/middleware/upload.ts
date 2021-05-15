@@ -1,4 +1,4 @@
-const util = require('util');
+import util from 'util';
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 
