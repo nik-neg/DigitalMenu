@@ -42,3 +42,21 @@ export async function showRestaurants(req: any, res: any) {
   }
 }
 
+export async function showMenusOfRestaurant(req: any, res: any) {
+  const { restaurantId } = req.body;
+  try {
+    const findRestaurantReponse = await Restaurant
+      .findOne({ _id: restaurantId })
+      .populate({
+        path: 'menus',
+        populate: { path: 'dishes' },
+      })
+      .exec();
+    console.log(findRestaurantReponse);
+    res.statusCode = 200;
+    res.end(JSON.stringify(findRestaurantReponse));
+  } catch (error) {
+    res.statusCode = 400;
+    res.end(JSON.stringify({ error: 'Could not find any restaurants' }));
+  }
+}

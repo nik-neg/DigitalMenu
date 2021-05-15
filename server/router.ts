@@ -1,6 +1,7 @@
 import {
   createRestaurant,
-  showRestaurants
+  showRestaurants,
+  showMenusOfRestaurant
 } from './controllers/restaurant.controller';
 
 import {
@@ -11,7 +12,7 @@ import {
   createDish
 } from './controllers/dish.controller';
 
-const asyncWrapper = async (func: Function, req: any, res: any, data?: any, idKey?: string, idValue?: string, ) => {
+const asyncWrapper = async (func: Function, req: any, res: any, data?: any, idKey?: string, idValue?: string) => {
   if (idKey) data[idKey] = idValue;
   req.body = data;
   await func(req, res);
@@ -29,7 +30,6 @@ const checkRoute = (route: string, start: string, end?: string) => {
 
 export default function router(req: any, res: any) {
   if (req.method === 'GET' && req.url === '/restaurants') {
-    console.log("GET DEF")
     let data = '';
     req.on('data', (chunk: Buffer) => {
       data += chunk;
@@ -38,15 +38,15 @@ export default function router(req: any, res: any) {
       await asyncWrapper(showRestaurants, req, res);
     });
   } else if (req.method === 'GET' && checkRoute(req.url, 'restaurants')) {
-    console.log('GET MENUS');
-    // res.end();
-    // let data = '';
-    // req.on('data', (chunk: Buffer) => {
-    //   data += chunk;
-    // });
-    // req.on('end', () => {
-    //   res.end();
-    // });
+    const restaurantId = req.url.split("/")[2];
+    let data = '';
+    req.on('data', (chunk: Buffer) => {
+      data += chunk;
+    });
+    req.on('end', async () => {
+      data = JSON.parse(JSON.stringify({}));
+      await asyncWrapper(showMenusOfRestaurant, req, res, data, 'restaurantId', restaurantId);
+    });
   } else if (req.method === 'POST' && req.url === '/restaurants') {
     let data = '';
     req.on('data', (chunk: Buffer) => {

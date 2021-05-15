@@ -1,8 +1,8 @@
 import Validator from 'validatorjs';
+import mongoose from 'mongoose';
 import Dish from '../models/dish/Dish';
 import DishDTO from '../models/dish/dto/create-dish.dto';
 
-import mongoose from 'mongoose';
 import Menu from '../models/menu/Menu';
 
 // validation rules for create-dish-dto
@@ -24,7 +24,7 @@ export async function createDish(req: any, res: any) {
         name: dto.name,
         price: dto.price,
         imagePath: dto.imagePath,
-        menus: [requestObject.menuId]
+        menus: [requestObject.menuId],
       });
       const saveDishReponse = await dish.save();
       helperUpdateMenuRelation(requestObject.menuId, saveDishReponse._id);
@@ -38,14 +38,13 @@ export async function createDish(req: any, res: any) {
     res.end(JSON.stringify({ error: 'Could not create dish' }));
   }
 }
-const helperUpdateMenuRelation =
-async (
+const helperUpdateMenuRelation = async (
   menuId: { type: mongoose.Schema.Types.ObjectId, ref: 'Menu' },
-  dishId: { type: mongoose.Schema.Types.ObjectId, ref: 'Dish' }
-  ) => {
-  const menu = await Menu.findOne({_id: menuId }).exec();
+  dishId: { type: mongoose.Schema.Types.ObjectId, ref: 'Dish' },
+) => {
+  const menu = await Menu.findOne({ _id: menuId }).exec();
   if (menu) {
     menu.dishes.push(dishId);
     await menu.save();
   }
-}
+};
