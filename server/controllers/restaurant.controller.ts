@@ -10,7 +10,6 @@ const rules = {
 const validateInput = (obj: Object, rules: any) => new Validator(obj, rules);
 
 export async function createRestaurant(req: any, res: any) {
-  console.log("CREATE")
   const requestObject = req.body;
   const validation = validateInput(requestObject, rules);
   try {

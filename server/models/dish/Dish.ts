@@ -3,14 +3,14 @@ import mongoose from 'mongoose';
 export interface IDish extends mongoose.Document {
   name: string;
   price: number;
-  location: string;
+  imagePath: string;
   menues: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Menu' }];
 }
 
 export const DishSchema = new mongoose.Schema({
   name: { type: String, required: true },
   price: { type: Number, required: true },
-  location: { type: String, required: true },
+  imagePath: { type: String, required: true },
   menues: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Menu' }],
 });
 
