@@ -60,18 +60,16 @@ const updateRules = {
 
 export async function updateMenu(req: any, res: any) {
   const requestObject = req.body;
-  console.log(requestObject)
   const validation = validateInput(requestObject, updateRules);
   try {
     if (validation.passes()) {
-      console.log("pass")
       const dto = new UpdateMenuDTO(requestObject.name, requestObject.price, requestObject.restaurantId, requestObject.menuId);
       const updatedMenu = await Menu.findByIdAndUpdate(dto.menu, {
         name: dto.name,
         price: dto.price,
       },
       { new: true }).exec();
-      res.statusCode = 201;
+      res.statusCode = 200;
       res.end(JSON.stringify(updatedMenu));
     } else {
       throw new Error('invalid parameter');

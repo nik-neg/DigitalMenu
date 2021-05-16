@@ -10,7 +10,8 @@ import {
 } from './controllers/menu.controller'
 
 import {
-  createDish
+  createDish,
+  updateDish
 } from './controllers/dish.controller';
 
 const asyncWrapper = async (func: Function, req: any, res: any, data?: any, idObject?: any) => {
@@ -109,7 +110,12 @@ export default function router(req: any, res: any) {
         menuId,
         dishId,
       }
-      await asyncWrapper(updateMenu, req, res, data, idObject);
+      if(dishId) {
+        await asyncWrapper(updateDish, req, res, data, idObject);
+      } else {
+        await asyncWrapper(updateMenu, req, res, data, idObject);
+      }
+
     });
   }
 }
