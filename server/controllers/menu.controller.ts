@@ -1,6 +1,7 @@
 import Validator from 'validatorjs';
 import Menu from '../models/menu/Menu';
 import MenuDTO from '../models/menu/dto/create-menu.dto';
+import UpdateMenuDTO from '../models/menu/dto/update-menu-dto';
 import Restaurant from '../models/restaurant/Restaurant';
 
 import mongoose from 'mongoose';
@@ -64,18 +65,16 @@ export async function updateMenu(req: any, res: any) {
   try {
     if (validation.passes()) {
       console.log("pass")
-    //   const dto = new MenuDTO(requestObject.name, requestObject.restaurantId, requestObject.price);
-    //   const menu = new Menu({
-    //     name: dto.name,
-    //     price: dto.price,
-    //     restaurant: dto.restaurant
-    //   });
-    //   const saveMenuReponse = await menu.save();
-    //   await helperUpdateRestauranRelation(requestObject.restaurantId, saveMenuReponse._id);
-    //   res.statusCode = 201;
-    //   res.end(JSON.stringify(saveMenuReponse));
-    // } else {
-    //   throw new Error('invalid parameter');
+      const dto = new UpdateMenuDTO(requestObject.name, requestObject.price, requestObject.restaurantId, requestObject.menuId);
+      const updatedMenu = await Menu.findByIdAndUpdate(dto.menu, {
+        name: dto.name,
+        price: dto.price,
+      },
+      { new: true }).exec();
+      res.statusCode = 201;
+      res.end(JSON.stringify(updatedMenu));
+    } else {
+      throw new Error('invalid parameter');
     }
   } catch (error) {
     res.statusCode = 400;
