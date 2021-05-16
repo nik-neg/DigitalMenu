@@ -52,7 +52,6 @@ export async function showMenusOfRestaurant(req: any, res: any) {
         populate: { path: 'dishes' },
       })
       .exec();
-    console.log(findRestaurantReponse);
     res.statusCode = 200;
     res.end(JSON.stringify(findRestaurantReponse));
   } catch (error) {

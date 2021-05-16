@@ -5,15 +5,20 @@ import {
 } from './controllers/restaurant.controller';
 
 import {
-  createMenu
+  createMenu,
+  updateMenu
 } from './controllers/menu.controller'
 
 import {
   createDish
 } from './controllers/dish.controller';
 
-const asyncWrapper = async (func: Function, req: any, res: any, data?: any, idKey?: string, idValue?: string) => {
-  if (idKey) data[idKey] = idValue;
+const asyncWrapper = async (func: Function, req: any, res: any, data?: any, idObject?: any) => {
+  if (idObject) {
+    for ( const key in idObject) {
+      data[key] = idObject[key]
+    }
+  }
   req.body = data;
   await func(req, res);
 }
@@ -45,7 +50,10 @@ export default function router(req: any, res: any) {
     });
     req.on('end', async () => {
       data = JSON.parse(JSON.stringify({}));
-      await asyncWrapper(showMenusOfRestaurant, req, res, data, 'restaurantId', restaurantId);
+      const idObject = {
+        restaurantId,
+      }
+      await asyncWrapper(showMenusOfRestaurant, req, res, data, idObject);
     });
   } else if (req.method === 'POST' && req.url === '/restaurants') {
     let data = '';
@@ -64,7 +72,10 @@ export default function router(req: any, res: any) {
     });
     req.on('end', async () => {
       data = await JSON.parse(data);
-      await asyncWrapper(createMenu, req, res, data, 'restaurantId', restaurantId);
+      const idObject = {
+        restaurantId,
+      }
+      await asyncWrapper(createMenu, req, res, data, idObject);
     });
   }
   else if (req.method === 'POST' && checkRoute( req.url, 'menu', 'dish')) {
@@ -75,7 +86,30 @@ export default function router(req: any, res: any) {
     });
     req.on('end', async () => {
       data = await JSON.parse(data);
-      await asyncWrapper(createDish, req, res, data, 'menuId', menuId);
+      const idObject = {
+        menuId,
+      }
+      await asyncWrapper(createDish, req, res, data, idObject);
+    });
+  }
+  else if (req.method === 'PATCH') {
+    const urlSplit = req.url.split("/");
+    const restaurantId = urlSplit[2];
+    const menuId = urlSplit[4];
+    const dishId = urlSplit[6];
+    console.log(restaurantId, menuId, dishId)
+    let data = '';
+    req.on('data', (chunk: Buffer) => {
+      data += chunk;
+    });
+    req.on('end', async () => {
+      data = await JSON.parse(data);
+      const idObject = {
+        restaurantId,
+        menuId,
+        dishId,
+      }
+      await asyncWrapper(updateMenu, req, res, data, idObject);
     });
   }
 }

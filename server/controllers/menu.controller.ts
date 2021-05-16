@@ -48,3 +48,37 @@ async (
     await restaurant.save();
   }
 }
+
+// validation rules for create-menu-dto
+const updateRules = {
+  name: 'required|string',
+  price: 'required|numeric',
+  restaurantId:'required|string',
+  menuId:'required|string',
+};
+
+export async function updateMenu(req: any, res: any) {
+  const requestObject = req.body;
+  console.log(requestObject)
+  const validation = validateInput(requestObject, updateRules);
+  try {
+    if (validation.passes()) {
+      console.log("pass")
+    //   const dto = new MenuDTO(requestObject.name, requestObject.restaurantId, requestObject.price);
+    //   const menu = new Menu({
+    //     name: dto.name,
+    //     price: dto.price,
+    //     restaurant: dto.restaurant
+    //   });
+    //   const saveMenuReponse = await menu.save();
+    //   await helperUpdateRestauranRelation(requestObject.restaurantId, saveMenuReponse._id);
+    //   res.statusCode = 201;
+    //   res.end(JSON.stringify(saveMenuReponse));
+    // } else {
+    //   throw new Error('invalid parameter');
+    }
+  } catch (error) {
+    res.statusCode = 400;
+    res.end(JSON.stringify({ error: 'Could not create menu' }));
+  }
+}
