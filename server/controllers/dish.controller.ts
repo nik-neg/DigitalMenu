@@ -87,6 +87,6 @@ export async function updateDish(req: any, res: any) {
     }
   } catch (error) {
     res.statusCode = 400;
-    res.end(JSON.stringify({ error: 'Could not create menu' }));
+    res.end(JSON.stringify({ error: 'Could not update menu' }));
   }
 }

@@ -5,6 +5,7 @@ export interface IRestaurant extends mongoose.Document {
   location: string;
   customer: { type: mongoose.Schema.Types.ObjectId, ref: 'Customer' };
   menus: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Menu' }];
+  dishes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Dish' }]
 }
 
 export const RestaurantSchema = new mongoose.Schema({
@@ -12,6 +13,7 @@ export const RestaurantSchema = new mongoose.Schema({
   location: { type: String, required: true },
   customer: { type: mongoose.Schema.Types.ObjectId, ref: 'Customer' },
   menus: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Menu' }],
+  dishes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Dish' }],
 });
 
 const Restaurant = mongoose.model<IRestaurant>('Restaurant', RestaurantSchema);

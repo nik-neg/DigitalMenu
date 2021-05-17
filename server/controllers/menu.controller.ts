@@ -56,6 +56,7 @@ const updateRules = {
   price: 'required|numeric',
   restaurantId:'required|string',
   menuId:'required|string',
+  dishes: 'required|array' // 'required|array' of strings ?
 };
 
 export async function updateMenu(req: any, res: any) {
@@ -63,10 +64,11 @@ export async function updateMenu(req: any, res: any) {
   const validation = validateInput(requestObject, updateRules);
   try {
     if (validation.passes()) {
-      const dto = new UpdateMenuDTO(requestObject.name, requestObject.price, requestObject.restaurantId, requestObject.menuId);
+      const dto = new UpdateMenuDTO(requestObject.name, requestObject.price, requestObject.restaurantId, requestObject.menuId, requestObject.dishes);
       const updatedMenu = await Menu.findByIdAndUpdate(dto.menu, {
         name: dto.name,
         price: dto.price,
+        //TODO: update dishes?
       },
       { new: true }).exec();
       res.statusCode = 200;
@@ -76,6 +78,6 @@ export async function updateMenu(req: any, res: any) {
     }
   } catch (error) {
     res.statusCode = 400;
-    res.end(JSON.stringify({ error: 'Could not create menu' }));
+    res.end(JSON.stringify({ error: 'Could not update menu' }));
   }
 }

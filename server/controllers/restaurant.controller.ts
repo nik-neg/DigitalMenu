@@ -56,6 +56,6 @@ export async function showMenusOfRestaurant(req: any, res: any) {
     res.end(JSON.stringify(findRestaurantReponse));
   } catch (error) {
     res.statusCode = 400;
-    res.end(JSON.stringify({ error: 'Could not find any restaurants' }));
+    res.end(JSON.stringify({ error: 'Could not find the restaurants' }));
   }
 }
