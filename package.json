@@ -26,7 +26,5 @@
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "dependencies": {
-    "@angular/material": "^12.0.0"
-  }
+  "dependencies": {}
 }
