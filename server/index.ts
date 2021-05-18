@@ -13,6 +13,8 @@ const port = 3000;
   try {
     connect();
     const server = http.createServer((req: http.IncomingMessage, res: any) => {
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
       router(req, res);
     });
     server.listen(port, hostname, () => {
