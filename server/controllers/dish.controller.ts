@@ -5,6 +5,7 @@ import DishDTO from '../models/dish/dto/create-dish.dto';
 import UpdateDishDTO from '../models/dish/dto/update-dish.dto';
 
 import Menu from '../models/menu/Menu';
+import Restaurant from '../models/restaurant/Restaurant';
 
 // validation rules for create-dish-dto
 const rules = {
@@ -44,9 +45,12 @@ const helperUpdateMenuRelation = async (
   dishId: { type: mongoose.Schema.Types.ObjectId, ref: 'Dish' },
 ) => {
   const menu = await Menu.findOne({ _id: menuId }).exec();
-  if (menu) {
+  const restaurant = [... await Restaurant.find({ menus: menuId }).exec()][0];
+  if (menu && restaurant) {
     menu.dishes.push(dishId);
     await menu.save();
+    restaurant.dishes.push(dishId);
+    await restaurant.save();
   }
 };
 
