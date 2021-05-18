@@ -1,6 +1,7 @@
 export default interface IRestaurant {
-  name: string;
-  location: string;
+  _id?: string;
+  name?: string;
+  location?: string;
   menus: string [];
   dishes: string [];
 }

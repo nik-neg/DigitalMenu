@@ -2,24 +2,23 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
-import Restaurant from './restaurant/entities/restaurant';
+import { Restaurant } from './restaurant/entities/restaurant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiClientService {
 
-  private baseURL = 'http://localhost:3001';
+  private baseURL = 'http://localhost:3000/';
 
   constructor(private http: HttpClient) { }
 
-  getRestaurants(): Observable<Restaurant[]> {
-    return this.fetchRestaurants('/restaurants');
+  getRestaurants(url: string): Observable<Restaurant[]> {
+    return this.fetchRestaurants(`${this.baseURL}${url}`);
   }
 
   fetchRestaurants(url: string): Observable<Restaurant[]> {
-    return this.http.get<Restaurant[]>(`${this.baseURL}${url}`)
+    return this.http.get<Restaurant[]>(`${url}`)
       .pipe(catchError(this.handleError<Restaurant[]>('fetchRestaurants', []))
       );
     }
