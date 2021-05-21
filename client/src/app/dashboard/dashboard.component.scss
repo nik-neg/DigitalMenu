@@ -33,12 +33,29 @@ ngb-carousel .wrapper>img {
   padding: 0.5%;
 }
 
+.dot-container {
+  text-align: center;
+
+  dot-container-top {
+    text-align: center;
+  }
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  background-color: #bbb;
+  border-radius: 50%;
+  margin:  1.4rem;
+  display: inline-block;
+}
+
 @media only screen and (min-width:767px) {
   .small-device-container {
     display: none;
   }
   .carousel{
-    padding-bottom: 1.0rem;
+    padding-bottom: 0.5rem;
   }
 
 }

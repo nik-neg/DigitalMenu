@@ -50,16 +50,16 @@ export class DashboardComponent implements OnInit {
       console.log(restaurants)
       this.restaurantsTop = restaurants.slice(0, restaurants.length/2);
       this.restaurantsBottom = restaurants.slice(restaurants.length/2, restaurants.length);
-      console.log(this.restaurantsTop);
-      console.log(this.restaurantsBottom);
-      for (let i = 0; i < this.imagesTop.length; i++) {
-        this.restaurantsTop[i].imagePath = this.imagesTop[i] ? this.imagesTop[i].imagePath : 'no image';
-        this.restaurantsTop[i].slogan = this.imagesTop[i] ? this.imagesTop[i].slogan : '';
-      }
-      for (let i = 0; i < this.imagesBottom.length; i++) {
-        this.restaurantsBottom[i].imagePath = this.imagesBottom[i] ? this.imagesBottom[i].imagePath : 'no image';
-        this.restaurantsBottom[i].slogan = this.imagesBottom[i] ? this.imagesBottom[i].slogan : '';
-      }
+      this.restaurantsTop = this.restaurantsTop.map<Restaurant>((restaurant, index) => {
+        restaurant.imagePath = this.imagesTop[index] ? this.imagesTop[index].imagePath : 'no image';
+        restaurant.slogan = this.imagesTop[index] ? this.imagesTop[index].slogan : '';
+        return restaurant;
+      });
+      this.restaurantsBottom = this.restaurantsBottom.map<Restaurant>((restaurant, index) => {
+        restaurant.imagePath = this.imagesBottom[index] ? this.imagesBottom[index].imagePath : 'no image';
+        restaurant.slogan = this.imagesBottom[index] ? this.imagesBottom[index].slogan : '';
+        return restaurant;
+      });
     })
   }
 
