@@ -24,11 +24,11 @@
   <ngb-carousel>
     <ng-template ngbSlide *ngFor="let image of images">
       <div class="wrapper">
-        <img [src]="image.src" alt="Random first slide" width="1600" height="500">
+        <img [src]="image.imagePath" alt="Random first slide" width="1600" height="500">
       </div>
       <div class="carousel-caption">
         <h3>{{ image.title }}</h3>
-        <p>{{ image.short }}</p>
+        <p>{{ image.slogan }}</p>
       </div>
     </ng-template>
   </ngb-carousel>
