@@ -22,13 +22,13 @@
 </div>
 <div class="container carousel">
   <ngb-carousel>
-    <ng-template ngbSlide *ngFor="let image of images">
+    <ng-template ngbSlide *ngFor="let restaurant of restaurants">
       <div class="wrapper">
-        <img [src]="image.imagePath" alt="Random first slide" width="1600" height="500">
+        <img [src]="restaurant.imagePath" alt="Random first slide" width="1600" height="500">
       </div>
       <div class="carousel-caption">
-        <h3>{{ image.title }}</h3>
-        <p>{{ image.slogan }}</p>
+        <h3>{{ restaurant.name }}</h3>
+        <p>{{ restaurant.slogan }}</p>
       </div>
     </ng-template>
   </ngb-carousel>
