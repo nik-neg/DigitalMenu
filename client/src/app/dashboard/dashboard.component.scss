@@ -17,10 +17,20 @@ ngb-carousel .wrapper>img {
   color: white;
   h3 {
     font-family: $font-title-carousel;
-    font-size: 3.5rem;
+    font-size: 3.0rem;
   }
   p {
     font-family: $font-subtitle-carousel;
     font-size: 2rem;
   }
 }
+
+.col {
+  background-color: white;
+  padding: 0.5%;
+}
+
+// .container.fluid{
+//   padding-left: 1.5%;
+//   padding-right: 1.5%;
+// }
