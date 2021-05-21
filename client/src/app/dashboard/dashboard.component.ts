@@ -22,14 +22,14 @@ export class DashboardComponent implements OnInit {
   ];
 
   imagesBottom = [
-    {title: 'El Matador', slogan: 'Madrid - Coming Soon!', imagePath: "../../assets/images/restaurants/el_matador.jpg"},
-    {title: 'Potato Crunch', slogan: 'Miami - Coming Soon!', imagePath: "./../assets/images/restaurants/potato_crunch.jpg"},
-    {title: 'Saladido', slogan: 'Tel Aviv Marina - Coming Soon!', imagePath: "./../assets/images/restaurants/saladido.jpg"},
-    {title: 'Oyster Hunter', slogan: 'Nizza - Coming Soon!', imagePath: "../../assets/images/restaurants/oyster_hunter.jpg"},
-    {title: 'Seafood Heaven', slogan: 'Lissabon - Coming Soon!', imagePath: "./../assets/images/restaurants/seafood_heaven.jpg"},
-    {title: 'Veggie Master', slogan: 'Tokyo - Coming Soon!', imagePath: "./../assets/images/restaurants/veggie_master.jpg"},
-    {title: 'Brewery King', slogan: 'Rome - Coming Soon!', imagePath: "../../assets/images/restaurants/brewery_king.jpg"},
-    {title: 'Soup Brewery', slogan: 'San Francisco - Coming Soon!', imagePath: "./../assets/images/restaurants/soup_brewery.jpg"},
+    {title: 'El Matador', slogan: 'Madrid - Coming soon!', imagePath: "../../assets/images/restaurants/el_matador.jpg"},
+    {title: 'Potato Crunch', slogan: 'Miami - Coming soon!', imagePath: "./../assets/images/restaurants/potato_crunch.jpg"},
+    {title: 'Saladido', slogan: 'Tel Aviv Marina - Coming soon!', imagePath: "./../assets/images/restaurants/saladido.jpg"},
+    {title: 'Oyster Hunter', slogan: 'Nizza - Coming soon!', imagePath: "../../assets/images/restaurants/oyster_hunter.jpg"},
+    {title: 'Seafood Heaven', slogan: 'Lissabon - Coming soon!', imagePath: "./../assets/images/restaurants/seafood_heaven.jpg"},
+    {title: 'Veggie Master', slogan: 'Tokyo - Coming soon!', imagePath: "./../assets/images/restaurants/veggie_master.jpg"},
+    {title: 'Brewery King', slogan: 'Rome - Coming soon!', imagePath: "../../assets/images/restaurants/brewery_king.jpg"},
+    {title: 'Soup Splash', slogan: 'San Francisco - Coming soon!', imagePath: "./../assets/images/restaurants/soup_brewery.jpg"},
   ];
 
   private restaurantsUrl = "restaurants";
