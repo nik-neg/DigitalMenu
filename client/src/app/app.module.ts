@@ -11,6 +11,8 @@ import { DetailsComponent } from './details/details.component';
 import { EditComponent } from './edit/edit.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RestaurantListSmallDevicesComponent } from './restaurant-list-small-devices/restaurant-list-small-devices.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     DishComponent,
     DetailsComponent,
     EditComponent,
-    RestaurantListComponent
+    RestaurantListComponent,
+    RestaurantListSmallDevicesComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,

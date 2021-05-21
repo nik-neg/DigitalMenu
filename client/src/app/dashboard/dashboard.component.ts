@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Restaurant } from '../restaurant/entities/restaurant';
 import { ApiClientService } from '../api-client.service';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  providers: [NgbCarouselConfig]
 })
 export class DashboardComponent implements OnInit {
   title = 'ng-carousel-demo';
@@ -36,12 +35,9 @@ export class DashboardComponent implements OnInit {
   restaurantsTop: Restaurant [];
   restaurantsBottom: Restaurant [];
 
-  constructor(private apiClient: ApiClientService, config: NgbCarouselConfig) {
+  constructor(private apiClient: ApiClientService) {
     this.restaurantsTop = [];
     this.restaurantsBottom = [];
-    config.interval = 4000;
-    config.keyboard = true;
-    config.pauseOnHover = true;
   }
 
   getRestaurants() : void {
@@ -62,9 +58,9 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  showdetails() {
-    console.log("click");
-  }
+  showdetails = () => {
+   console.log("click");
+  };
 
   ngOnInit(): void {
     this.getRestaurants();

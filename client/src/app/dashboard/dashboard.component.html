@@ -4,20 +4,7 @@
     <p class="lead">Check out the most delicious restaurants in the world!</p>
   </div>
 </div>
-<div class="container fluid">
-  <div class="row">
-    <div *ngFor="let restaurant of restaurantsTop" class="col col-lg-3 col-md-6 d-none d-md-block">
-      <div class="card" (click)="showdetails()">
-        <img class="card-img-top" [src]="restaurant.imagePath" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{ restaurant.name }}</h5>
-          <p class="card-text">{{ restaurant.slogan }}</p>
-          <p class="card-text-update"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<app-restaurant-list [restaurantList]="restaurantsTop"></app-restaurant-list>
 <div class="dot-container dot-container-top">
   <span class="dot"></span>
   <span class="dot"></span>
@@ -25,94 +12,24 @@
   <span class="dot"></span>
   <span class="dot"></span>
 </div>
-  <div class="container carousel">
-    <ngb-carousel>
-      <ng-template ngbSlide *ngFor="let restaurant of restaurantsTop">
-        <div class="wrapper">
-          <img [src]="restaurant.imagePath" alt="Random first slide" (click)="showdetails()">
-        </div>
-        <div class="carousel-caption" (click)="showdetails()">
-          <h3>{{ restaurant.name }}</h3>
-          <p>{{ restaurant.slogan }}</p>
-        </div>
-      </ng-template>
-    </ngb-carousel>
-  </div>
-  <div class="dot-container dot-container-bottom">
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
-<div class="container fluid">
-  <div class="row">
-    <div *ngFor="let restaurant of restaurantsBottom" class="col col-lg-3 col-md-6 d-none d-md-block">
-      <div class="card" (click)="showdetails()">
-        <img class="card-img-top" [src]="restaurant.imagePath" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">{{ restaurant.name }}</h5>
-          <p class="card-text">{{ restaurant.slogan }}</p>
-          <p class="card-text-update"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-      </div>
-    </div>
-  </div>
+<app-carousel [restaurantList]="restaurantsTop"></app-carousel>
+<div class="dot-container dot-container-bottom">
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
 </div>
-<div class="container fluid small-device-container">
-  <div class="row">
-    <div class="container fluid">
-      <div class="row">
-        <div *ngFor="let restaurant of restaurantsTop" class="col-md-6">
-          <div class="card" (click)="showdetails()">
-            <img class="card-img-top" [src]="restaurant.imagePath" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">{{ restaurant.name }}</h5>
-              <p class="card-text">{{ restaurant.slogan }}</p>
-              <p class="card-text-update"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-          <div class="dot-container dot-container-small-devices">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container fluid small-device-container">
-  <div class="row">
-    <div class="container fluid">
-      <div class="row">
-        <div *ngFor="let restaurant of restaurantsBottom" class="col-md-6">
-          <div class="card" (click)="showdetails()">
-            <img class="card-img-top" [src]="restaurant.imagePath" alt="Card image cap">
-            <div class="card-body">
-              <h5 class="card-title">{{ restaurant.name }}</h5>
-              <p class="card-text">{{ restaurant.slogan }}</p>
-              <p class="card-text-update"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-          <div class="dot-container dot-container-top">
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-            <span class="dot"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<app-restaurant-list [restaurantList]="restaurantsBottom"></app-restaurant-list>
+<app-restaurant-list-small-devices
+  [restaurantList]="restaurantsTop"
+></app-restaurant-list-small-devices>
+<app-restaurant-list-small-devices
+  [restaurantList]="restaurantsBottom"
+></app-restaurant-list-small-devices>
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">Digital Menu</h1>
     <p class="lead">Copiright © 2021</p>
   </div>
 </div>
-<!-- <app-restaurant-list [restaurantList]="restaurants"></app-restaurant-list> -->
