@@ -31,7 +31,7 @@
         <div class="wrapper">
           <img [src]="restaurant.imagePath" alt="Random first slide" (click)="showdetails()">
         </div>
-        <div class="carousel-caption">
+        <div class="carousel-caption" (click)="showdetails()">
           <h3>{{ restaurant.name }}</h3>
           <p>{{ restaurant.slogan }}</p>
         </div>
