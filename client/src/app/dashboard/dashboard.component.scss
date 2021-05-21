@@ -12,16 +12,30 @@ ngb-carousel .wrapper>img {
   bottom: 0;
   right: 0;
 }
+.jumbotron {
+  h1 {
+    font-family: $font-title-carousel-card
+  }
+}
 
 .carousel-caption {
   color: white;
   h3 {
-    font-family: $font-title-carousel;
+    font-family: $font-title-carousel-card;
     font-size: 2.75rem;
   }
   p {
     font-family: $font-subtitle-carousel;
     font-size: 2rem;
+  }
+}
+.card-body {
+  .card-title {
+    font-family: $font-title-carousel-card;
+  }
+  .card-text {
+    font-family: $font-card-subtitle;
+    font-weight: bold;
   }
 }
 .carousel{
@@ -36,7 +50,7 @@ ngb-carousel .wrapper>img {
 .dot-container {
   text-align: center;
 
-  dot-container-top {
+  .dot-container-top {
     text-align: center;
   }
 }
