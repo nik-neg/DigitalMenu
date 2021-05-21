@@ -11,14 +11,14 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 export class DashboardComponent implements OnInit {
   title = 'ng-carousel-demo';
   images = [
-    {title: 'Cuba Life', short: 'Visit us in the center of Madrid', src: "../../assets/images/restaurants/1.jpg"},
-    {title: 'Burger Bar', short: 'Come and try our Big Deal :)', src: "./../assets/images/restaurants/2.jpg"},
-    {title: 'Delicat', short: 'Always good', src: "./../assets/images/restaurants/3.jpg"},
-    {title: 'The Spot', short: 'Meet your friends and enjoy our kitchen', src: "../../assets/images/restaurants/4.jpg"},
-    {title: 'Mar e Sol', short: 'Come to see the sea', src: "./../assets/images/restaurants/5.jpg"},
-    {title: 'Green Lounge', short: 'Nice and fresh dishes from 10 a.m. to 11 p.m', src: "./../assets/images/restaurants/6.jpg"},
-    {title: 'La Rustica', short: 'Cucina italiana tradizionale', src: "../../assets/images/restaurants/7.jpg"},
-    {title: 'Surf & Turf Bar', short: 'Come and try our shrimps', src: "./../assets/images/restaurants/8.jpg"},
+    {title: 'Cuba Life', short: 'Madrid - Visit us', src: "../../assets/images/restaurants/1.jpg"},
+    {title: 'Burger Bar', short: 'Miami - Come and try our Big Deal :)', src: "./../assets/images/restaurants/2.jpg"},
+    {title: 'Delicat', short: 'Tel Aviv Marina - Always good', src: "./../assets/images/restaurants/3.jpg"},
+    {title: 'The Spot', short: 'Nizza - Try our delicous kitchen', src: "../../assets/images/restaurants/4.jpg"},
+    {title: 'Mar e Sol', short: 'Lissabon - Come to see the sea', src: "./../assets/images/restaurants/5.jpg"},
+    {title: 'Green Lounge', short: 'Tokyo - Open from 10 a.m. to 11 p.m', src: "./../assets/images/restaurants/6.jpg"},
+    {title: 'La Rustica', short: 'Rome - Cucina italiana tradizionale', src: "../../assets/images/restaurants/7.jpg"},
+    {title: 'Surf & Turf Bar', short: 'San Francisco - Come and try our shrimps', src: "./../assets/images/restaurants/8.jpg"},
   ];
 
   private restaurantsUrl = "restaurants";
