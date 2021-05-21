@@ -1,3 +1,5 @@
+@import '../../styles/utils/variables';
+
 ngb-carousel .wrapper {
   position: relative;
   height: 0;
@@ -9,4 +11,16 @@ ngb-carousel .wrapper>img {
   left: 0;
   bottom: 0;
   right: 0;
+}
+
+.carousel-caption {
+  color: white;
+  h3 {
+    font-family: $font-title-carousel;
+    font-size: 4rem;
+  }
+  p {
+    font-family: $font-subtitle-carousel;
+    font-size: 2rem;
+  }
 }
