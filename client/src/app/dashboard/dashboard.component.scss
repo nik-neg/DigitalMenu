@@ -17,12 +17,15 @@ ngb-carousel .wrapper>img {
   color: white;
   h3 {
     font-family: $font-title-carousel;
-    font-size: 3.0rem;
+    font-size: 2.75rem;
   }
   p {
     font-family: $font-subtitle-carousel;
     font-size: 2rem;
   }
+}
+.carousel{
+  padding: 0.2rem;
 }
 
 .col {
@@ -34,4 +37,8 @@ ngb-carousel .wrapper>img {
   .small-device-container {
     display: none;
   }
+  .carousel{
+    padding-bottom: 1.0rem;
+  }
+
 }

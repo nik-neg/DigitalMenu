@@ -10,7 +10,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DashboardComponent implements OnInit {
   title = 'ng-carousel-demo';
-  images = [
+  imagesTop = [
     {title: 'Cuba Life', slogan: 'Madrid - Visit us', imagePath: "../../assets/images/restaurants/la_cuba.jpg"},
     {title: 'Burger Bar', slogan: 'Miami - Try our Big Deal :)', imagePath: "./../assets/images/restaurants/burger_bar.jpg"},
     {title: 'Delicat', slogan: 'Tel Aviv Marina - Enjoy!', imagePath: "./../assets/images/restaurants/delicat.jpg"},
@@ -21,11 +21,24 @@ export class DashboardComponent implements OnInit {
     {title: 'Surf & Turf Bar', slogan: 'San Francisco - Best shrimps', imagePath: "./../assets/images/restaurants/surf_and_turf_bar.jpg"},
   ];
 
+  imagesBottom = [
+    {title: 'El Matador', slogan: 'Madrid - Coming Soon!', imagePath: "../../assets/images/restaurants/el_matador.jpg"},
+    {title: 'Potato Crunch', slogan: 'Miami - Coming Soon!', imagePath: "./../assets/images/restaurants/potato_crunch.jpg"},
+    {title: 'Saladido', slogan: 'Tel Aviv Marina - Coming Soon!', imagePath: "./../assets/images/restaurants/saladido.jpg"},
+    {title: 'Oyster Hunter', slogan: 'Nizza - Coming Soon!', imagePath: "../../assets/images/restaurants/oyster_hunter.jpg"},
+    {title: 'Seafood Heaven', slogan: 'Lissabon - Coming Soon!', imagePath: "./../assets/images/restaurants/seafood_heaven.jpg"},
+    {title: 'Veggie Master', slogan: 'Tokyo - Coming Soon!', imagePath: "./../assets/images/restaurants/veggie_master.jpg"},
+    {title: 'Brewery King', slogan: 'Rome - Coming Soon!', imagePath: "../../assets/images/restaurants/brewery_king.jpg"},
+    {title: 'Soup Brewery', slogan: 'San Francisco - Coming Soon!', imagePath: "./../assets/images/restaurants/soup_brewery.jpg"},
+  ];
+
   private restaurantsUrl = "restaurants";
-  restaurants: Restaurant [];
+  restaurantsTop: Restaurant [];
+  restaurantsBottom: Restaurant [];
 
   constructor(private apiClient: ApiClientService, config: NgbCarouselConfig) {
-    this.restaurants = [];
+    this.restaurantsTop = [];
+    this.restaurantsBottom = [];
     config.interval = 4000;
     config.keyboard = true;
     config.pauseOnHover = true;
@@ -35,13 +48,20 @@ export class DashboardComponent implements OnInit {
     this.apiClient.getRestaurants(this.restaurantsUrl)
     .subscribe((restaurants) => {
       console.log(restaurants)
-      this.restaurants = restaurants;
-      for (let i = 0; i < this.restaurants.length; i++) {
-        this.restaurants[i].imagePath = this.images[i] ? this.images[i].imagePath : 'no image';
-        this.restaurants[i].slogan = this.images[i] ? this.images[i].slogan : '';
+      this.restaurantsTop = restaurants.slice(0, restaurants.length/2);
+      this.restaurantsBottom = restaurants.slice(restaurants.length/2, restaurants.length);
+      console.log(this.restaurantsTop);
+      console.log(this.restaurantsBottom);
+      for (let i = 0; i < this.imagesTop.length; i++) {
+        this.restaurantsTop[i].imagePath = this.imagesTop[i] ? this.imagesTop[i].imagePath : 'no image';
+        this.restaurantsTop[i].slogan = this.imagesTop[i] ? this.imagesTop[i].slogan : '';
       }
-      })
-    }
+      for (let i = 0; i < this.imagesBottom.length; i++) {
+        this.restaurantsBottom[i].imagePath = this.imagesBottom[i] ? this.imagesBottom[i].imagePath : 'no image';
+        this.restaurantsBottom[i].slogan = this.imagesBottom[i] ? this.imagesBottom[i].slogan : '';
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.getRestaurants();
