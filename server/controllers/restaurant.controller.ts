@@ -6,6 +6,8 @@ import RestaurantDTO from '../models/restaurant/dto/create-restaurant.dto';
 const rules = {
   name: 'required|string',
   location: 'required|string',
+  slogan: 'required|string',
+  imagePath: 'required|string',
 };
 const validateInput = (obj: Object, rules: any) => new Validator(obj, rules);
 
@@ -14,10 +16,12 @@ export async function createRestaurant(req: any, res: any) {
   const validation = validateInput(requestObject, rules);
   try {
     if (validation.passes()) {
-      const dto = new RestaurantDTO(requestObject.name, requestObject.location);
+      const dto = new RestaurantDTO(requestObject.name, requestObject.location, requestObject.slogan, requestObject.imagePath);
       const restaurant = new Restaurant({
         name: dto.name,
         location: dto.location,
+        slogan: dto.slogan,
+        imagePath: dto.imagePath
       });
       const saveReponse = await restaurant.save();
       res.statusCode = 201;
