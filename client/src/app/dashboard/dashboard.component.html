@@ -7,7 +7,7 @@
 <div class="container fluid">
   <div class="row">
     <div *ngFor="let restaurant of restaurantsTop" class="col col-lg-3 col-md-6 d-none d-md-block">
-      <div class="card">
+      <div class="card" (click)="showdetails()">
         <img class="card-img-top" [src]="restaurant.imagePath" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{ restaurant.name }}</h5>
@@ -29,7 +29,7 @@
     <ngb-carousel>
       <ng-template ngbSlide *ngFor="let restaurant of restaurantsTop">
         <div class="wrapper">
-          <img [src]="restaurant.imagePath" alt="Random first slide" width="1200" height="500">
+          <img [src]="restaurant.imagePath" alt="Random first slide" (click)="showdetails()">
         </div>
         <div class="carousel-caption">
           <h3>{{ restaurant.name }}</h3>
@@ -48,7 +48,7 @@
 <div class="container fluid">
   <div class="row">
     <div *ngFor="let restaurant of restaurantsBottom" class="col col-lg-3 col-md-6 d-none d-md-block">
-      <div class="card">
+      <div class="card" (click)="showdetails()">
         <img class="card-img-top" [src]="restaurant.imagePath" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">{{ restaurant.name }}</h5>
@@ -64,7 +64,7 @@
     <div class="container fluid">
       <div class="row">
         <div *ngFor="let restaurant of restaurantsTop" class="col-md-6">
-          <div class="card">
+          <div class="card" (click)="showdetails()">
             <img class="card-img-top" [src]="restaurant.imagePath" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">{{ restaurant.name }}</h5>
@@ -89,7 +89,7 @@
     <div class="container fluid">
       <div class="row">
         <div *ngFor="let restaurant of restaurantsBottom" class="col-md-6">
-          <div class="card">
+          <div class="card" (click)="showdetails()">
             <img class="card-img-top" [src]="restaurant.imagePath" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">{{ restaurant.name }}</h5>

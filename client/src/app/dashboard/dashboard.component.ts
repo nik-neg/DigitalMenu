@@ -47,7 +47,6 @@ export class DashboardComponent implements OnInit {
   getRestaurants() : void {
     this.apiClient.getRestaurants(this.restaurantsUrl)
     .subscribe((restaurants) => {
-      console.log(restaurants)
       this.restaurantsTop = restaurants.slice(0, restaurants.length/2);
       this.restaurantsBottom = restaurants.slice(restaurants.length/2, restaurants.length);
       this.restaurantsTop = this.restaurantsTop.map<Restaurant>((restaurant, index) => {
@@ -61,6 +60,10 @@ export class DashboardComponent implements OnInit {
         return restaurant;
       });
     })
+  }
+
+  showdetails() {
+    console.log("click");
   }
 
   ngOnInit(): void {
