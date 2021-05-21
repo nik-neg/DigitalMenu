@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private apiClient: ApiClientService, config: NgbCarouselConfig) {
     this.restaurants = [];
-    config.interval = 2500;
+    config.interval = 3000;
     config.keyboard = true;
     config.pauseOnHover = true;
   }
