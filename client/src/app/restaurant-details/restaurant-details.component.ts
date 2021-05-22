@@ -10,10 +10,10 @@ import { Menu } from '../menu/entities/menu';
 })
 export class RestaurantDetailsComponent implements OnInit {
   restaurant: Restaurant;
-  menu: Menu;
+  menus: Menu[];
   constructor(private route: ActivatedRoute, private apiClient: ApiClientService) {
     this.restaurant = new Restaurant();
-    this.menu = new Menu();
+    this.menus = [];
   }
 
   ngOnInit() {
@@ -26,10 +26,13 @@ export class RestaurantDetailsComponent implements OnInit {
       this.apiClient.getRestaurant(restaurantId)
         .subscribe((restaurant) => {
           this.restaurant = restaurant;
-          const menu = JSON.parse(JSON.stringify(restaurant.menus[0]))
-          const { _id, name, price }: { _id: string, name: string; price: number } = menu;
-          this.menu = new Menu(_id, name, price, restaurant._id);
-          console.log(menu);
+          console.log(restaurant.menus, typeof restaurant.menus[0]);
+          restaurant.menus = JSON.parse(JSON.stringify(restaurant.menus));
+          this.menus = restaurant.menus.map((menu) => {
+            const menuObject = JSON.parse(JSON.stringify(menu));
+            const { _id, name, price }: { _id: string, name: string; price: number } = menuObject;
+            return new Menu(_id, name, price, restaurant._id);
+          });
         });
     });
   }
