@@ -3,10 +3,10 @@
     <!-- <img class="card-img-top" [src]="menu.imagePath" alt="Card image cap"> -->
     <div class="card-body" style="width: 16rem;">
       <div class="card-header">
-        {{ menu.name }}: {{ menu.price }}
+        {{ menu.name }}: {{ menu.price | currency:'USD':'symbol'}}
       </div>
       <ul *ngFor="let dish of menu.dishes" class="list-group list-group-flush">
-        <li class="list-group-item">{{ dish.name }}: {{ dish.price }}</li>
+        <li class="list-group-item">{{ dish.name }}: {{ dish.price | currency:'USD':'symbol'}}</li>
       </ul>
     </div>
   </div>
