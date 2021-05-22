@@ -8,9 +8,8 @@ import { ApiClientService } from '../api-client.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  title = 'ng-carousel-demo';
   imagesTop = [
-    {title: 'Cuba Life', slogan: 'Madrid - Visit us', imagePath: "../../assets/images/restaurants/la_cuba.jpg"},
+    {title: 'Cuba Life', slogan: 'Madrid - Visit us', imagePath: "../../assets/images/restaurants/cuba_life.jpg"},
     {title: 'Burger Bar', slogan: 'Miami - Try our Big Deal :)', imagePath: "./../assets/images/restaurants/burger_bar.jpg"},
     {title: 'Delicat', slogan: 'Tel Aviv Marina - Enjoy!', imagePath: "./../assets/images/restaurants/delicat.jpg"},
     {title: 'The Spot', slogan: 'Nizza - Magnifique cuisine', imagePath: "../../assets/images/restaurants/the_spot.jpg"},
@@ -28,7 +27,7 @@ export class DashboardComponent implements OnInit {
     {title: 'Seafood Heaven', slogan: 'Lissabon - Coming soon!', imagePath: "./../assets/images/restaurants/seafood_heaven.jpg"},
     {title: 'Veggie Master', slogan: 'Tokyo - Coming soon!', imagePath: "./../assets/images/restaurants/veggie_master.jpg"},
     {title: 'Brewery King', slogan: 'Rome - Coming soon!', imagePath: "../../assets/images/restaurants/brewery_king.jpg"},
-    {title: 'Soup Splash', slogan: 'San Francisco - Soon!', imagePath: "./../assets/images/restaurants/soup_brewery.jpg"},
+    {title: 'Soup Splash', slogan: 'San Francisco - Soon!', imagePath: "./../assets/images/restaurants/soup_splash.jpg"},
   ];
 
   private restaurantsUrl = "restaurants";

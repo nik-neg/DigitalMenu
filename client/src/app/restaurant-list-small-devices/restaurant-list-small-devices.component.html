@@ -3,14 +3,15 @@
     <div class="container fluid">
       <div class="row">
         <div *ngFor="let restaurant of restaurantList" class="col-md-6">
-          <div class="card" (click)="showdetails()">
+          <!-- <div class="card" (click)="showdetails()">
             <img class="card-img-top" [src]="restaurant.imagePath" alt="Card image cap">
             <div class="card-body">
               <h5 class="card-title">{{ restaurant.name }}</h5>
               <p class="card-text">{{ restaurant.slogan }}</p>
               <p class="card-text-update"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
-          </div>
+          </div> -->
+          <app-restaurant [restaurant]="restaurant"></app-restaurant>
           <div class="dot-container dot-container-top">
             <span class="dot"></span>
             <span class="dot"></span>

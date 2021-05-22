@@ -1,0 +1,10 @@
+<a routerLink='restaurants/{{restaurant._id}}'>
+  <div class="wrapper">
+    <img [src]="restaurant.imagePath" alt="Random first slide">
+  </div>
+  <div class="carousel-caption">
+    <h3>{{ restaurant.name }}</h3>
+    <p>{{ restaurant.slogan }}</p>
+    <p>{{restaurant._id}}</p>
+  </div>
+</a>

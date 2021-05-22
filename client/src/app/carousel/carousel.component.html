@@ -1,13 +1,16 @@
   <div class="container carousel">
     <ngb-carousel>
       <ng-template ngbSlide *ngFor="let restaurant of restaurantList">
-        <div class="wrapper">
-          <img [src]="restaurant.imagePath" alt="Random first slide" (click)="showdetails()">
+        <!-- <a [routerLink]="/restaurants/restaurant._id"> -->
+          <app-carousel-item [restaurant]="restaurant"></app-carousel-item>
+        <!-- </a> -->
+        <!-- <div class="wrapper">
+          <img [src]="restaurant.imagePath" alt="Random first slide">
         </div>
-        <div class="carousel-caption" (click)="showdetails()">
+        <div class="carousel-caption">
           <h3>{{ restaurant.name }}</h3>
           <p>{{ restaurant.slogan }}</p>
-        </div>
+        </div> -->
       </ng-template>
     </ngb-carousel>
   </div>

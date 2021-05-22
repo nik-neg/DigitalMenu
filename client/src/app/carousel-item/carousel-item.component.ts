@@ -2,20 +2,15 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Restaurant } from '../restaurant/entities/restaurant';
 
 @Component({
-  selector: 'app-restaurant',
-  templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.scss']
+  selector: 'app-carousel-item',
+  templateUrl: './carousel-item.component.html',
+  styleUrls: ['./carousel-item.component.scss']
 })
-export class RestaurantComponent implements OnInit {
+export class CarouselItemComponent implements OnInit {
   @Input() restaurant: Restaurant;
   constructor() {
     this.restaurant = new Restaurant();
   }
-
-  restaurantURL() {
-    return `/restaurants/${this.restaurant._id}`;
-  }
-
   ngOnInit(): void {
   }
 

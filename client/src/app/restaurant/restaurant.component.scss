@@ -1,0 +1,26 @@
+@import '../../styles/utils/variables';
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.card-body {
+
+  // img {
+  //   width:250px;
+  //   height: 250px;
+  // }
+  .card-title {
+    font-family: $font-title-carousel-card;
+  }
+  .card-text {
+    font-family: $font-card-subtitle;
+    font-weight: bold;
+  }
+}
+
+.col {
+  background-color: white;
+  padding: 0.5%;
+}

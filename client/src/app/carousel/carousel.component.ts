@@ -18,10 +18,6 @@ export class CarouselComponent implements OnInit {
     config.pauseOnHover = true;
   }
 
-  showdetails = () => {
-    console.log("click");
-   };
-
   ngOnInit(): void {
   }
 
