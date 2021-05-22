@@ -26,13 +26,7 @@ export class RestaurantDetailsComponent implements OnInit {
       this.apiClient.getRestaurant(restaurantId)
         .subscribe((restaurant) => {
           this.restaurant = restaurant;
-          console.log(restaurant.menus, typeof restaurant.menus[0]);
-          restaurant.menus = JSON.parse(JSON.stringify(restaurant.menus));
-          this.menus = restaurant.menus.map((menu) => {
-            const menuObject = JSON.parse(JSON.stringify(menu));
-            const { _id, name, price }: { _id: string, name: string; price: number } = menuObject;
-            return new Menu(_id, name, price, restaurant._id);
-          });
+          this.menus = restaurant.menus;
         });
     });
   }

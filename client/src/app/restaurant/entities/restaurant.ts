@@ -1,12 +1,14 @@
 import IRestaurant from '../interfaces/irestaurant';
+import IDish from '../../dish/interfaces/idish';
+import IMenu from '../../menu/interfaces/imenu';
 export class Restaurant implements IRestaurant{
   _id?: string;
   name?: string;
   location?: string;
   imagePath?: string;
   slogan: string;
-  menus: string [];
-  dishes: string [];
+  menus: IMenu [];
+  dishes: IDish [];
 
   constructor(_id?: string, name?: string, location?: string) {
     this._id = _id;

@@ -1,10 +1,24 @@
 <a [routerLink]="menuURL()">
   <div class="card">
     <!-- <img class="card-img-top" [src]="menu.imagePath" alt="Card image cap"> -->
-    <div class="card-body">
-      <h5 class="card-title">{{ menu.name }}</h5>
-      <p class="card-text">{{ menu.price }}</p>
-      <p class="card-text-update"><small class="text-muted">Last updated 3 mins ago</small></p>
+    <div class="card-body" style="width: 16rem;">
+      <div class="card-header">
+        {{ menu.name }}: {{ menu.price }}
+      </div>
+      <ul *ngFor="let dish of menu.dishes" class="list-group list-group-flush">
+        <li class="list-group-item">{{ dish.name }}: {{ dish.price }}</li>
+        <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
+        <li class="list-group-item">Vestibulum at eros</li> -->
+      </ul>
     </div>
+    <!-- <div class="card-body">
+      <h5 class="card-title">{{ menu.name }}: {{ menu.price }}</h5>
+      <div *ngFor="let dish of menu.dishes" class="col-lg-6">
+        <p>kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</p>
+        <p>{{ dish.name }}: {{ dish.price }}</p>
+      </div>
+
+      <p class="card-text-update"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div> -->
   </div>
 </a>
