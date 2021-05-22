@@ -2,3 +2,99 @@ a {
   color: black;
   text-decoration: none;
 }
+
+.card {
+  background-color: #e8eae6;
+  .card-header {
+    background-color: #cdd0cb;
+  }
+}
+
+@media only screen and (max-width: 991px){
+  .card {
+    height: 10rem;
+    .card-body {
+      width: 100%;
+      height: 1rem;
+      .card-header {
+        position: relative;
+        bottom: 0.7rem;
+        width: 100%;
+        padding: 6px;
+      }
+      li {
+        position: relative;
+        bottom: 0.7rem;
+        padding: 6px;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 898px){
+  .card {
+    height: 9rem;
+    .card-body {
+      width: 100%;
+      height: 1rem;
+      .card-header {
+        position: relative;
+        bottom: 0.5rem;
+        width: 100%;
+        padding: 6px;
+        font-size: 0.7rem;
+      }
+      li {
+        position: relative;
+        bottom: 0.5rem;
+        padding: 6px;
+        font-size: 0.7rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 832px){
+  .card {
+    position: relative;
+    height: 9rem;
+    bottom: 1rem;
+    .card-body {
+      width: 100%;
+      height: 1rem;
+      .card-header {
+        position: relative;
+        bottom: 0.5rem;
+        width: 100%;
+        font-size: 0.7rem;
+      }
+      li {
+        position: relative;
+        bottom: 0.5rem;
+        padding: 6px;
+        font-size: 0.7rem;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 576px){
+  .card {
+    position: relative;
+    height: 14rem;
+    bottom: 1rem;
+    .card-body {
+      width: 100%;
+      .card-header {
+
+        bottom: 1rem;
+        width: 100%;
+        font-size: 0.7rem;
+      }
+      li {
+        bottom: 1rem;
+        font-size: 0.7rem;
+      }
+    }
+  }
+}
