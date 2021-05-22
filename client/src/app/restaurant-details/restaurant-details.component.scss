@@ -5,7 +5,15 @@
 .col-lg-3 {
   margin: 5% 0 0 0%;
 }
+.col {
+  padding: 0.2rem;
+}
+@media only screen and (max-width: 832px){
+  .col {
+    bottom: 0.4rem;
+  }
+}
 
 .details-container {
-  background-color: #162447;
+  background-color: #ff7b54;
 }

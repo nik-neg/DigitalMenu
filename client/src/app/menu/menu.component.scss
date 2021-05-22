@@ -4,10 +4,27 @@ a {
 }
 
 .card {
-  background-color: #e8eae6;
+  background-color: #ffd56b;
+  border: solid 2px black;
+  padding: 5px;
   .card-header {
-    background-color: #cdd0cb;
+    background-color: #ffb26b;
+    border-top: solid 2px black;
+    border-right: solid 2px black;
+    border-left: solid 2px black;
   }
+
+  li {
+    border-top: solid 2px black;
+    border-right: solid 2px black;
+    border-left: solid 2px black;
+  }
+  ul:last-child {
+    li:last-child {
+      border-bottom: solid 2px black;
+    }
+  }
+
 }
 
 @media only screen and (max-width: 991px){
@@ -18,15 +35,16 @@ a {
       height: 1rem;
       .card-header {
         position: relative;
-        bottom: 0.7rem;
+        bottom: 0.8rem;
         width: 100%;
         padding: 6px;
+        font-size: 0.8rem;
       }
       li {
         position: relative;
-        bottom: 0.7rem;
+        bottom: 0.9rem;
         padding: 6px;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
       }
     }
   }
@@ -34,7 +52,7 @@ a {
 
 @media only screen and (max-width: 898px){
   .card {
-    height: 9rem;
+    height: 9.5rem;
     .card-body {
       width: 100%;
       height: 1rem;
@@ -58,11 +76,12 @@ a {
 @media only screen and (max-width: 832px){
   .card {
     position: relative;
-    height: 9rem;
+    height: 9.5rem;
+    top: 0.5rem;
     bottom: 1rem;
     .card-body {
       width: 100%;
-      height: 1rem;
+      height: 0.8rem;
       .card-header {
         position: relative;
         bottom: 0.5rem;
@@ -78,22 +97,95 @@ a {
     }
   }
 }
+
 @media only screen and (max-width: 576px){
   .card {
     position: relative;
-    height: 14rem;
+    height: 13rem;
     bottom: 1rem;
     .card-body {
       width: 100%;
       .card-header {
-
-        bottom: 1rem;
         width: 100%;
         font-size: 0.7rem;
       }
       li {
         bottom: 1rem;
         font-size: 0.7rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 478px){
+  .card {
+    position: relative;
+    height: 16rem;
+    bottom: 1rem;
+    .card-body {
+      width: 100%;
+      .card-header {
+        width: 100%;
+        font-size: 0.7rem;
+      }
+      li {
+        bottom: 1rem;
+        font-size: 0.7rem;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 448px){
+  .card {
+    position: relative;
+    height: 20rem;
+    bottom: 1rem;
+    .card-body {
+      width: 100%;
+      .card-header {
+        width: 100%;
+        font-size: 0.7rem;
+      }
+      li {
+        bottom: 1rem;
+        font-size: 0.7rem;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 376px){
+  .card {
+    position: relative;
+    height: 10rem;
+    bottom: 1rem;
+    .card-body {
+      width: 100%;
+      .card-header {
+        width: 100%;
+        font-size: 0.7rem;
+      }
+      li {
+        bottom: 1rem;
+        font-size: 0.7rem;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 320px){
+  .card {
+    position: relative;
+    height: 8rem;
+    bottom: 1rem;
+    .card-body {
+      width: 100%;
+      .card-header {
+        bottom: 1rem;
+        width: 100%;
+        font-size: 0.5rem;
+      }
+      li {
+        bottom: 1.5rem;
+        font-size: 0.5rem;
       }
     }
   }
