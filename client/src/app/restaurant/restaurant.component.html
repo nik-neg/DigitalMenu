@@ -1,4 +1,4 @@
-<a [routerLink]="restaurantURL()">
+<a [routerLink]="restaurantURL()" [queryParams]="{ isAdmin: isAdmin }">
   <div class="card">
     <img class="card-img-top" [src]="restaurant.imagePath" alt="Card image cap">
     <div class="card-body">

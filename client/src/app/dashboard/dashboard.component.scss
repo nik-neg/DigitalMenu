@@ -1,4 +1,6 @@
 @import '../../styles/utils/variables';
+@import '../../styles/utils/colors';
+
 .jumbotron {
   h1 {
     font-family: $font-title-carousel-card
@@ -40,4 +42,8 @@
   border-radius: 50%;
   margin:  1.4rem;
   display: inline-block;
+}
+
+.jumbotron-bottom {
+  margin: 32px 0 0 0,
 }
