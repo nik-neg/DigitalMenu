@@ -7,13 +7,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { MenuComponent } from './menu/menu.component';
 import { DishComponent } from './dish/dish.component';
-import { EditComponent } from './edit/edit.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RestaurantListSmallDevicesComponent } from './restaurant-list-small-devices/restaurant-list-small-devices.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { RestaurantDetailsComponent } from './restaurant-details/restaurant-details.component';
 import { CarouselItemComponent } from './carousel-item/carousel-item.component';
+import { MenuEditComponent } from './menu-edit/menu-edit.component';
 
 @NgModule({
   declarations: [
@@ -22,12 +22,12 @@ import { CarouselItemComponent } from './carousel-item/carousel-item.component';
     RestaurantComponent,
     MenuComponent,
     DishComponent,
-    EditComponent,
     RestaurantListComponent,
     RestaurantListSmallDevicesComponent,
     CarouselComponent,
     RestaurantDetailsComponent,
-    CarouselItemComponent
+    CarouselItemComponent,
+    MenuEditComponent
   ],
   imports: [
     BrowserModule,

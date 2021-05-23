@@ -8,6 +8,7 @@ import { Restaurant } from '../restaurant/entities/restaurant';
 })
 export class CarouselItemComponent implements OnInit {
   @Input() restaurant: Restaurant;
+  isAdmin: boolean = true;
   constructor() {
     this.restaurant = new Restaurant();
   }

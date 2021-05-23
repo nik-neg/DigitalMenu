@@ -33,6 +33,7 @@ export class DashboardComponent implements OnInit {
   private restaurantsUrl = "restaurants";
   restaurantsTop: Restaurant [];
   restaurantsBottom: Restaurant [];
+  // isAdmin: boolean = false
 
   constructor(private apiClient: ApiClientService) {
     this.restaurantsTop = [];
