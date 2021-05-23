@@ -15,6 +15,9 @@ import { RestaurantDetailsComponent } from './restaurant-details/restaurant-deta
 import { CarouselItemComponent } from './carousel-item/carousel-item.component';
 import { MenuEditComponent } from './menu-edit/menu-edit.component';
 
+import { StoreModule } from '@ngrx/store';
+import { adminReducer } from '../app/ngrx/reducer/admin.reducer';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,13 +30,14 @@ import { MenuEditComponent } from './menu-edit/menu-edit.component';
     CarouselComponent,
     RestaurantDetailsComponent,
     CarouselItemComponent,
-    MenuEditComponent
+    MenuEditComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    StoreModule.forRoot({ isAdmin: adminReducer }) //
   ],
   providers: [],
   bootstrap: [AppComponent]

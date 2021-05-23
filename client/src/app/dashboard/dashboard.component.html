@@ -1,3 +1,9 @@
+<button (click)="setAdminPrivileges()">setAdminPrivileges</button>
+<div>Current Value: {{ isAdmin$ | async }}</div>
+<button (click)="removeAdminPrivileges()">removeAdminPrivileges</button>
+<button (click)="reset()">Reset Value</button>
+
+
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">Digital Menu</h1>

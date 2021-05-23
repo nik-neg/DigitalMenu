@@ -1,6 +1,5 @@
 import { Component, AfterViewInit, ElementRef } from '@angular/core';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,6 +11,6 @@ export class AppComponent implements AfterViewInit {
 
   }
   ngAfterViewInit(){
-    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#96bb7c';
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = '#ffcd19';
  }
 }

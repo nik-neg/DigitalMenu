@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Restaurant } from '../restaurant/entities/restaurant';
 import { ApiClientService } from '../api-client.service';
 
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { setAdminPrivileges, removeAdminPrivileges, reset } from '../ngrx/actions/admin.actions';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -33,11 +37,24 @@ export class DashboardComponent implements OnInit {
   private restaurantsUrl = "restaurants";
   restaurantsTop: Restaurant [];
   restaurantsBottom: Restaurant [];
-  // isAdmin: boolean = false
+  isAdmin$: Observable<boolean>;
 
-  constructor(private apiClient: ApiClientService) {
+  constructor(private apiClient: ApiClientService, private store: Store<{ isAdmin: boolean }>) {
     this.restaurantsTop = [];
     this.restaurantsBottom = [];
+    this.isAdmin$ = store.select('isAdmin');
+  }
+
+  setAdminPrivileges() {
+    this.store.dispatch(setAdminPrivileges());
+  }
+
+  removeAdminPrivileges() {
+    this.store.dispatch(removeAdminPrivileges());
+  }
+
+  reset() {
+    this.store.dispatch(reset());
   }
 
   getRestaurants() : void {
