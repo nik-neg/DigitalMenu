@@ -1,12 +1,13 @@
 <div class="details-container">
   <img class=" card-img-top restaurant-image" [src]="restaurant.imagePath" alt="Card image cap">
   <div class="container fluid">
-    <div class="row justify-content-lg-center">
+    <div class="row">
       <div
         *ngFor="let menu of menus"
-        class="col col-lg-4 col-md-12 col-sm-12 col-xs-12"
       >
         <app-menu [menu]="menu"></app-menu>
       </div>
     </div>
 </div>
+<!-- justify-content-lg-center -->
+<!-- class="col col-lg-3 col-md-12 col-sm-12 col-xs-12" -->
