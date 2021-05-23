@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Menu } from '../menu/entities/menu';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -10,7 +11,7 @@ import { AlertController } from '@ionic/angular';
 export class MenuComponent implements OnInit {
   @Input() menu: Menu;
   isAdmin: boolean = false
-  constructor(private route: ActivatedRoute, private alertController: AlertController) {
+  constructor(private route: ActivatedRoute, private router: Router, private alertController: AlertController) {
     this.menu = new Menu();
    }
 
@@ -37,7 +38,7 @@ export class MenuComponent implements OnInit {
 
   editURL() {
     if (this.isAdmin) {
-      return `/restaurants/${this.menu.restaurant}/menu/${this.menu._id}`;
+      return this.router.navigate([`menu/${this.menu._id}`], { relativeTo: this.route });
     } else {
       // this.alertWrapper();
       return '/';

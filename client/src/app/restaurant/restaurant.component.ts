@@ -8,7 +8,7 @@ import { Restaurant } from '../restaurant/entities/restaurant';
 })
 export class RestaurantComponent implements OnInit {
   @Input() restaurant: Restaurant;
-  isAdmin: boolean = true;
+  isAdmin: boolean = false;
   constructor() {
     this.restaurant = new Restaurant();
   }
