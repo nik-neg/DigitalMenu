@@ -7,10 +7,6 @@ a {
 
 .card-body {
 
-  // img {
-  //   width:250px;
-  //   height: 250px;
-  // }
   .card-title {
     font-family: $font-title-carousel-card;
   }
@@ -21,6 +17,6 @@ a {
 }
 
 .col {
-  background-color: white;
+  background-color: white; // ?
   padding: 0.5%;
 }

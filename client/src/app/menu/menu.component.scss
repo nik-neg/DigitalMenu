@@ -4,7 +4,7 @@ a {
 }
 
 .card {
-  background-color: #ffd56b;
+  background-color: white;
   border: solid 2px black;
   padding: 5px;
   .card-header {
@@ -15,6 +15,7 @@ a {
   }
 
   li {
+    background-color: #fff8dc;
     border-top: solid 2px black;
     border-right: solid 2px black;
     border-left: solid 2px black;
@@ -24,7 +25,6 @@ a {
       border-bottom: solid 2px black;
     }
   }
-
 }
 
 @media only screen and (max-width: 991px){
@@ -58,14 +58,14 @@ a {
       height: 1rem;
       .card-header {
         position: relative;
-        bottom: 0.5rem;
+        bottom: 0.9rem;
         width: 100%;
         padding: 6px;
         font-size: 0.7rem;
       }
       li {
         position: relative;
-        bottom: 0.5rem;
+        bottom: 0.9rem;
         padding: 6px;
         font-size: 0.7rem;
       }
@@ -84,13 +84,13 @@ a {
       height: 0.8rem;
       .card-header {
         position: relative;
-        bottom: 0.5rem;
+        bottom: 0.9rem;
         width: 100%;
         font-size: 0.7rem;
       }
       li {
         position: relative;
-        bottom: 0.5rem;
+        bottom: 0.9rem;
         padding: 6px;
         font-size: 0.7rem;
       }
