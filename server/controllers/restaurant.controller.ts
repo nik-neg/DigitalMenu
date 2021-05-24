@@ -16,12 +16,14 @@ export async function createRestaurant(req: any, res: any) {
   const validation = validateInput(requestObject, rules);
   try {
     if (validation.passes()) {
-      const dto = new RestaurantDTO(requestObject.name, requestObject.location, requestObject.slogan, requestObject.imagePath);
+      const { name, location, slogan, imagePath, isAdmin } = requestObject;
+      const dto = new RestaurantDTO(name, location, slogan, imagePath, isAdmin);
       const restaurant = new Restaurant({
         name: dto.name,
         location: dto.location,
         slogan: dto.slogan,
-        imagePath: dto.imagePath
+        imagePath: dto.imagePath,
+        isAdmin: dto.isAdmin
       });
       const saveReponse = await restaurant.save();
       res.statusCode = 201;
