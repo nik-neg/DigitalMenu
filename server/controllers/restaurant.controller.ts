@@ -39,7 +39,13 @@ export async function createRestaurant(req: any, res: any) {
 
 export async function showRestaurants(req: any, res: any) {
   try {
-    const findReponse = await Restaurant.find().exec();
+    const findReponse = await Restaurant.
+    find()
+    .populate({
+      path: 'menus',
+      populate: { path: 'dishes' },
+    })
+    .exec();
     res.statusCode = 200;
     res.end(JSON.stringify(findReponse));
   } catch (error) {

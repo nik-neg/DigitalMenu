@@ -6,7 +6,7 @@ export class Menu implements IMenu {
   name?: string;
   price?: number;
   restaurant?: string;
-  dishes: IDish [];
+  dishes?: IDish [];
   constructor(_id?: string, name?: string, price?: number, restaurant?: string) {
     this._id = _id;
     this.name = name;

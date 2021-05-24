@@ -22,7 +22,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment'; // Angular CLI environment
 
 import { EffectsModule } from '@ngrx/effects';
-import { RestaurantEffects } from '../app/restaurant/restaurant.effects';
+import { RestaurantEffects } from './ngrx/effects/restaurant.effects';
 
 @NgModule({
   declarations: [

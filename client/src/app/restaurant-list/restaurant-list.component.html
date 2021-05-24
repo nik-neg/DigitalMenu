@@ -1,7 +1,7 @@
 <div class="container fluid">
   <div class="row">
     <div *ngFor="let restaurant of restaurantList" class="col col-lg-3 col-md-4 d-none d-md-block">
-      <app-restaurant [restaurant]="restaurant"></app-restaurant>
+      <app-restaurant [restaurant]="restaurant" [isAdmin]="restaurant.isAdmin" [id]="restaurant._id"></app-restaurant>
     </div>
   </div>
 </div>

@@ -9,31 +9,18 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./restaurant.component.scss']
 })
 export class RestaurantComponent implements OnInit {
-  @Input() restaurant: Restaurant;
-  // isAdmin: boolean = true;
-  isAdmin$: Observable<boolean>;
-  constructor(private store: Store<{ isAdmin: boolean }>) {
-    this.restaurant = new Restaurant();
-    this.isAdmin$ = this.getValue(this.store.select('isAdmin'));
-    // this.showme();
-  }
+  @Input() restaurant: any;
+  @Input() isAdmin: boolean = false;
+  @Input() id: any = '-1'; // any neccessary, because of dependencies to to other components
+  constructor() {
 
-  getValue(obj: Observable<any>){
-    let value: any;
-    obj.subscribe(v => value = v);
-    return value;
-  }
-
-
-  showme() {
-    console.log(this.getValue(this.isAdmin$));     // single value => works
   }
 
   restaurantURL() {
     return `/restaurants/${this.restaurant._id}`;
   }
 
-  ngOnInit(): void {
-  }
+  async ngOnInit(): Promise<void> {
 
+  }
 }

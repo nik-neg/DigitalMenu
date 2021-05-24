@@ -37,13 +37,10 @@ export class DashboardComponent implements OnInit {
   private restaurantsUrl = "restaurants";
   restaurantsTop: Restaurant [];
   restaurantsBottom: Restaurant [];
-  // restaurants$: Observable<Restaurant[]>
-  // restaurants$ = this.store.select(state => state.restaurants);
 
   constructor(private apiClient: ApiClientService, private store: Store<{ restaurants: Restaurant [] }>) {
     this.restaurantsTop = [];
     this.restaurantsBottom = [];
-    // this.restaurants$ = this.store.select(state => state.restaurants);
   }
 
   async retrieveRestaurans() : Promise<void> {
@@ -80,6 +77,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRestaurants();
-    this.retrieveRestaurans();
+    // this.retrieveRestaurans();
   }
 }

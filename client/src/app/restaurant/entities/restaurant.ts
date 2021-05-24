@@ -7,15 +7,17 @@ export class Restaurant implements IRestaurant{
   location?: string;
   imagePath?: string;
   slogan: string;
+  isAdmin: boolean;
   menus: IMenu [];
   dishes: IDish [];
 
-  constructor(_id?: string, name?: string, location?: string) {
+  constructor(_id?: string, name?: string, location?: string, isAdmin?: boolean) {
     this._id = _id;
     this.name = name;
     this.location = location;
     this.imagePath = '';
     this.slogan = '';
+    this.isAdmin = false;
     this.menus = [];
     this.dishes = [];
   }

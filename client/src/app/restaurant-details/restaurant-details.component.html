@@ -1,5 +1,5 @@
 <div class="details-container">
-  <img class=" card-img-top restaurant-image" [src]="restaurant.imagePath" alt="Card image cap">
+  <img class="card-img-top restaurant-image" *ngIf="restaurant" [src]="restaurant.imagePath" alt="Card image cap">
   <div class="container fluid">
     <div class="row">
       <div
