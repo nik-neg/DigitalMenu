@@ -29,18 +29,18 @@ export class RestaurantDetailsComponent implements OnInit {
   getRestaurantDetails(): void {
     this.route.params.forEach((params: Params) => {
       this.restaurantId = params._id;
-      this.store.select('restaurants').pipe(take(1)).subscribe((restaurants) => {
-        if(restaurants.length > 1) {
-          this.restaurant = restaurants.find((restaurant) => restaurant._id === this.restaurantId);
-          this.menus = this.restaurant?.menus;
-        }
-      });
-      // this.apiClient.getRestaurant(this.restaurantId)
-      //   .subscribe((restaurant) => {
-      //     this.restaurant = restaurant;
-      //     this.menus = restaurant.menus;
-      //     // console.log(this.menus);
-      //   });
+      // this.store.select('restaurants').pipe(take(1)).subscribe((restaurants) => {
+      //   if(restaurants.length > 1) {
+      //     this.restaurant = restaurants.find((restaurant) => restaurant._id === this.restaurantId);
+      //     this.menus = this.restaurant?.menus;
+      //   }
+      // });
+      this.apiClient.getRestaurant(this.restaurantId)
+        .subscribe((restaurant) => {
+          this.restaurant = restaurant;
+          this.menus = restaurant.menus;
+          // console.log(this.menus);
+        });
     });
   }
 }
