@@ -4,7 +4,7 @@ import { ApiClientService } from '../api-client.service';
 
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { setAdminPrivileges, removeAdminPrivileges, reset } from '../ngrx/actions/admin.actions';
+import { retrieveRestaurans, updateRestaurants, retrieveRestauransSuccess } from '../ngrx/actions/admin.actions';
 
 @Component({
   selector: 'app-dashboard',
@@ -37,27 +37,29 @@ export class DashboardComponent implements OnInit {
   private restaurantsUrl = "restaurants";
   restaurantsTop: Restaurant [];
   restaurantsBottom: Restaurant [];
-  isAdmin$: Observable<boolean>;
+  // restaurants$: Observable<Restaurant[]>
+  // restaurants$ = this.store.select(state => state.restaurants);
 
-  constructor(private apiClient: ApiClientService, private store: Store<{ isAdmin: boolean }>) {
+  constructor(private apiClient: ApiClientService, private store: Store<{ restaurants: Restaurant [] }>) {
     this.restaurantsTop = [];
     this.restaurantsBottom = [];
-    this.isAdmin$ = store.select('isAdmin');
+    // this.restaurants$ = this.store.select(state => state.restaurants);
   }
 
-  setAdminPrivileges() {
-    this.store.dispatch(setAdminPrivileges());
+  async retrieveRestaurans() : Promise<void> {
+    const restaurants = [...this.restaurantsTop, ...this.restaurantsBottom];
+    this.store.dispatch(retrieveRestaurans({ restaurants }));
   }
 
-  removeAdminPrivileges() {
-    this.store.dispatch(removeAdminPrivileges());
+  async retrieveRestauransSuccess() : Promise<void> {
+    this.store.dispatch(retrieveRestauransSuccess());
   }
 
-  reset() {
-    this.store.dispatch(reset());
+  updateRestaurants(restaurants: []) {
+    this.store.dispatch(updateRestaurants({restaurants}));
   }
 
-  getRestaurants() : void {
+  async getRestaurants() : Promise<void> {
     this.apiClient.getRestaurants(this.restaurantsUrl)
     .subscribe((restaurants) => {
       this.restaurantsTop = restaurants.slice(0, restaurants.length/2);
@@ -73,13 +75,11 @@ export class DashboardComponent implements OnInit {
         return restaurant;
       });
     })
+    await this.retrieveRestaurans();
   }
-
-  showdetails = () => {
-   console.log("click");
-  };
 
   ngOnInit(): void {
     this.getRestaurants();
+    this.retrieveRestaurans();
   }
 }

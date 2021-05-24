@@ -1,16 +1,38 @@
 import { createReducer, on } from '@ngrx/store';
-import { setAdminPrivileges, removeAdminPrivileges, reset } from '../actions/admin.actions';
+import { retrieveRestaurans, updateRestaurants, retrieveRestauransSuccess } from '../actions/admin.actions';
+import { Restaurant } from '../../restaurant/entities/restaurant';
 
-export const initialState = false;
-
-const _adminReducer = createReducer(
-  initialState,
-  on(setAdminPrivileges, (state) => true),
-  on(removeAdminPrivileges, (state) => false),
-  on(reset, (state) => false)
-);
+export const initialState : {
+  restaurants: Restaurant[];
+} = { restaurants: [] };
 
 export function adminReducer(state: any, action: any) {
-  console.log("reducer works", state);
-  return _adminReducer(state, action);
+  switch (action.type) {
+    case retrieveRestaurans.type: {
+      return _loginReducer(state, action);
+    }
+    case updateRestaurants.type: {
+      return _updateReducer(state, action);
+    }
+    case retrieveRestauransSuccess.type: {
+      return action.payload;
+    }
+    default:
+      return _loginReducer(state, action);
+  }
 }
+
+const _loginReducer = createReducer(
+  initialState,
+  on(retrieveRestaurans,  (state, { restaurants }) => ({
+    restaurants: restaurants
+  })),
+);
+
+const _updateReducer = createReducer(
+  initialState,
+  on(updateRestaurants,  (state, { restaurants }) => ({
+      restaurants: restaurants
+  })),
+);
+
