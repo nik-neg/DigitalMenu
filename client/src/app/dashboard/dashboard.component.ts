@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit, Component, OnInit, ViewChild,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Restaurant } from '../restaurant/entities/restaurant';
 import { ApiClientService } from '../api-client.service';
-import { take } from 'rxjs/operators';
 
-import { retrieveRestaurans, retrieveRestauransSuccess, updateRestaurants } from '../ngrx/actions/admin.actions';
+import {
+  retrieveRestaurans,
+  retrieveRestauransSuccess,
+  updateRestaurants,
+} from '../ngrx/actions/admin.actions';
 
 @Component({
   selector: 'app-dashboard',
@@ -105,18 +109,14 @@ export class DashboardComponent implements OnInit {
 
   restaurantsBottom: Restaurant [];
 
-  maliciousRequest: boolean = false;
+  maliciousRequest = false;
 
   constructor(
     private apiClient: ApiClientService,
-    private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean } }>
-    ) {
+    private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean } }>,
+  ) {
     this.restaurantsTop = [];
     this.restaurantsBottom = [];
-    this.store.select('store').pipe(take(1))
-      .subscribe((storeObject) => {
-        this.maliciousRequest = storeObject.maliciousRequest;
-      });
   }
 
   async retrieveRestaurans(): Promise<void> {
@@ -164,11 +164,11 @@ export class DashboardComponent implements OnInit {
           return restaurant;
         });
       });
-    await this.retrieveRestaurans();
+      // await this.retrieveRestaurans();
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.getRestaurants();
-    // This.retrieveRestaurans();
+    await this.retrieveRestaurans();
   }
 }

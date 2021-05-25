@@ -17,13 +17,6 @@ export class RestaurantComponent implements OnInit {
   }
 
   restaurantURL() {
-    // TODO: reset malicious request to false
-    // this.store.select('store').pipe(take(1))
-    // .subscribe((store) => {
-    //   if (store) {
-    //     console.log(store);
-    //   }
-    // });
     return `/restaurants/${this.restaurant._id}`;
   }
 

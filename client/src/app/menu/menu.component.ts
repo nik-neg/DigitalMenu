@@ -23,8 +23,8 @@ export class MenuComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean } }>
-    ) {
+    private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean } }>,
+  ) {
     this.menu = new Menu();
     this.checkAdmin();
   }
@@ -38,15 +38,14 @@ export class MenuComponent implements OnInit {
       });
   }
 
-  setMaliciousRequest(): void {
-    const maliciousRequest = true;
-    this.store.dispatch(setResetMaliciousRequest({maliciousRequest}));
+  setMaliciousRequest(maliciousRequest: boolean): void {
+    this.store.dispatch(setResetMaliciousRequest({ maliciousRequest }));
   }
 
-  async checkCredentials(): Promise<void>  {
+  async checkCredentials(): Promise<void> {
     this.route.queryParams.subscribe((params) => {
-      if (params.isAdmin === 'true' && !this.isAdmin) { // TODO: check store for the admin rights for this menu
-        this.setMaliciousRequest()
+      if (params.isAdmin === 'true' && !this.isAdmin) {
+        this.setMaliciousRequest(true);
         return this.router.navigate(['/']);
       }
       return;

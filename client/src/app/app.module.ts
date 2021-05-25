@@ -23,6 +23,7 @@ import { adminReducer } from './ngrx/reducer/admin.reducer';
 import { environment } from '../environments/environment'; // Angular CLI environment
 
 import { RestaurantEffects } from './ngrx/effects/restaurant.effects';
+import { AlertTimerComponent } from './alert-timer/alert-timer.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { RestaurantEffects } from './ngrx/effects/restaurant.effects';
     RestaurantDetailsComponent,
     CarouselItemComponent,
     MenuEditComponent,
+    AlertTimerComponent,
   ],
   imports: [
     BrowserModule,

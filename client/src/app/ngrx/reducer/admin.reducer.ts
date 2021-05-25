@@ -2,8 +2,8 @@ import { createReducer, on } from '@ngrx/store';
 import {
   retrieveRestaurans,
   retrieveRestauransSuccess,
+  setResetMaliciousRequest,
   updateRestaurants,
-  setResetMaliciousRequest
 } from '../actions/admin.actions';
 import { Restaurant } from '../../restaurant/entities/restaurant';
 
@@ -73,7 +73,7 @@ const _updateMaliciousStateReducer = createReducer(
     setResetMaliciousRequest,
     (state, { maliciousRequest }) => ({
       restaurants: state.restaurants,
-      maliciousRequest: maliciousRequest
+      maliciousRequest,
     }),
   ),
 );

@@ -11,10 +11,6 @@ export class RestaurantListComponent implements OnInit {
 
   constructor() {
     this.restaurantList = [];
-  }
-
-  showdetails = () => {
-    console.log('click');
   };
 
   ngOnInit(): void {

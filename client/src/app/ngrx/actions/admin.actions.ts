@@ -17,4 +17,3 @@ export const setResetMaliciousRequest = createAction(
   '[Reset Page] SET RESET Malicious Request',
   props<{ maliciousRequest: boolean }>(),
 );
-
