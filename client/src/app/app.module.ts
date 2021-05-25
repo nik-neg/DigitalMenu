@@ -43,7 +43,7 @@ import { RestaurantEffects } from './ngrx/effects/restaurant.effects';
     HttpClientModule,
     AppRoutingModule,
     NgbModule,
-    StoreModule.forRoot({ restaurants: adminReducer }),
+    StoreModule.forRoot({ store: adminReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode

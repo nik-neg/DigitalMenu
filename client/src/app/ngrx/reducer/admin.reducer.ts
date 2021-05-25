@@ -4,7 +4,11 @@ import { Restaurant } from '../../restaurant/entities/restaurant';
 
 export const initialState : {
   restaurants: Restaurant[];
-} = { restaurants: [] };
+  maliciousRequest: boolean;
+} = {
+  restaurants: [],
+  maliciousRequest: false
+ };
 
 export function adminReducer(state: any, action: any) {
   switch (action.type) {
@@ -24,15 +28,17 @@ export function adminReducer(state: any, action: any) {
 
 const _loginReducer = createReducer(
   initialState,
-  on(retrieveRestaurans,  (state, { restaurants }) => ({
-    restaurants: restaurants
+  on(retrieveRestaurans,  (state, { restaurants, maliciousRequest }) => ({
+    restaurants: restaurants,
+    maliciousRequest: maliciousRequest
   })),
 );
 
 const _updateReducer = createReducer(
   initialState,
-  on(updateRestaurants,  (state, { restaurants }) => ({
-      restaurants: restaurants
+  on(updateRestaurants,  (state, { restaurants, maliciousRequest }) => ({
+      restaurants: restaurants,
+      maliciousRequest: maliciousRequest
   })),
 );
 

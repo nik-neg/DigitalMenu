@@ -17,6 +17,7 @@ export class RestaurantComponent implements OnInit {
   }
 
   restaurantURL() {
+    //TODO: reset malicious request to false
     return `/restaurants/${this.restaurant._id}`;
   }
 

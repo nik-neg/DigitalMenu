@@ -11,7 +11,7 @@ export class RestaurantEffects {
     ofType('[Login Page] Login'),
     mergeMap(() => this.apiClient.getRestaurants('restaurants')
       .pipe(
-        map(restaurants => ({ type: '[Login Page] Restaurants Loaded Success', payload: restaurants })),
+        map(restaurants => ({ type: '[Login Page] Restaurants Loaded Success', payload: {restaurants: restaurants, maliciousRequest: false} })),
         catchError(() => EMPTY)
       ))
     )

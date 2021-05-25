@@ -14,14 +14,22 @@ export class MenuComponent implements OnInit {
   @Input() menu: Menu;
   @Input() restaurantId: string | undefined = '-1';
   isAdmin: boolean | undefined = false;
-  constructor(private route: ActivatedRoute, private router: Router, private store: Store<{ restaurants: Restaurant [] }>) {
+  constructor(private route: ActivatedRoute, private router: Router, private store: Store<{ store: {restaurants: Restaurant[], maliciousRequest: boolean} }>) {
     this.menu = new Menu();
+    this.checkAdmin();
    }
+
+  async checkAdmin() {
+    this.store.select('store').pipe(take(1)).subscribe((store) => {
+      if (store) {
+        this.isAdmin = store.restaurants.find((restaurant) => restaurant._id === this.restaurantId)?.isAdmin;
+      }
+    });
+  }
 
   checkCredentials(): void {
     this.route.queryParams.subscribe(params => {
      if (params['isAdmin'] === 'true'  && !this.isAdmin) {  //TODO: check store for the admin rights for this menu
-      console.log("bacl")
       return this.router.navigate(['/']);
     }
     return;
@@ -36,19 +44,8 @@ export class MenuComponent implements OnInit {
     }
   }
 
-  checkAdmin() {
-    this.store.select('restaurants').pipe(take(1)).subscribe((restaurants) => {
-      if(restaurants.length > 1) {
-        console.log(restaurants);
-        this.isAdmin = restaurants.find((restaurant) => restaurant._id === this.restaurantId)?.isAdmin;
-
-      }
-    });
-  }
-
-  ngOnInit(): void {
-    // this.getMenuDetails();
-    this.checkAdmin() ;
+  async ngOnInit(): Promise<void> {
+    await this.checkAdmin() ;
     this.checkCredentials();
   }
 

@@ -37,15 +37,18 @@ export class DashboardComponent implements OnInit {
   private restaurantsUrl = "restaurants";
   restaurantsTop: Restaurant [];
   restaurantsBottom: Restaurant [];
+  maliciousRequest: boolean;
 
   constructor(private apiClient: ApiClientService, private store: Store<{ restaurants: Restaurant [] }>) {
     this.restaurantsTop = [];
     this.restaurantsBottom = [];
+    this.maliciousRequest = false;
   }
 
   async retrieveRestaurans() : Promise<void> {
     const restaurants = [...this.restaurantsTop, ...this.restaurantsBottom];
-    this.store.dispatch(retrieveRestaurans({ restaurants }));
+    const maliciousRequest = this.maliciousRequest;
+    this.store.dispatch(retrieveRestaurans({ restaurants, maliciousRequest }));
   }
 
   async retrieveRestauransSuccess() : Promise<void> {
@@ -53,7 +56,8 @@ export class DashboardComponent implements OnInit {
   }
 
   updateRestaurants(restaurants: []) {
-    this.store.dispatch(updateRestaurants({restaurants}));
+    const maliciousRequest = this.maliciousRequest;
+    this.store.dispatch(updateRestaurants({ restaurants, maliciousRequest }));
   }
 
   async getRestaurants() : Promise<void> {

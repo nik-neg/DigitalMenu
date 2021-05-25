@@ -3,7 +3,7 @@ import { Restaurant } from '../../restaurant/entities/restaurant';
 
 export const retrieveRestaurans = createAction(
   '[Login Page] Login',
-  props<{ restaurants: Restaurant [] }>()
+  props<{ restaurants: Restaurant [], maliciousRequest: boolean }>()
 );
 
 export const retrieveRestauransSuccess = createAction(
@@ -12,5 +12,5 @@ export const retrieveRestauransSuccess = createAction(
 
 export const updateRestaurants = createAction(
   '[Update Page] Update',
-  props<{ restaurants: Restaurant [] }>()
+  props<{ restaurants: Restaurant [], maliciousRequest: boolean }>()
 );
