@@ -64,6 +64,6 @@ export class MenuComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.checkAdmin();
-    this.checkCredentials();
+    await this.checkCredentials();
   }
 }

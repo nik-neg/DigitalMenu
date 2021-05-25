@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Restaurant } from '../app/restaurant/entities/restaurant';
+import { Restaurant } from '../restaurant/entities/restaurant';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -10,6 +10,9 @@ import { take } from 'rxjs/operators';
 export class RestaurantStoreService {
   private restaurantList: Restaurant [] = [];
   restaurantList$ = new BehaviorSubject< Restaurant []>([]);
+
+  private restaurant: Restaurant = new Restaurant();
+  restaurant$ = new BehaviorSubject< Restaurant>(new Restaurant());
   constructor(private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean } }>) { }
 
   async getRestaurants() {
@@ -19,8 +22,10 @@ export class RestaurantStoreService {
         this.restaurantList = store.restaurants;
         this.restaurantList$.next(this.restaurantList);
       }
-      console.log(this.restaurantList);
-      console.log(this.restaurantList$);
     });
+  }
+
+  async getRestaurant(restaurantId: string) : Promise<Restaurant | undefined> {
+    return this.restaurantList.find(restaurant => restaurant._id === restaurantId);
   }
 }

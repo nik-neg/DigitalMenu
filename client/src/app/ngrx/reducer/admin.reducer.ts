@@ -73,7 +73,7 @@ const _updateMaliciousStateReducer = createReducer(
     setResetMaliciousRequest,
     (state, { maliciousRequest }) => ({
       restaurants: state.restaurants,
-      maliciousRequest,
+      maliciousRequest: maliciousRequest,
     }),
   ),
 );

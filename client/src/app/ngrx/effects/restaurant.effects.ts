@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
-import { ApiClientService } from '../../api-client.service';
+import { ApiClientService } from '../../services/api-client.service';
 
 @Injectable()
 export class RestaurantEffects {

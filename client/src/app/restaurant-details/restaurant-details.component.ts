@@ -3,11 +3,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { ApiClientService } from '../api-client.service';
+import { ApiClientService } from '../services/api-client.service';
 import { Restaurant } from '../restaurant/entities/restaurant';
 import { Menu } from '../menu/entities/menu';
 import { setResetMaliciousRequest } from '../ngrx/actions/admin.actions';
-import { RestaurantStoreService } from '../restaurant-store.service';
+import { RestaurantStoreService } from '../services/restaurant-store.service';
 
 @Component({
   selector: 'app-restaurant-details',
@@ -43,6 +43,9 @@ export class RestaurantDetailsComponent implements OnInit {
       //   this.menus = this.restaurant?.menus;
       // })
 
+      // store service for one restarant
+      this.getRestaurantFromStore();
+
       // store
       // this.store.select('restaurants').pipe(take(1)).subscribe((restaurants) => {
       //   console.log(restaurants);
@@ -61,6 +64,16 @@ export class RestaurantDetailsComponent implements OnInit {
     });
   }
 
+  getRestaurantFromStore() {
+    const promisedRestaurant = this.restaurantService.getRestaurant(this.restaurantId);
+    promisedRestaurant
+    .then(restaurant => {
+      this.restaurant = restaurant;
+      this.menus = restaurant?.menus;
+    })
+    .catch(err => console.log(err));
+  }
+
   async resetMaliciousRequest(maliciousRequest: boolean): Promise<void> {
     this.store.dispatch(setResetMaliciousRequest({ maliciousRequest }));
   }
@@ -74,6 +87,6 @@ export class RestaurantDetailsComponent implements OnInit {
     //   this.restaurant = restaurants.find((restaurant) => restaurant._id === this.restaurantId);
     //   this.menus = this.restaurant?.menus;
     // })
-    await this.resetMaliciousRequest(false);
+    // await this.resetMaliciousRequest(false);
   }
 }

@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Restaurant } from '../restaurant/entities/restaurant';
-import { ApiClientService } from '../api-client.service';
+import { ApiClientService } from '../services/api-client.service';
 
 import {
   retrieveRestaurans,
