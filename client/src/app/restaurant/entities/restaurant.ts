@@ -1,14 +1,22 @@
 import IRestaurant from '../interfaces/irestaurant';
 import IDish from '../../dish/interfaces/idish';
 import IMenu from '../../menu/interfaces/imenu';
-export class Restaurant implements IRestaurant{
+
+export class Restaurant implements IRestaurant {
   _id?: string;
+
   name?: string;
+
   location?: string;
+
   imagePath?: string;
+
   slogan: string;
+
   isAdmin: boolean;
+
   menus: IMenu [];
+
   dishes: IDish [];
 
   constructor(_id?: string, name?: string, location?: string, isAdmin?: boolean) {
@@ -23,6 +31,9 @@ export class Restaurant implements IRestaurant{
   }
 
   static parse(data: any) {
-    return Object.assign(new Restaurant(), data);
+    return Object.assign(
+      new Restaurant(),
+      data,
+    );
   }
 }

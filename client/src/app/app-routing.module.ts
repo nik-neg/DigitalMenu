@@ -5,13 +5,22 @@ import { RestaurantDetailsComponent } from './restaurant-details/restaurant-deta
 import { MenuEditComponent } from './menu-edit/menu-edit.component';
 
 const routes: Routes = [
-  {path: "", component: DashboardComponent},
-  { path: 'restaurants/:_id', component: RestaurantDetailsComponent },
-  { path: 'restaurants/:_id/menu/:_id', component: MenuEditComponent },
+  {
+    path: '',
+    component: DashboardComponent,
+  },
+  {
+    path: 'restaurants/:_id',
+    component: RestaurantDetailsComponent,
+  },
+  {
+    path: 'restaurants/:_id/menu/:_id',
+    component: MenuEditComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

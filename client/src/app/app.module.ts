@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -8,20 +12,16 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { MenuComponent } from './menu/menu.component';
 import { DishComponent } from './dish/dish.component';
 import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RestaurantListSmallDevicesComponent } from './restaurant-list-small-devices/restaurant-list-small-devices.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { RestaurantDetailsComponent } from './restaurant-details/restaurant-details.component';
 import { CarouselItemComponent } from './carousel-item/carousel-item.component';
 import { MenuEditComponent } from './menu-edit/menu-edit.component';
 
-import { StoreModule } from '@ngrx/store';
-import { adminReducer } from '../app/ngrx/reducer/admin.reducer';
+import { adminReducer } from './ngrx/reducer/admin.reducer';
 
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment'; // Angular CLI environment
 
-import { EffectsModule } from '@ngrx/effects';
 import { RestaurantEffects } from './ngrx/effects/restaurant.effects';
 
 @NgModule({
@@ -48,9 +48,9 @@ import { RestaurantEffects } from './ngrx/effects/restaurant.effects';
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    EffectsModule.forRoot([RestaurantEffects])
+    EffectsModule.forRoot([RestaurantEffects]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

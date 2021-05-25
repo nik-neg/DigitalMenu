@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Restaurant } from './restaurant/entities/restaurant';
-import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiClientService {
-
   private baseURL = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
@@ -20,36 +18,38 @@ export class ApiClientService {
 
   getRestaurant(id: string): Observable<Restaurant> {
     return this.http.get<Restaurant>(`${this.baseURL}/restaurants/${id}`)
-    .pipe(catchError(this.handleError<Restaurant>('getRestaurant')));
+      .pipe(catchError(this.handleError<Restaurant>('getRestaurant')));
   }
 
   fetchRestaurants(url: string): Observable<Restaurant[]> {
     return this.http.get<Restaurant[]>(`${url}`)
-      .pipe(catchError(this.handleError<Restaurant[]>('fetchRestaurants', []))
-      );
-    }
+      .pipe(catchError(this.handleError<Restaurant[]>(
+        'fetchRestaurants',
+        [],
+      )));
+  }
 
-      /**
+  /**
    * Handle Http operation that failed.
    * Let the app continue.
    * @param operation - name of the operation that failed
    * @param result - optional value to return as the observable result
    */
-       private handleError<T>(operation = 'operation', result?: T) {
-        return (error: any): Observable<T> => {
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // Log to console instead
 
-          // TODO: send the error to remote logging infrastructure
-          console.error(error); // log to console instead
+      // TODO: better job of transforming error for user consumption
+      this.log(`${operation} failed: ${error.message}`);
 
-          // TODO: better job of transforming error for user consumption
-          this.log(`${operation} failed: ${error.message}`);
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
 
-          // Let the app keep running by returning an empty result.
-          return of(result as T);
-        };
-      }
-      /** Log */
-      private log(message: string) {
-        console.log(`Api Client Service: ${message}`);
-      }
+  /** Log */
+  private log(message: string) {
+    console.log(`Api Client Service: ${message}`);
+  }
 }
