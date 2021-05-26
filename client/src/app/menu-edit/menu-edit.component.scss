@@ -39,6 +39,16 @@ a {
 
 .update-element {
   background-color: $color-update-color;
+  width: 100%;
+}
+
+.update-button-container {
+  margin: 5%;
+}
+
+.card-text{
+  margin-bottom: 1%;
+  border: 1px solid black;
 }
 
 // .row {

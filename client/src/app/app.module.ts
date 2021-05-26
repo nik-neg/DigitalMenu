@@ -25,6 +25,8 @@ import { environment } from '../environments/environment'; // Angular CLI enviro
 import { RestaurantEffects } from './ngrx/effects/restaurant.effects';
 import { AlertTimerComponent } from './alert-timer/alert-timer.component';
 
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +53,8 @@ import { AlertTimerComponent } from './alert-timer/alert-timer.component';
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
     EffectsModule.forRoot([RestaurantEffects]),
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
