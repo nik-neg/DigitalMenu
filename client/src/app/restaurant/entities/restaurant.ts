@@ -13,7 +13,7 @@ export class Restaurant implements IRestaurant {
 
   slogan: string;
 
-  isAdmin: boolean;
+  isAdmin: boolean = false;
 
   menus: IMenu [];
 
@@ -25,7 +25,7 @@ export class Restaurant implements IRestaurant {
     this.location = location;
     this.imagePath = '';
     this.slogan = '';
-    this.isAdmin = false;
+    this.isAdmin = isAdmin ? isAdmin : false;
     this.menus = [];
     this.dishes = [];
   }

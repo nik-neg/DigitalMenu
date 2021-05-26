@@ -44,7 +44,7 @@ export class RestaurantDetailsComponent implements OnInit {
       // })
 
       // store service for one restarant
-      this.getRestaurantFromStore();
+      // this.getRestaurantFromStore();
 
       // store
       // this.store.select('restaurants').pipe(take(1)).subscribe((restaurants) => {

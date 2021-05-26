@@ -26,7 +26,6 @@ export class MenuComponent implements OnInit {
     private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean } }>,
   ) {
     this.menu = new Menu();
-    this.checkAdmin();
   }
 
   async checkAdmin() {
@@ -56,7 +55,7 @@ export class MenuComponent implements OnInit {
     if (this.isAdmin) {
       return this.router.navigate(
         [`menu/${this.menu._id}`],
-        { relativeTo: this.route },
+        { relativeTo: this.route }, // queryParams: {id: this.restaurantId}
       );
     }
     return '/';

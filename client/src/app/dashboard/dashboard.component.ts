@@ -130,9 +130,9 @@ export class DashboardComponent implements OnInit {
     }));
   }
 
-  async retrieveRestauransSuccess(): Promise<void> {
-    this.store.dispatch(retrieveRestauransSuccess());
-  }
+  // async retrieveRestauransSuccess(): Promise<void> {
+  //   this.store.dispatch(retrieveRestauransSuccess());
+  // }
 
   updateRestaurants(restaurants: []) {
     const { maliciousRequest } = this;

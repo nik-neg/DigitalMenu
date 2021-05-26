@@ -17,3 +17,8 @@ export const setResetMaliciousRequest = createAction(
   '[Reset Page] SET RESET Malicious Request',
   props<{ maliciousRequest: boolean }>(),
 );
+
+export const getState = createAction(
+  '[Refresh Page] Refresh',
+  // props<{ maliciousRequest: boolean }>(),
+);
