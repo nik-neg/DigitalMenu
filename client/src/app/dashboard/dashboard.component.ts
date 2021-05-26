@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
     },
     {
       title: 'Green Lounge',
-      slogan: 'Tokyo - From 10 a.m. to 11 p.m',
+      slogan: 'Tokyo - Welcome :)',
       imagePath: './../assets/images/restaurants/green_lounge.jpg',
     },
     {
@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit {
     },
     {
       title: 'Surf & Turf Bar',
-      slogan: 'San Francisco - Best shrimps',
+      slogan: 'San Francisco - Best!',
       imagePath: './../assets/images/restaurants/surf_and_turf_bar.jpg',
     },
   ];

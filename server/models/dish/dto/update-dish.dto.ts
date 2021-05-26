@@ -1,17 +1,15 @@
 export default class UpdateDishDTO {
-  readonly name: string;
-  readonly price: number;
-  readonly imagePath: string;
-  restaurant: string;
-  menu: string; // update only for one menu per request
-  dish: string;
+  readonly restaurant: string;
+  readonly menu: string; // update only for one menu per request
+  readonly dish: string;
+  readonly name?: string;
+  readonly price?: number;
 
-  constructor(name: string, price: number, imagePath: string, restaurant: string, menus: string, dish: string) {
+  constructor(restaurant: string, menus: string, dish: string, name?: string, price?: number) {
+    this.restaurant = restaurant;
+    this.menu= menus;
+    this.dish = dish;
     this.name = name;
     this.price = price;
-    this.imagePath = imagePath;
-    this.restaurant = restaurant;
-    this.menu = menus;
-    this.dish = dish;
   }
 }

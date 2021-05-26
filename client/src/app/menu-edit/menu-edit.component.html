@@ -12,6 +12,8 @@
             <div class="card-body">
               <h5 contentEditable class="card-title">{{menu.name}} : {{ dish.name }}</h5>
               <form (ngSubmit)="submit($event)">
+                <p hidden name="menu_id">{{menu._id}}</p>
+                <input hidden class="card-text update-element update-field" name="menu_id" value="{{menu._id}}">
                 <input class="card-text update-element update-field" name="menuname" value="{{menu.name}}">
                 <input class="card-text update-element update-field" name="dishname" value="{{ dish.name }}">
                 <input class="card-text update-element update-field" name="price" value="{{ dish.price | currency:'USD':'symbol'}}">

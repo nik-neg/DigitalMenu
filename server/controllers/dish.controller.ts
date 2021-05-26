@@ -56,12 +56,13 @@ const helperUpdateMenuRelation = async (
 
 // validation rules for update-dish-dto
 const updateDishRules = {
-  name: 'required|string',
-  price: 'required|numeric',
-  imagePath: 'required|string',
   restaurantId: 'required|string',
   menuId: 'required|string',
   dishId: 'required|string',
+  // name: 'required|string',
+  // price: 'required|numeric',
+  // imagePath: 'opt|string',
+
 
 };
 
@@ -71,21 +72,28 @@ export async function updateDish(req: any, res: any) {
   try {
     if (validation.passes()) {
       const dto = new UpdateDishDTO(
-        requestObject.name,
-        requestObject.price,
-        requestObject.imagePath,
         requestObject.restaurantId,
         requestObject.menuId,
-        requestObject.dishId
+        requestObject.dishId,
+        requestObject.name,
+        requestObject.price,
+        // requestObject.imagePath,
       );
-      const updatedMenu = await Dish.findByIdAndUpdate(dto.dish, {
-        name: dto.name,
-        price: dto.price,
-        imagePath: dto.imagePath,
-      },
-      { new: true }).exec();
-      res.statusCode = 200;
-      res.end(JSON.stringify(updatedMenu));
+      console.log(dto);
+
+      // update the relation to menu
+      // find menu by name and if name is different, add to new menu
+      // if name of menu is empty remove from this menu
+
+      // update the dish
+      // const updatedMenu = await Dish.findByIdAndUpdate(dto.dish, {
+      //   name: dto.name,
+      //   price: dto.price,
+      //   imagePath: dto.imagePath,
+      // },
+      // { new: true }).exec();
+      // res.statusCode = 200;
+      // res.end(JSON.stringify(updatedMenu));
     } else {
       throw new Error('invalid parameter');
     }
