@@ -13,6 +13,7 @@ export class MenuEditComponent implements OnInit {
   restaurant: any; // for faster development
   menuId: string = '-1';
   menus: Menu [];
+  values: string = '';
   constructor(
     private route: ActivatedRoute,
     private restaurantService: RestaurantStoreService,
@@ -29,6 +30,14 @@ export class MenuEditComponent implements OnInit {
     const restaurant = await this.restaurantService.getRestaurant(this.restaurantId);
     this.restaurant = restaurant;
     this.menus = this.restaurant.menus;
+   }
+
+   onKey(event: any) { // without type info
+    this.values += event.target.value + ' | ';
+  }
+
+   update() {
+     console.log('click');
    }
 
 

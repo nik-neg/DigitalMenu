@@ -5,7 +5,21 @@
       <div
         *ngFor="let menu of menus"
       >
-        <app-menu *ngIf="restaurant" [menu]="menu" [restaurantId]="restaurant._id"></app-menu>
+      <div class="row">
+        <div class="col col-sm" *ngFor="let dish of menu.dishes">
+          <div class="card">
+            <img class="card-img-top" [src]="dish.imagePath" alt="Card image cap">
+            <div class="card-body">
+              <h5 contentEditable class="card-title">{{menu.name}} : {{ dish.name }}</h5>
+              <input contentEditable class="card-text update-element" value="{{menu.name}}">
+              <input contentEditable class="card-text update-element" value="{{ dish.name }}">
+              <input contentEditable class="card-text update-element" value="{{ dish.price | currency:'USD':'symbol'}}">
+              <p class="card-text-update"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-dark" (click)="update()">Update</button>
       </div>
     </div>
+  </div>
 </div>

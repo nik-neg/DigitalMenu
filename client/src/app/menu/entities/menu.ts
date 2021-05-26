@@ -2,7 +2,6 @@ import IMenu from '../interfaces/imenu';
 import IDish from '../../dish/interfaces/idish';
 
 export class Menu implements IMenu {
-  // [key: string]: string | string[] | undefined | number;
   _id?: string;
 
   name?: string;
