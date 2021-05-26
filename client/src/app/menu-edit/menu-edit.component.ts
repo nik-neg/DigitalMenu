@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router'
 import { RestaurantStoreService } from '../services/restaurant-store.service';
 import { Restaurant } from '../restaurant/entities/restaurant';
 import { Menu } from '../menu/entities/menu';
-import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-menu-edit',
   templateUrl: './menu-edit.component.html',
@@ -16,12 +15,10 @@ export class MenuEditComponent implements OnInit {
   menus: Menu [];
   values: string = '';
 
-  @ViewChild('testForm') testFormElement: any;
 
   constructor(
     private route: ActivatedRoute,
     private restaurantService: RestaurantStoreService,
-    private elementRef:ElementRef
     ) {
       this.restaurant = new Restaurant();
       this.menus = [];
@@ -37,28 +34,15 @@ export class MenuEditComponent implements OnInit {
     this.menus = this.restaurant.menus;
    }
 
-   onKey(event: any) { // without type info
-    this.values += event.target.value + ' | ';
-  }
+  submit(e:any) {
+    e.preventDefault();
+    const menuname = e.target.menuname.value;
+    const dishname = e.target.dishname.value;
+    const price = e.target.price.value;
 
-   update() {
-     console.log('click');
-     console.log(this.testFormElement)
-   }
+    // call update
 
-   ngAfterViewInit() {
-    this.elementRef.nativeElement.querySelector('testform')
-                                  .addEventListener('click', this.onClick.bind(this));
-  }
-
-  onClick(event?: any) {
-    console.log(event.target.value);
-  }
-
-  registerUser(form: NgForm) {
-    console.log(form.value);
-    // {email: '...', password: '...'}
-    // ... <-- now use JSON.stringify() to convert form values to json.
+    // update store
   }
 
 

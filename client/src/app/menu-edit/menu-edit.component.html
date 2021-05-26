@@ -11,23 +11,27 @@
             <img class="card-img-top" [src]="dish.imagePath" alt="Card image cap">
             <div class="card-body">
               <h5 contentEditable class="card-title">{{menu.name}} : {{ dish.name }}</h5>
-              <form class="testform" action="/">
-                <input contentEditable class="card-text update-element update-field" value="{{menu.name}}">
-                <input contentEditable class="card-text update-element update-field" value="{{ dish.name }}">
-                <input contentEditable class="card-text update-element update-field" value="{{ dish.price | currency:'USD':'symbol'}}">
+              <form (ngSubmit)="submit($event)">
+                <input class="card-text update-element update-field" name="menuname" value="{{menu.name}}">
+                <input class="card-text update-element update-field" name="dishname" value="{{ dish.name }}">
+                <input class="card-text update-element update-field" name="price" value="{{ dish.price | currency:'USD':'symbol'}}">
                 <div class="update-button-container">
-                  <button type="button" class="btn btn-dark" type="submit">Update</button>
+                  <button class="btn btn-dark" type="submit">Update</button>
                 </div>
               </form>
               <p class="card-text-update"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
           </div>
         </div>
-        <!-- <button type="button" class="btn btn-dark" type="submit">Update</button> -->
       </div>
     </div>
   </div>
 </div>
+
+<!-- <form  (ngSubmit)="submit($event)">
+  <input type="text" name="name" >
+  <button type="submit">Submit</button>
+</form> -->
 
 <!-- <form #signupForm="ngForm" (ngSubmit)="registerUser(signupForm)">
   <label for="email">Email</label>

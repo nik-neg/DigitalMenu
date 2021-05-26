@@ -39,11 +39,8 @@ export function adminReducer(state: any, action: any) {
         action,
       );
     }
-    default:
-      return _loginReducer(
-        state,
-        action,
-      );
+    default: console.log('default')
+      return state;
   }
 }
 

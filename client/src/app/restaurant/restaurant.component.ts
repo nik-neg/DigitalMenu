@@ -16,7 +16,7 @@ export class RestaurantComponent implements OnInit {
 
   }
 
-  restaurantURL() {
+  restaurantDetailsURL() {
     return `/restaurants/${this.restaurant._id}`;
   }
 

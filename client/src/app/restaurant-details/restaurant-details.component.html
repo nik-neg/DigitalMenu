@@ -5,7 +5,7 @@
       <div
         *ngFor="let menu of menus"
       >
-        <app-menu *ngIf="restaurant" [menu]="menu" [restaurantId]="restaurant._id"></app-menu>
+        <app-menu *ngIf="restaurant" [menu]="menu" [restaurantId]="restaurant._id" [isAdmin]="restaurant.isAdmin"></app-menu>
       </div>
     </div>
 </div>

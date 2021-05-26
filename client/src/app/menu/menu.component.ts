@@ -18,7 +18,7 @@ export class MenuComponent implements OnInit {
 
   @Input() restaurantId: string | undefined = '-1';
 
-  isAdmin: boolean | undefined = false;
+  @Input() isAdmin: boolean | undefined = false;
 
   constructor(
     private route: ActivatedRoute,
