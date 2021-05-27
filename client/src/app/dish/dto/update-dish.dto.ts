@@ -1,6 +1,6 @@
 
 interface IUpdateDishDTO {
-  menuId?: string;
+  dishId?: string;
   menuName?: string;
   name?: string;
   price?: string;
@@ -8,13 +8,13 @@ interface IUpdateDishDTO {
 
 
 export class UpdateDishDTO implements IUpdateDishDTO {
-  menuId?: string;
+  dishId?: string;
   menuName?: string;
   name?: string;
   price?: string;
 
   constructor(menuId?: string, menuName?: string, name?: string, price?: string, ) {
-    this.menuId = menuId;
+    this.dishId = menuId;
     this.menuName = menuName;
     this.name = name;
     this.price = price;

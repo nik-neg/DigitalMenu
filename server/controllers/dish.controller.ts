@@ -87,14 +87,14 @@ export async function updateDish(req: any, res: any) {
       // if name of menu is empty remove from this menu
 
       // update the dish
-      // const updatedMenu = await Dish.findByIdAndUpdate(dto.dish, {
+      // const updatedDish = await Dish.findByIdAndUpdate(dto.dish, {
       //   name: dto.name,
       //   price: dto.price,
       //   imagePath: dto.imagePath,
       // },
       // { new: true }).exec();
       // res.statusCode = 200;
-      // res.end(JSON.stringify(updatedMenu));
+      // res.end(JSON.stringify(updatedDish));
     } else {
       throw new Error('invalid parameter');
     }

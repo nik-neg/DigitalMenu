@@ -1,4 +1,5 @@
 export default interface IDish {
+  _id: string;
   name: string;
   price: number;
   imagePath: string;

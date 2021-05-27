@@ -2,9 +2,6 @@
   <img class="card-img-top restaurant-image" *ngIf="restaurant" [src]="restaurant.imagePath" alt="">
   <div class="container fluid">
     <div class="row">
-      <div
-        *ngFor="let menu of menus"
-      >
       <div class="row">
         <div class="col col-sm" *ngFor="let dish of menu.dishes">
           <div class="card">
@@ -12,8 +9,7 @@
             <div class="card-body">
               <h5 contentEditable class="card-title">{{menu.name}} : {{ dish.name }}</h5>
               <form (ngSubmit)="submit($event)">
-                <p hidden name="menu_id">{{menu._id}}</p>
-                <input hidden class="card-text update-element update-field" name="menu_id" value="{{menu._id}}">
+                <input hidden class="card-text update-element update-field" name="dish_id" value="{{dish._id}}">
                 <input class="card-text update-element update-field" name="menuname" value="{{menu.name}}">
                 <input class="card-text update-element update-field" name="dishname" value="{{ dish.name }}">
                 <input class="card-text update-element update-field" name="price" value="{{ dish.price | currency:'USD':'symbol'}}">
@@ -26,7 +22,6 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </div>
 

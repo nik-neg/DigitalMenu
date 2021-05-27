@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Restaurant } from './../restaurant/entities/restaurant';
+import { Dish } from '../dish/entities/dish';
 
 @Injectable({
   providedIn: 'root',
@@ -27,6 +28,12 @@ export class ApiClientService {
         'fetchRestaurants',
         [],
       )));
+  }
+
+  updateDish(restaurantId: string, menuId: string, dishId: string): Observable<Dish> {
+    const udpateURL = `${this.baseURL}/restaurants/${restaurantId}/menu${menuId}/dish${dishId}`
+    return this.http.get<Dish>(udpateURL)
+      .pipe(catchError(this.handleError<Dish>('updateDish')));
   }
 
   /**

@@ -16,6 +16,7 @@ export class MenuEditComponent implements OnInit {
   updateRestaurantMenusDTO: UpdateDishDTO;
   menuId: string = '-1';
   menus: Menu [];
+  menu: Menu;
   values: string = '';
 
 
@@ -28,6 +29,7 @@ export class MenuEditComponent implements OnInit {
       this.restaurant = new Restaurant();
       this.updateRestaurantMenusDTO = new UpdateDishDTO();
       this.menus = [];
+      this.menu = new Menu();
       this.route.url.subscribe(url => {
         this.restaurantId = url[1].path;
         this.menuId = url[3].path;
@@ -40,34 +42,16 @@ export class MenuEditComponent implements OnInit {
     const restaurant = await this.restaurantService.getRestaurant(this.restaurantId);
     this.restaurant = restaurant;
     this.menus = this.restaurant.menus;
-    // this.updateRestaurantMenusDTO =
-    // this.menus.map((menu) => {
-    //   const menuName = menu.name;
-    //   const dishes = menu.dishes?.map((dish) => {
-    //     return {
-    //       name: dish.name,
-    //       price: dish.price
-    //     }
-    //    });
-    //   return {
-    //     name: menuName,
-    //     dish: dishes
-    //   }
-    // //  })
-    //  console.log(this.updateRestaurantMenus);
-
-    // this.restaurantService.restaurant$.subscribe(restaurant => {
-    // this.restaurant = restaurant;
-    // this.menus = this.restaurant.menus;
-    // });
+    this.menu = this.restaurant.menus.filter((menu: any) => menu._id === this.menuId )[0];
    }
 
-   mapRestaurantToUpdateValues() {
-    return this.menus.map((menu) => {
+   mapRestaurantMenusToMenuUpdateValues() {
+    return this.menus.map((menu:Menu) => {
       const _id = menu._id;
       const menuName = menu.name;
       const dishes = menu.dishes?.map((dish) => {
         return {
+          _id: dish._id,
           name: dish.name,
           price: dish.price
         }
@@ -75,7 +59,7 @@ export class MenuEditComponent implements OnInit {
       return {
         _id: _id,
         name: menuName,
-        dish: dishes
+        dishes: dishes
       }
      })
    }
@@ -83,24 +67,23 @@ export class MenuEditComponent implements OnInit {
   submit(e:any) {
     e.preventDefault();
     // values for update
-    const menuId = e.target.menu_id.value;
     const menuName = e.target.menuname.value;
     const dishName = e.target.dishname.value;
+    const dishId = e.target.dish_id.value; // use of bcrypt ?
     let price = e.target.price.value;
     price = price.slice(1, price.length);
 
-    this.updateRestaurantMenusDTO.menuId = menuId;
+    this.updateRestaurantMenusDTO.dishId = dishId;
     this.updateRestaurantMenusDTO.name = dishName;
     this.updateRestaurantMenusDTO.menuName = menuName;
     this.updateRestaurantMenusDTO.price = price;
 
     console.log(this.updateRestaurantMenusDTO);
 
-    // call update
-    // const dtoValues = this.mapRestaurantToUpdateValues();
-    // console.log(dtoValues);
-    // const filterUpdateValue = dtoValues.filter((item) => item._id === menuId);
-    // console.log(filterUpdateValue);
+
+    // call update with api client
+    // this.apiClient.updateDish()
+
     // update store
   }
 
