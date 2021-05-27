@@ -1,22 +1,22 @@
 
-export default interface IUpdateDishDTO {
-  _id?: string;
+interface IUpdateDishDTO {
+  menuId?: string;
+  menuName?: string;
   name?: string;
   price?: string;
-  dishes?: [];
 }
 
 
 export class UpdateDishDTO implements IUpdateDishDTO {
-  _id?: string;
+  menuId?: string;
+  menuName?: string;
   name?: string;
   price?: string;
-  dishes?: [];
 
-  constructor(_id?: string, name?: string, price?: string, restaurant?: string) {
-    this._id = _id;
+  constructor(menuId?: string, menuName?: string, name?: string, price?: string, ) {
+    this.menuId = menuId;
+    this.menuName = menuName;
     this.name = name;
     this.price = price;
-    this.dishes = [];
   }
 }

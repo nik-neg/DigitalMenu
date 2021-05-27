@@ -1,5 +1,5 @@
 
-export default interface IUpdateMenuDTO {
+interface IUpdateMenuDTO {
   _id?: string;
   restaurant?: string
   name?: string;

@@ -76,6 +76,7 @@ export async function updateDish(req: any, res: any) {
         requestObject.menuId,
         requestObject.dishId,
         requestObject.name,
+        requestObject.menuName,
         requestObject.price,
         // requestObject.imagePath,
       );

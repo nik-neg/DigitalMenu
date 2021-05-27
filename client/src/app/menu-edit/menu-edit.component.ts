@@ -13,7 +13,7 @@ import { UpdateDishDTO } from '../dish/dto/update-dish.dto';
 export class MenuEditComponent implements OnInit {
   restaurantId: string = '-1';
   restaurant: any; // for faster development
-  updateRestaurantMenusDTO: UpdateDishDTO; // for faster development
+  updateRestaurantMenusDTO: UpdateDishDTO;
   menuId: string = '-1';
   menus: Menu [];
   values: string = '';
@@ -34,7 +34,7 @@ export class MenuEditComponent implements OnInit {
       });
    }
 
-   get diagnostic() { return JSON.stringify(this.updateRestaurantMenusDTO); }
+  //  get diagnostic() { return JSON.stringify(this.updateRestaurantMenusDTO); }
 
    async getRestaurantDetails() {
     const restaurant = await this.restaurantService.getRestaurant(this.restaurantId);
@@ -89,8 +89,9 @@ export class MenuEditComponent implements OnInit {
     let price = e.target.price.value;
     price = price.slice(1, price.length);
 
-    this.updateRestaurantMenusDTO._id = menuId;
-    this.updateRestaurantMenusDTO.name = menuName;
+    this.updateRestaurantMenusDTO.menuId = menuId;
+    this.updateRestaurantMenusDTO.name = dishName;
+    this.updateRestaurantMenusDTO.menuName = menuName;
     this.updateRestaurantMenusDTO.price = price;
 
     console.log(this.updateRestaurantMenusDTO);
