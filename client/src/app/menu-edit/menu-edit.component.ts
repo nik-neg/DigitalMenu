@@ -73,16 +73,14 @@ export class MenuEditComponent implements OnInit {
     let price = e.target.price.value;
     price = price.slice(1, price.length);
 
-    this.updateRestaurantMenusDTO.dishId = dishId;
     this.updateRestaurantMenusDTO.name = dishName;
     this.updateRestaurantMenusDTO.menuName = menuName;
     this.updateRestaurantMenusDTO.price = price;
 
-    console.log(this.updateRestaurantMenusDTO);
-
-
     // call update with api client
-    // this.apiClient.updateDish()
+    const body = this.updateRestaurantMenusDTO;
+    const updateResponse = this.apiClient.updateDish(this.restaurantId, this.menuId, dishId, body);
+    console.log(updateResponse);
 
     // update store
   }

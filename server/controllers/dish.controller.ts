@@ -78,23 +78,28 @@ export async function updateDish(req: any, res: any) {
         requestObject.name,
         requestObject.menuName,
         requestObject.price,
-        // requestObject.imagePath,
       );
-      console.log(dto);
 
-      // update the relation to menu
-      // find menu by name and if name is different, add to new menu
-      // if name of menu is empty remove from this menu
+      // update the relation to menu:
+      // 1.) find menu by name and if the dish is not in the menu list, add to new menu
+      if(dto.menuName) {
+        const menu = (await Menu.find({ name: dto.menuName }).exec())[0];
+        const checkIncluded = menu.dishes.filter((dish) => dish.toString() === dto.dish);
 
-      // update the dish
-      // const updatedDish = await Dish.findByIdAndUpdate(dto.dish, {
-      //   name: dto.name,
-      //   price: dto.price,
-      //   imagePath: dto.imagePath,
-      // },
-      // { new: true }).exec();
-      // res.statusCode = 200;
-      // res.end(JSON.stringify(updatedDish));
+        if(checkIncluded.length < 1) {
+          await Menu.findOneAndUpdate({ name: dto.menuName }, { $push: { dishes: dto.dish }});
+        }
+      } else { // 2.) if name of menu is empty remove from this menu
+          await Menu.findOneAndUpdate({ _id: dto.menu }, { $pull: { dishes: dto.dish }});
+        }
+      // 3.) update the dish
+      const updatedDish = await Dish.findByIdAndUpdate(dto.dish, {
+        name: dto.name,
+        price: dto.price,
+      },
+      { new: true }).exec();
+      res.statusCode = 200;
+      res.end(JSON.stringify(updatedDish));
     } else {
       throw new Error('invalid parameter');
     }
@@ -103,3 +108,12 @@ export async function updateDish(req: any, res: any) {
     res.end(JSON.stringify({ error: 'Could not update menu' }));
   }
 }
+
+// async function helperUpdateMenuDishRelation(dto: UpdateDishDTO, included: boolean) {
+//   if(!included) {
+//     await Menu.findOneAndUpdate({ name: dto.menuName }, { $push: { dishes: dto.dish }})!;
+//   } else {
+//     await Menu.findOneAndUpdate({ _id: dto.menu }, { $pull: { dishes: dto.dish }});
+//   }
+
+// }

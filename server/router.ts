@@ -93,6 +93,15 @@ export default function router(req: any, res: any) {
       await asyncWrapper(createDish, req, res, data, idObject);
     });
   }
+  else if (req.method === 'OPTIONS') {
+    let data = '';
+    req.on('data', (chunk: Buffer) => {
+      data += chunk;
+    });
+    req.on('end', async () => {
+      res.end()
+    });
+  }
   else if (req.method === 'PATCH') {
     const urlSplit = req.url.split("/");
     const restaurantId = urlSplit[2];
@@ -115,7 +124,6 @@ export default function router(req: any, res: any) {
       } else {
         await asyncWrapper(updateMenu, req, res, data, idObject);
       }
-
     });
   }
 }

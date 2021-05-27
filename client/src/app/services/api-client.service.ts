@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Restaurant } from './../restaurant/entities/restaurant';
@@ -30,10 +30,39 @@ export class ApiClientService {
       )));
   }
 
-  updateDish(restaurantId: string, menuId: string, dishId: string): Observable<Dish> {
-    const udpateURL = `${this.baseURL}/restaurants/${restaurantId}/menu${menuId}/dish${dishId}`
-    return this.http.get<Dish>(udpateURL)
-      .pipe(catchError(this.handleError<Dish>('updateDish')));
+  updateDish(restaurantId: string, menuId: string, dishId: string, body: any): void {
+    const udpateURL = `${this.baseURL}/restaurants/${restaurantId}/menu/${menuId}/dish/${dishId}`
+    const bodyForPatch = JSON.stringify(body);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': '*/*',
+        'Content-Type': 'text/plain',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+
+     })
+    };
+    // return this.http.post<any>(udpateURL, bodyForPatch) // , httpOptions
+    //   .pipe(catchError(this.handleError<any>('updateDish')));
+
+    // this.http.patch(udpateURL, bodyForPatch, httpOptions).toPromise().then((data:any) => {
+    //   // console.log(data);
+    //   // console.log(data.json.test);
+    //   const temp = JSON.stringify(data.json);
+    //   console.log(temp);
+    // });
+    this.http.patch(udpateURL, bodyForPatch)
+    .subscribe(
+        (val) => {
+            console.log("PATCH call successful value returned in body",
+                        val);
+        },
+        response => {
+            console.log("PATCH call in error", response);
+        },
+        () => {
+            console.log("The PATCH observable is now completed.");
+        });
   }
 
   /**
