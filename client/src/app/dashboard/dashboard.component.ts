@@ -7,7 +7,7 @@ import { ApiClientService } from '../services/api-client.service';
 
 import {
   retrieveRestaurans,
-  retrieveRestauransSuccess,
+  // retrieveRestauransSuccess,
   updateRestaurants,
 } from '../ngrx/actions/admin.actions';
 
@@ -135,10 +135,8 @@ export class DashboardComponent implements OnInit {
   // }
 
   updateRestaurants(restaurants: []) {
-    const { maliciousRequest } = this;
     this.store.dispatch(updateRestaurants({
       restaurants,
-      maliciousRequest,
     }));
   }
 

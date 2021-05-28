@@ -30,4 +30,5 @@ export class RestaurantStoreService {
     // if (restaurant) this.restaurant$.next(restaurant);
     return this.restaurantList.find(restaurant => restaurant._id === restaurantId);
   }
+
 }

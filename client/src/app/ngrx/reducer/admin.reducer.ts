@@ -59,9 +59,9 @@ const _updateReducer = createReducer(
   initialState,
   on(
     updateRestaurants,
-    (state, { restaurants, maliciousRequest }) => ({
+    (state, { restaurants }) => ({
       restaurants,
-      maliciousRequest,
+      maliciousRequest: state.maliciousRequest
     }),
   ),
 );

@@ -87,11 +87,17 @@ export async function updateDish(req: any, res: any) {
         const menu = (await Menu.find({ name: dto.menuName }).exec())[0];
         const checkIncluded = menu.dishes.filter((dish) => dish.toString() === dto.dish);
         if(checkIncluded.length < 1) {
-          menuUpdateResponse = await Menu.findOneAndUpdate({ name: dto.menuName }, { $push: { dishes: dto.dish }}, { new: true }).exec();;
+          menuUpdateResponse = await Menu.findOneAndUpdate(
+            { name: dto.menuName },
+            { $push: { dishes: dto.dish }},
+            { new: true }).exec();;
         }
 
       } else { // 2.) if name of menu is empty remove from this menu
-        menuUpdateResponse = await Menu.findOneAndUpdate({ _id: dto.menu }, { $pull: { dishes: dto.dish }}, { new: true }).exec();;
+        menuUpdateResponse = await Menu.findOneAndUpdate(
+          { _id: dto.menu },
+          { $pull: { dishes: dto.dish }},
+          { new: true }).exec();
         }
       // 3.) update the dish
       const updatedDish = await Dish.findByIdAndUpdate(dto.dish, {

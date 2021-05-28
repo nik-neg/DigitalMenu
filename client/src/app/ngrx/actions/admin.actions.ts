@@ -10,7 +10,7 @@ export const retrieveRestauransSuccess = createAction('[Login Page] Restaurants 
 
 export const updateRestaurants = createAction(
   '[Update Page] Update',
-  props<{ restaurants: Restaurant [], maliciousRequest: boolean }>(),
+  props<{ restaurants: Restaurant [] }>(),
 );
 
 export const setResetMaliciousRequest = createAction(

@@ -5,6 +5,10 @@ import { Menu } from '../menu/entities/menu';
 import { RestaurantStoreService } from '../services/restaurant-store.service';
 import { ApiClientService } from '../services/api-client.service';
 import { UpdateDishDTO } from '../dish/dto/update-dish.dto';
+import { Store } from '@ngrx/store';
+import {
+  updateRestaurants,
+} from '../ngrx/actions/admin.actions';
 @Component({
   selector: 'app-menu-edit',
   templateUrl: './menu-edit.component.html',
@@ -18,13 +22,15 @@ export class MenuEditComponent implements OnInit {
   menus: Menu [];
   menu: Menu;
   values: string = '';
+  restaurantList: Restaurant [] = [];
 
 
 
   constructor(
     private route: ActivatedRoute,
     private restaurantService: RestaurantStoreService,
-    private apiClient: ApiClientService
+    private apiClient: ApiClientService,
+    private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean } }>
     ) {
       this.restaurant = new Restaurant();
       this.updateRestaurantMenusDTO = new UpdateDishDTO();
@@ -64,6 +70,12 @@ export class MenuEditComponent implements OnInit {
      })
    }
 
+   updateRestaurants(restaurants: []) {
+    this.store.dispatch(updateRestaurants({
+      restaurants,
+    }));
+  }
+
   submit(e:any) {
     e.preventDefault();
     // values for update
@@ -88,6 +100,17 @@ export class MenuEditComponent implements OnInit {
     console.log(updateResponse);
 
     // update store
+    // get data from store
+    this.restaurantService.restaurantList$.subscribe((restaurants: Restaurant []) => {
+      this.restaurantList = restaurants;
+    });
+    // update via reducer
+    // update restaurant list
+    // remove/add dish from menu list within dishes list
+    // remove from restaurants dishes list not implemented
+
+    // this.updateRestaurants()
+
   }
 
 
