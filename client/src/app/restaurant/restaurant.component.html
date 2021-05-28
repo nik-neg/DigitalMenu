@@ -1,10 +1,13 @@
 <a [routerLink]="restaurantDetailsURL()" [queryParams]="{ isAdmin: isAdmin }">
-  <div class="card">
-    <img class="card-img-top" [src]="restaurant.imagePath" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{ restaurant.name }}</h5>
-      <p class="card-text">{{ restaurant.slogan }}</p>
-      <p class="card-text-update"><small class="text-muted">Last updated 3 mins ago</small></p>
+  <div class="card-container">
+    <div class="card">
+      <img class="card-img-top" [src]="restaurant.imagePath" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{ restaurant.name }}</h5>
+        <p class="card-text">{{ restaurant.slogan }}</p>
+        <p class="card-text-update"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
     </div>
   </div>
+
 </a>

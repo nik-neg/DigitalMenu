@@ -6,18 +6,43 @@ a {
   text-decoration: none;
 }
 
-.card-body {
+.card-container {
+  padding-bottom: 2.5%;
+  .card {
+    max-height: 100%;
+    max-width: 100%;
 
-  .card-title {
-    font-family: $font-title-carousel-card;
-  }
-  .card-text {
-    font-family: $font-card-subtitle;
-    font-weight: bold;
+    .card-img-top {
+
+    }
+    .card-body {
+      .card-title {
+        font-family: $font-title-carousel-card;
+      }
+      .card-text {
+        font-family: $font-card-subtitle;
+        font-weight: bold;
+      }
+    }
   }
 }
 
-// .col {
-//   background-color: white; // ?
-//   padding: 0.5%;
-// }
+@media only screen and (max-width: 761px){
+  .card-container {
+    background-color: black;
+    border-radius: 5%;
+    max-height: 95%;
+    max-width: 100%;
+    .card {
+      margin: 0.5rem;
+      top: 10px;
+      border-radius: 5%;
+      .card-img-top {
+        border-radius: 5% 5% 0 0;
+      }
+      .card-body {
+        // margin-bottom: 6rem;
+      }
+    }
+  }
+}

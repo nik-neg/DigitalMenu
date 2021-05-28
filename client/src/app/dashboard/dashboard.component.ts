@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
     },
     {
       title: 'The Spot',
-      slogan: 'Nizza - Magnifique cuisine',
+      slogan: 'Nizza - Magnifique!',
       imagePath: '../../assets/images/restaurants/the_spot.jpg',
     },
     {
@@ -54,7 +54,7 @@ export class DashboardComponent implements OnInit {
       imagePath: '../../assets/images/restaurants/la_rustica.jpg',
     },
     {
-      title: 'Surf & Turf Bar',
+      title: 'Surf & Turf',
       slogan: 'San Francisco - Best!',
       imagePath: './../assets/images/restaurants/surf_and_turf_bar.jpg',
     },

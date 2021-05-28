@@ -99,7 +99,7 @@ export default function router(req: any, res: any) {
       data += chunk;
     });
     req.on('end', async () => {
-      res.end()
+      res.end();
     });
   }
   else if (req.method === 'PATCH') {
