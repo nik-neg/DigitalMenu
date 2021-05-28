@@ -30,18 +30,18 @@ export class ApiClientService {
       )));
   }
 
-  updateDish(restaurantId: string, menuId: string, dishId: string, body: any): void {
+  updateDish(restaurantId: string, menuId: string, dishId: string, body: any): Observable<Dish> {
     const udpateURL = `${this.baseURL}/restaurants/${restaurantId}/menu/${menuId}/dish/${dishId}`
     const bodyForPatch = JSON.stringify(body);
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Accept': '*/*',
-        'Content-Type': 'text/plain',
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
+    // const httpOptions = {
+    //   headers: new HttpHeaders({
+    //     'Accept': '*/*',
+    //     'Content-Type': 'text/plain',
+    //     "Access-Control-Allow-Origin": "*",
+    //     "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
 
-     })
-    };
+    //  })
+    // };
     // return this.http.post<any>(udpateURL, bodyForPatch) // , httpOptions
     //   .pipe(catchError(this.handleError<any>('updateDish')));
 
@@ -51,18 +51,21 @@ export class ApiClientService {
     //   const temp = JSON.stringify(data.json);
     //   console.log(temp);
     // });
-    this.http.patch(udpateURL, bodyForPatch)
-    .subscribe(
-        (val) => {
-            console.log("PATCH call successful value returned in body",
-                        val);
-        },
-        response => {
-            console.log("PATCH call in error", response);
-        },
-        () => {
-            console.log("The PATCH observable is now completed.");
-        });
+    return this.http.patch<Dish>(udpateURL, bodyForPatch)
+    .pipe(catchError(this.handleError<Dish>(
+      'updateDish')));
+    // return this.http.patch<Observable<any>(udpateURL, bodyForPatch);
+    // .subscribe(
+    //     (val) => {
+    //         console.log("PATCH call successful value returned in body",
+    //                     val);
+    //     },
+    //     response => {
+    //         console.log("PATCH call in error", response);
+    //     },
+    //     () => {
+    //         console.log("The PATCH observable is now completed.");
+    //     });
   }
 
   /**

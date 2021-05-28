@@ -82,15 +82,16 @@ export async function updateDish(req: any, res: any) {
 
       // update the relation to menu:
       // 1.) find menu by name and if the dish is not in the menu list, add to new menu
+      let menuUpdateResponse;
       if(dto.menuName) {
         const menu = (await Menu.find({ name: dto.menuName }).exec())[0];
         const checkIncluded = menu.dishes.filter((dish) => dish.toString() === dto.dish);
-
         if(checkIncluded.length < 1) {
-          await Menu.findOneAndUpdate({ name: dto.menuName }, { $push: { dishes: dto.dish }});
+          menuUpdateResponse = await Menu.findOneAndUpdate({ name: dto.menuName }, { $push: { dishes: dto.dish }}, { new: true }).exec();;
         }
+
       } else { // 2.) if name of menu is empty remove from this menu
-          await Menu.findOneAndUpdate({ _id: dto.menu }, { $pull: { dishes: dto.dish }});
+        menuUpdateResponse = await Menu.findOneAndUpdate({ _id: dto.menu }, { $pull: { dishes: dto.dish }}, { new: true }).exec();;
         }
       // 3.) update the dish
       const updatedDish = await Dish.findByIdAndUpdate(dto.dish, {
@@ -99,7 +100,7 @@ export async function updateDish(req: any, res: any) {
       },
       { new: true }).exec();
       res.statusCode = 200;
-      res.end(JSON.stringify(updatedDish));
+      res.end(JSON.stringify({ dish: updatedDish, menu: menuUpdateResponse }));
     } else {
       throw new Error('invalid parameter');
     }

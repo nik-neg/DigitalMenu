@@ -79,7 +79,12 @@ export class MenuEditComponent implements OnInit {
 
     // call update with api client
     const body = this.updateRestaurantMenusDTO;
-    const updateResponse = this.apiClient.updateDish(this.restaurantId, this.menuId, dishId, body);
+
+    let updateResponse;
+    this.apiClient.updateDish(this.restaurantId, this.menuId, dishId, body)
+    .subscribe(data => console.log(data));
+
+    console.log("UPDATE REPSONSE")
     console.log(updateResponse);
 
     // update store
