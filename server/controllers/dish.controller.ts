@@ -84,20 +84,32 @@ export async function updateDish(req: any, res: any) {
       // 1.) find menu by name and if the dish is not in the menu list, add to new menu
       let menuUpdateResponse;
       if(dto.menuName) {
+        // menu to dish
         const menu = (await Menu.find({ name: dto.menuName }).exec())[0];
         const checkIncluded = menu.dishes.filter((dish) => dish.toString() === dto.dish);
         if(checkIncluded.length < 1) {
           menuUpdateResponse = await Menu.findOneAndUpdate(
             { name: dto.menuName },
             { $push: { dishes: dto.dish }},
-            { new: true }).exec();;
-        }
+            { new: true }).exec();
 
+          // dish to menu
+          await Dish.findOneAndUpdate(
+            { _id: dto.dish },
+            { $push: { menus: dto.menu }},
+            { new: true }).exec();
+        }
       } else { // 2.) if name of menu is empty remove from this menu
         menuUpdateResponse = await Menu.findOneAndUpdate(
           { _id: dto.menu },
           { $pull: { dishes: dto.dish }},
           { new: true }).exec();
+
+          // dish to menu
+          await Dish.findOneAndUpdate(
+            { _id: dto.dish },
+            { $pull: { menus: dto.menu }},
+            { new: true }).exec();
         }
       // 3.) update the dish
       const updatedDish = await Dish.findByIdAndUpdate(dto.dish, {

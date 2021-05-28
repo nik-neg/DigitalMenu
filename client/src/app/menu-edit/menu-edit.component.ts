@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, ɵɵtrustConstantResourceUrl } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { Restaurant } from '../restaurant/entities/restaurant';
 import { Menu } from '../menu/entities/menu';
@@ -76,7 +76,7 @@ export class MenuEditComponent implements OnInit {
     }));
   }
 
-  submit(e:any) {
+  async submit(e:any) {
     e.preventDefault();
     // values for update
     const menuName = e.target.menuname.value;
@@ -93,17 +93,36 @@ export class MenuEditComponent implements OnInit {
     const body = this.updateRestaurantMenusDTO;
 
     let updateResponse;
-    this.apiClient.updateDish(this.restaurantId, this.menuId, dishId, body)
-    .subscribe(data => console.log(data));
+    await this.apiClient.updateDish(this.restaurantId, this.menuId, dishId, body)
+    .toPromise()
+    .then((data: any) => updateResponse = data);
 
     console.log("UPDATE REPSONSE")
     console.log(updateResponse);
 
     // update store
-    // get data from store
+    // get data from behavioural subject
     this.restaurantService.restaurantList$.subscribe((restaurants: Restaurant []) => {
       this.restaurantList = restaurants;
     });
+
+    console.log(this.restaurantList);
+
+    // check to add or remove the dish
+    const indexRestaurant = this.restaurantList.findIndex((restaurant) => restaurant._id === this.restaurantId);
+    const restaurantForUpdate = this.restaurantList[indexRestaurant];
+    console.log(restaurantForUpdate);
+    const indexMenu = restaurantForUpdate.menus.findIndex((menu) => menu._id === this.menuId);
+    const menuForUpdate = restaurantForUpdate.menus[indexMenu];
+    console.log(menuForUpdate);
+
+    // this.restau rantList.forEach((restaurant) => {
+    //   if(restaurant._id === this.restaurantId) {
+    //     restaurant.menus.for
+    //   }
+    // })
+
+
     // update via reducer
     // update restaurant list
     // remove/add dish from menu list within dishes list
@@ -112,6 +131,11 @@ export class MenuEditComponent implements OnInit {
     // this.updateRestaurants()
 
   }
+
+
+
+
+
 
 
   async ngOnInit(): Promise<void> {

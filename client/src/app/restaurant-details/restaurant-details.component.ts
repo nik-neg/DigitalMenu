@@ -81,12 +81,5 @@ export class RestaurantDetailsComponent implements OnInit {
   async ngOnInit() {
     await this.restaurantService.getRestaurants();
     await this.getRestaurantDetails();
-    // await this.restaurantService.getRestaurants();
-    // this.restaurantService.restaurantList$.subscribe((restaurants: Restaurant []) => {
-    //   console.log(restaurants, 'on init')
-    //   this.restaurant = restaurants.find((restaurant) => restaurant._id === this.restaurantId);
-    //   this.menus = this.restaurant?.menus;
-    // })
-    // await this.resetMaliciousRequest(false);
   }
 }
