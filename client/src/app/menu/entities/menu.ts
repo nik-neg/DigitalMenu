@@ -1,7 +1,9 @@
 import IMenu from '../interfaces/imenu';
-import IDish from '../../dish/interfaces/idish';
+import { Dish } from '../../dish/entities/dish';
 
 export class Menu implements IMenu {
+  [key: string]: any;
+
   _id?: string;
 
   name?: string;
@@ -10,7 +12,7 @@ export class Menu implements IMenu {
 
   restaurant?: string;
 
-  dishes?: IDish [];
+  dishes: Dish []
 
   constructor(_id?: string, name?: string, price?: number, restaurant?: string) {
     this._id = _id;

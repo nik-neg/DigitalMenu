@@ -1,8 +1,10 @@
 import IRestaurant from '../interfaces/irestaurant';
-import IDish from '../../dish/interfaces/idish';
-import IMenu from '../../menu/interfaces/imenu';
+import { Dish } from '../../dish/entities/dish';
+import { Menu } from '../../menu/entities/menu';
 
 export class Restaurant implements IRestaurant {
+  [key: string]: any;
+
   _id?: string;
 
   name?: string;
@@ -15,9 +17,9 @@ export class Restaurant implements IRestaurant {
 
   isAdmin: boolean = false;
 
-  menus: IMenu [];
+  menus: Menu [];
 
-  dishes: IDish [];
+  dishes: Dish [];
 
   constructor(_id?: string, name?: string, location?: string, isAdmin?: boolean) {
     this._id = _id;

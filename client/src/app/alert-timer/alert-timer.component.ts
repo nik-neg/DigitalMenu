@@ -19,7 +19,7 @@ export class AlertTimerComponent implements OnInit {
     this.registerAlert();
     this.store.select('store').pipe(take(1))
       .subscribe((storeObject) => {
-        this.maliciousRequest = storeObject.maliciousRequest;
+        this.maliciousRequest = storeObject?.maliciousRequest;
         if (this.maliciousRequest) {
           this._success.next(this.alertMessage);
         }

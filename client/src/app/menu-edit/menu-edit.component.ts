@@ -2,6 +2,7 @@ import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, ɵɵtru
 import { ActivatedRoute } from '@angular/router'
 import { Restaurant } from '../restaurant/entities/restaurant';
 import { Menu } from '../menu/entities/menu';
+import { Dish } from '../dish/entities/dish';
 import { RestaurantStoreService } from '../services/restaurant-store.service';
 import { ApiClientService } from '../services/api-client.service';
 import { UpdateDishDTO } from '../dish/dto/update-dish.dto';
@@ -93,13 +94,10 @@ export class MenuEditComponent implements OnInit {
     // call update with api client
     const body = this.updateRestaurantMenusDTO;
 
-    let updateResponse;
+    let updateResponse : { dish: any, menu: any} = {dish: undefined, menu: undefined };
     await this.apiClient.updateDish(this.restaurantId, this.menuId, dishId, body)
     .toPromise()
     .then((data: any) => updateResponse = data);
-
-    console.log("UPDATE REPSONSE")
-    console.log(updateResponse);
 
     // update store
     // get data from behavioural subject
@@ -108,23 +106,52 @@ export class MenuEditComponent implements OnInit {
     });
     // check to add or remove the dish
     const indexRestaurant = this.restaurantList.findIndex((restaurant) => restaurant._id === this.restaurantId);
-    const restaurantForUpdate = this.restaurantList[indexRestaurant];
+    let restaurantForUpdate = this.restaurantList[indexRestaurant];
+
+    // let tempRestaurant = Object.assign(new Restaurant(), restaurantForUpdate);
     // find menu which has been updated
-    console.log(menuId)
     let indexMenu;
+    let otherMenus;
     if(menuName) {
       indexMenu = restaurantForUpdate.menus.findIndex((menu) => menu.name === menuName);
+      otherMenus = restaurantForUpdate.menus.filter((menu) => menu.name !== menuName);
     } else {
       indexMenu = restaurantForUpdate.menus.findIndex((menu) => menu._id === menuId);
+      otherMenus = restaurantForUpdate.menus.filter((menu) => menu._id !== menuId);
     }
-    const menuForUpdate = restaurantForUpdate.menus[indexMenu];
-    console.log(menuForUpdate);
+    let menuForUpdate = restaurantForUpdate.menus[indexMenu];
 
-    // this.restaurantList.forEach((restaurant) => {
-    //   if(restaurant._id === this.restaurantId) {
-    //     restaurant.menus.for
-    //   }
-    // })
+    let updatedDishes : any = [];
+    if(menuForUpdate) {
+      const index = menuForUpdate.dishes?.findIndex((dish) => dish._id === updateResponse.dish._id);
+      console.log(index);
+      if (index && index > -1) { // remove
+        updatedDishes = menuForUpdate.dishes.filter((dish) => dish._id !== updateResponse.dish._id);
+      } else { // add
+        updatedDishes = menuForUpdate.dishes.map((dish) => dish);
+        updatedDishes = updatedDishes?.concat(updateResponse.dish);
+      }
+    }
+    console.log('AFTER', updatedDishes);
+    let tempMenu = Object.assign({}, new Menu());
+    tempMenu.dishes = updatedDishes;
+    for (const [key, value] of Object.entries(tempMenu)) {
+      if (key === 'dishes') continue;
+      tempMenu[key] = menuForUpdate[key];
+    }
+    let tempRestaurant = Object.assign({}, new Restaurant());
+    tempRestaurant.menus = tempRestaurant.menus.concat(tempMenu).concat(otherMenus);
+    console.log(tempRestaurant);
+    for (const [key, value] of Object.entries(tempRestaurant)) {
+      if (key === 'menus') continue;
+      tempRestaurant[key] = restaurantForUpdate[key];
+    }
+    console.log(tempRestaurant);
+
+
+
+
+
 
 
     // update via reducer
