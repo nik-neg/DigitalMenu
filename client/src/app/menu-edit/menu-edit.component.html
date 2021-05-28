@@ -9,6 +9,7 @@
             <div class="card-body">
               <h5 contentEditable class="card-title">{{menu.name}} : {{ dish.name }}</h5>
               <form (ngSubmit)="submit($event)">
+                <input hidden class="card-text update-element update-field" name="menu_id" value="{{menu._id}}">
                 <input hidden class="card-text update-element update-field" name="dish_id" value="{{dish._id}}">
                 <input class="card-text update-element update-field" name="menuname" value="{{menu.name}}">
                 <input class="card-text update-element update-field" name="dishname" value="{{ dish.name }}">

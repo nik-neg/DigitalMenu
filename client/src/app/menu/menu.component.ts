@@ -53,6 +53,7 @@ export class MenuComponent implements OnInit {
 
   editURL() {
     if (this.isAdmin) {
+      // TODO: flash data before redirect or check store
       return this.router.navigate(
         [`menu/${this.menu._id}`],
         { relativeTo: this.route }, // queryParams: {id: this.restaurantId}

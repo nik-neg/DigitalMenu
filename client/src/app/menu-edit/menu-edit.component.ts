@@ -82,6 +82,7 @@ export class MenuEditComponent implements OnInit {
     const menuName = e.target.menuname.value;
     const dishName = e.target.dishname.value;
     const dishId = e.target.dish_id.value; // use of bcrypt ?
+    const menuId = e.target.menu_id.value; // use of bcrypt ?
     let price = e.target.price.value;
     price = price.slice(1, price.length);
 
@@ -105,18 +106,21 @@ export class MenuEditComponent implements OnInit {
     this.restaurantService.restaurantList$.subscribe((restaurants: Restaurant []) => {
       this.restaurantList = restaurants;
     });
-
-    console.log(this.restaurantList);
-
     // check to add or remove the dish
     const indexRestaurant = this.restaurantList.findIndex((restaurant) => restaurant._id === this.restaurantId);
     const restaurantForUpdate = this.restaurantList[indexRestaurant];
-    console.log(restaurantForUpdate);
-    const indexMenu = restaurantForUpdate.menus.findIndex((menu) => menu._id === this.menuId);
+    // find menu which has been updated
+    console.log(menuId)
+    let indexMenu;
+    if(menuName) {
+      indexMenu = restaurantForUpdate.menus.findIndex((menu) => menu.name === menuName);
+    } else {
+      indexMenu = restaurantForUpdate.menus.findIndex((menu) => menu._id === menuId);
+    }
     const menuForUpdate = restaurantForUpdate.menus[indexMenu];
     console.log(menuForUpdate);
 
-    // this.restau rantList.forEach((restaurant) => {
+    // this.restaurantList.forEach((restaurant) => {
     //   if(restaurant._id === this.restaurantId) {
     //     restaurant.menus.for
     //   }
