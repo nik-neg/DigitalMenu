@@ -88,28 +88,33 @@ export async function updateDish(req: any, res: any) {
         const menu = (await Menu.find({ name: dto.menuName }).exec())[0];
         const checkIncluded = menu.dishes.filter((dish) => dish.toString() === dto.dish);
         if(checkIncluded.length < 1) {
-          menuUpdateResponse = await Menu.findOneAndUpdate(
+          await Menu.findOneAndUpdate(
             { name: dto.menuName },
             { $push: { dishes: dto.dish }},
             { new: true }).exec();
 
           // dish to menu
-          await Dish.findOneAndUpdate(
+          const newMenu = await Menu.findOne({name: dto.menuName }).exec();
+          const dishResponse = await Dish.findOneAndUpdate(
             { _id: dto.dish },
-            { $push: { menus: dto.menu }},
+            { $push: { menus: newMenu?._id }},
             { new: true }).exec();
+          console.log(dishResponse);
         }
       } else { // 2.) if name of menu is empty remove from this menu
-        menuUpdateResponse = await Menu.findOneAndUpdate(
+         await Menu.findOneAndUpdate(
           { _id: dto.menu },
           { $pull: { dishes: dto.dish }},
           { new: true }).exec();
 
           // dish to menu
-          await Dish.findOneAndUpdate(
+          const oldMenu = await Menu.findOne({_id: dto.menu }).exec();
+          console.log(oldMenu)
+          const dishResponse = await Dish.findOneAndUpdate(
             { _id: dto.dish },
-            { $pull: { menus: dto.menu }},
+            { $pull: { menus: oldMenu?._id }},
             { new: true }).exec();
+            console.log(dishResponse);
         }
       // 3.) update the dish
       const updatedDish = await Dish.findByIdAndUpdate(dto.dish, {
