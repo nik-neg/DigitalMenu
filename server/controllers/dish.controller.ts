@@ -83,6 +83,7 @@ export async function updateDish(req: any, res: any) {
       // update the relation to menu:
       // 1.) find menu by name and if the dish is not in the menu list, add to new menu
       let menuUpdateResponse;
+      let dishUpdateResponse;
       if(dto.menuName) {
         // menu to dish
         const menu = (await Menu.find({ name: dto.menuName }).exec())[0];
@@ -100,6 +101,15 @@ export async function updateDish(req: any, res: any) {
             { $push: { menus: newMenu?._id }},
             { new: true }).exec();
           console.log(dishResponse);
+        } else {
+          console.log('included')
+          // update dish attibutes name and/or price in dish
+          // dish to menu
+          menuUpdateResponse = await Menu.findOne({name: dto.menuName }).exec();
+          // dishUpdateResponse = await Dish.findOneAndUpdate(
+          //   { _id: dto.dish },
+          //   { name: dto.name, price: dto.price },
+          //   { new: true }).exec();
         }
       } else { // 2.) if name of menu is empty remove from this menu
         menuUpdateResponse = await Menu.findOneAndUpdate(

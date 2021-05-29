@@ -99,6 +99,8 @@ export class MenuEditComponent implements OnInit {
     .toPromise()
     .then((data: any) => updateResponse = data);
 
+    console.log(updateResponse);
+    console.log('BEFORE', updateResponse.menu);
     // TODO: api call for refresh instead of store ?
 
     // update store
@@ -128,14 +130,29 @@ export class MenuEditComponent implements OnInit {
     if(menuForUpdate) {
       const index = menuForUpdate.dishes?.findIndex((dish) => dish._id === updateResponse.dish._id);
       // console.log(index);
-      if (index && index > -1) { // remove
+      if (index && index > -1 && menuName.length < 1) { // remove from dish list in menu
         updatedDishes = menuForUpdate.dishes.filter((dish) => dish._id !== updateResponse.dish._id);
-      } else { // add
+      } else if (index && index > -1) { // update the dish list in menu
+        updatedDishes = menuForUpdate.dishes.map((dish) => {
+          if (dish._id === updateResponse.dish._id) {
+            let dishToUpdate = Object.assign({}, new Dish());
+            dishToUpdate.name = updateResponse.dish.name;
+            dishToUpdate.price = updateResponse.dish.price;
+            for (const [key, value] of Object.entries(dish)) {
+              if (key === 'name' || key === 'price') continue;
+              dishToUpdate[key] = dish[key];
+            }
+            return dishToUpdate;
+          }
+          return dish;
+        });
+      } else { // add to dish list in menu
         updatedDishes = menuForUpdate.dishes.map((dish) => dish);
         updatedDishes = updatedDishes?.concat(updateResponse.dish);
       }
     }
-    // console.log('AFTER', updatedDishes);
+    console.log('menu for update dishes', menuForUpdate.dishes)
+    console.log('AFTER DISHES:', updatedDishes);
     // TODO: refactor to function objectGenerator
     let tempMenu = Object.assign({}, new Menu());
     tempMenu.dishes = updatedDishes;
