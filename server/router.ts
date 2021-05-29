@@ -107,7 +107,6 @@ export default function router(req: any, res: any) {
     const restaurantId = urlSplit[2];
     const menuId = urlSplit[4];
     const dishId = urlSplit[6];
-    // console.log(restaurantId, menuId, dishId)
     let data = '';
     req.on('data', (chunk: Buffer) => {
       data += chunk;

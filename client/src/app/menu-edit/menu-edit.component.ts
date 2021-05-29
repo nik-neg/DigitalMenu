@@ -77,6 +77,68 @@ export class MenuEditComponent implements OnInit {
     }));
   }
 
+  createBodyForUpdate(dishName: string, menuName: string, price: string) {
+    this.updateRestaurantMenusDTO.name = dishName;
+    this.updateRestaurantMenusDTO.menuName = menuName;
+    this.updateRestaurantMenusDTO.price = price;
+    return this.updateRestaurantMenusDTO;
+  }
+
+  async updateMenu(
+    restaurantId: string,
+    menuId: string,
+    dishId: string,
+    body: any,
+    updateResponse: { dish: any, menu: any} ): Promise<any> {
+    await this.apiClient.updateDish(restaurantId, menuId, dishId, body)
+    .toPromise()
+    .then((data: any) => updateResponse = data);
+    return updateResponse;
+  }
+
+  getRestaurantDataFromRestaurantService() {
+    this.restaurantService.restaurantList$.subscribe((restaurants: Restaurant []) => {
+      this.restaurantList = restaurants;
+    });
+  }
+
+  findIndexOfMenuAndOtherMenus(restaurantForUpdate: any, filterString: string, selector: string) { // name , id
+    const indexMenu = restaurantForUpdate.menus.findIndex((menu: any) => menu[selector] === filterString);
+    const otherMenus = restaurantForUpdate.menus.filter((menu: any) => menu[selector] !== filterString);
+    return [indexMenu, otherMenus];
+  }
+
+  generateDishObjectForStoreUpdate(updateResponse: any, dish: any) {
+    let dishObject = Object.assign({}, new Dish());
+    dishObject.name = updateResponse.dish.name;
+    dishObject.price = updateResponse.dish.price;
+    for (const [key, value] of Object.entries(dish)) {
+      if (key === 'name' || key === 'price') continue;
+      dishObject[key] = dish[key];
+    }
+    return dishObject;
+  }
+
+  generateMenuObjectForStoreUpdate(updatedDishes: any, menuForUpdate: any) {
+    let menuObject = Object.assign({}, new Menu());
+    menuObject.dishes = updatedDishes;
+    for (const [key, value] of Object.entries(menuForUpdate)) {
+      if (key === 'dishes') continue;
+      menuObject[key] = menuForUpdate[key];
+    }
+    return menuObject
+  }
+
+  generateRestaurantObjectForStoreUpdate(tempMenu: any, otherMenus: any, restaurantForUpdate: any ) {
+    let tempRestaurant = Object.assign({}, new Restaurant());
+    tempRestaurant.menus = tempRestaurant.menus.concat(tempMenu).concat(otherMenus);
+    for (const [key, value] of Object.entries(restaurantForUpdate)) {
+      if (key === 'menus') continue;
+      tempRestaurant[key] = restaurantForUpdate[key];
+    }
+    return tempRestaurant;
+  }
+
   async submit(e:any) {
     e.preventDefault();
     // values for update
@@ -87,27 +149,14 @@ export class MenuEditComponent implements OnInit {
     let price = e.target.price.value;
     price = price.slice(1, price.length);
 
-    this.updateRestaurantMenusDTO.name = dishName;
-    this.updateRestaurantMenusDTO.menuName = menuName;
-    this.updateRestaurantMenusDTO.price = price;
-
+    const body = this.createBodyForUpdate(dishName, menuName, price);
     // call update with api client
-    const body = this.updateRestaurantMenusDTO;
-
     let updateResponse : { dish: any, menu: any} = {dish: undefined, menu: undefined };
-    await this.apiClient.updateDish(this.restaurantId, this.menuId, dishId, body)
-    .toPromise()
-    .then((data: any) => updateResponse = data);
-
-    console.log(updateResponse);
-    console.log('BEFORE', updateResponse.menu);
-    // TODO: api call for refresh instead of store ?
+    updateResponse = await this.updateMenu(this.restaurantId, this.menuId, dishId, body, updateResponse);
 
     // update store
     // get data from behavioural subject
-    this.restaurantService.restaurantList$.subscribe((restaurants: Restaurant []) => {
-      this.restaurantList = restaurants;
-    });
+    this.getRestaurantDataFromRestaurantService();
     // check to add or remove the dish
     const indexRestaurant = this.restaurantList.findIndex((restaurant) => restaurant._id === this.restaurantId);
     let restaurantForUpdate = this.restaurantList[indexRestaurant];
@@ -117,32 +166,21 @@ export class MenuEditComponent implements OnInit {
     let otherMenus;
     // TODO: refactor to function findObject
     if(menuName) {
-      indexMenu = restaurantForUpdate.menus.findIndex((menu) => menu.name === menuName);
-      otherMenus = restaurantForUpdate.menus.filter((menu) => menu.name !== menuName);
+      [indexMenu, otherMenus] = this.findIndexOfMenuAndOtherMenus(restaurantForUpdate, menuName, 'name');
     } else {
-      indexMenu = restaurantForUpdate.menus.findIndex((menu) => menu._id === menuId);
-      otherMenus = restaurantForUpdate.menus.filter((menu) => menu._id !== menuId);
+      [indexMenu, otherMenus] = this.findIndexOfMenuAndOtherMenus(restaurantForUpdate, menuId, '_id');
     }
     let menuForUpdate = restaurantForUpdate.menus[indexMenu];
 
     let updatedDishes : any = [];
-    // TODO: refactor to function findObject
     if(menuForUpdate) {
       const index = menuForUpdate.dishes?.findIndex((dish) => dish._id === updateResponse.dish._id);
-      // console.log(index);
       if (index && index > -1 && menuName.length < 1) { // remove from dish list in menu
         updatedDishes = menuForUpdate.dishes.filter((dish) => dish._id !== updateResponse.dish._id);
       } else if (index && index > -1) { // update the dish list in menu
         updatedDishes = menuForUpdate.dishes.map((dish) => {
           if (dish._id === updateResponse.dish._id) {
-            let dishToUpdate = Object.assign({}, new Dish());
-            dishToUpdate.name = updateResponse.dish.name;
-            dishToUpdate.price = updateResponse.dish.price;
-            for (const [key, value] of Object.entries(dish)) {
-              if (key === 'name' || key === 'price') continue;
-              dishToUpdate[key] = dish[key];
-            }
-            return dishToUpdate;
+            return this.generateDishObjectForStoreUpdate(updateResponse, dish);
           }
           return dish;
         });
@@ -151,37 +189,14 @@ export class MenuEditComponent implements OnInit {
         updatedDishes = updatedDishes?.concat(updateResponse.dish);
       }
     }
-    console.log('menu for update dishes', menuForUpdate.dishes)
-    console.log('AFTER DISHES:', updatedDishes);
-    // TODO: refactor to function objectGenerator
-    let tempMenu = Object.assign({}, new Menu());
-    tempMenu.dishes = updatedDishes;
-    for (const [key, value] of Object.entries(menuForUpdate)) {
-      if (key === 'dishes') continue;
-      tempMenu[key] = menuForUpdate[key];
-    }
-    // TODO: refactor to function objectGenerator
-    let tempRestaurant = Object.assign({}, new Restaurant());
-    tempRestaurant.menus = tempRestaurant.menus.concat(tempMenu).concat(otherMenus);
-    // console.log(tempRestaurant);
-    for (const [key, value] of Object.entries(restaurantForUpdate)) {
-      if (key === 'menus') continue;
-      tempRestaurant[key] = restaurantForUpdate[key];
-    }
-    // console.log(tempRestaurant);
-    // console.log(this.restaurantList);
+    let tempMenu = this.generateMenuObjectForStoreUpdate(updatedDishes, menuForUpdate);
+    let tempRestaurant = this.generateRestaurantObjectForStoreUpdate(tempMenu, otherMenus, restaurantForUpdate);
+
     const otherRestaurants = this.restaurantList.filter((restaurant) => restaurant._id !== tempRestaurant._id);
-    // console.log(otherRestaurants);
     const restaurantsForDispatch = [tempRestaurant].concat(otherRestaurants);
-    console.log(restaurantsForDispatch);
 
-    // update via reducer
-    // update restaurant list
-    // remove/add dish from menu list within dishes list
-    // remove from restaurants dishes list not implemented
+    // update store via reducer
     this.updateRestaurants(restaurantsForDispatch)
-    // this.updateRestaurants()
-
   }
 
 

@@ -100,16 +100,9 @@ export async function updateDish(req: any, res: any) {
             { _id: dto.dish },
             { $push: { menus: newMenu?._id }},
             { new: true }).exec();
-          console.log(dishResponse);
-        } else {
-          console.log('included')
-          // update dish attibutes name and/or price in dish
-          // dish to menu
+        } else { // included
+          // get menu for response
           menuUpdateResponse = await Menu.findOne({name: dto.menuName }).exec();
-          // dishUpdateResponse = await Dish.findOneAndUpdate(
-          //   { _id: dto.dish },
-          //   { name: dto.name, price: dto.price },
-          //   { new: true }).exec();
         }
       } else { // 2.) if name of menu is empty remove from this menu
         menuUpdateResponse = await Menu.findOneAndUpdate(
@@ -119,12 +112,10 @@ export async function updateDish(req: any, res: any) {
 
           // dish to menu
           const oldMenu = await Menu.findOne({_id: dto.menu }).exec();
-          console.log(oldMenu)
-          const dishResponse = await Dish.findOneAndUpdate(
+          await Dish.findOneAndUpdate(
             { _id: dto.dish },
             { $pull: { menus: oldMenu?._id }},
             { new: true }).exec();
-            console.log(dishResponse);
         }
       // 3.) update the dish
       const updatedDish = await Dish.findByIdAndUpdate(dto.dish, {
@@ -142,12 +133,3 @@ export async function updateDish(req: any, res: any) {
     res.end(JSON.stringify({ error: 'Could not update menu' }));
   }
 }
-
-// async function helperUpdateMenuDishRelation(dto: UpdateDishDTO, included: boolean) {
-//   if(!included) {
-//     await Menu.findOneAndUpdate({ name: dto.menuName }, { $push: { dishes: dto.dish }})!;
-//   } else {
-//     await Menu.findOneAndUpdate({ _id: dto.menu }, { $pull: { dishes: dto.dish }});
-//   }
-
-// }
