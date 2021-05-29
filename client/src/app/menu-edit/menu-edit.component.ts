@@ -71,7 +71,7 @@ export class MenuEditComponent implements OnInit {
      })
    }
 
-   updateRestaurants(restaurants: []) {
+   updateRestaurants(restaurants: Restaurant[]) {
     this.store.dispatch(updateRestaurants({
       restaurants,
     }));
@@ -99,6 +99,8 @@ export class MenuEditComponent implements OnInit {
     .toPromise()
     .then((data: any) => updateResponse = data);
 
+    // TODO: api call for refresh instead of store ?
+
     // update store
     // get data from behavioural subject
     this.restaurantService.restaurantList$.subscribe((restaurants: Restaurant []) => {
@@ -108,10 +110,10 @@ export class MenuEditComponent implements OnInit {
     const indexRestaurant = this.restaurantList.findIndex((restaurant) => restaurant._id === this.restaurantId);
     let restaurantForUpdate = this.restaurantList[indexRestaurant];
 
-    // let tempRestaurant = Object.assign(new Restaurant(), restaurantForUpdate);
     // find menu which has been updated
     let indexMenu;
     let otherMenus;
+    // TODO: refactor to function findObject
     if(menuName) {
       indexMenu = restaurantForUpdate.menus.findIndex((menu) => menu.name === menuName);
       otherMenus = restaurantForUpdate.menus.filter((menu) => menu.name !== menuName);
@@ -122,9 +124,10 @@ export class MenuEditComponent implements OnInit {
     let menuForUpdate = restaurantForUpdate.menus[indexMenu];
 
     let updatedDishes : any = [];
+    // TODO: refactor to function findObject
     if(menuForUpdate) {
       const index = menuForUpdate.dishes?.findIndex((dish) => dish._id === updateResponse.dish._id);
-      console.log(index);
+      // console.log(index);
       if (index && index > -1) { // remove
         updatedDishes = menuForUpdate.dishes.filter((dish) => dish._id !== updateResponse.dish._id);
       } else { // add
@@ -132,33 +135,34 @@ export class MenuEditComponent implements OnInit {
         updatedDishes = updatedDishes?.concat(updateResponse.dish);
       }
     }
-    console.log('AFTER', updatedDishes);
+    // console.log('AFTER', updatedDishes);
+    // TODO: refactor to function objectGenerator
     let tempMenu = Object.assign({}, new Menu());
     tempMenu.dishes = updatedDishes;
-    for (const [key, value] of Object.entries(tempMenu)) {
+    for (const [key, value] of Object.entries(menuForUpdate)) {
       if (key === 'dishes') continue;
       tempMenu[key] = menuForUpdate[key];
     }
+    // TODO: refactor to function objectGenerator
     let tempRestaurant = Object.assign({}, new Restaurant());
     tempRestaurant.menus = tempRestaurant.menus.concat(tempMenu).concat(otherMenus);
-    console.log(tempRestaurant);
-    for (const [key, value] of Object.entries(tempRestaurant)) {
+    // console.log(tempRestaurant);
+    for (const [key, value] of Object.entries(restaurantForUpdate)) {
       if (key === 'menus') continue;
       tempRestaurant[key] = restaurantForUpdate[key];
     }
-    console.log(tempRestaurant);
-
-
-
-
-
-
+    // console.log(tempRestaurant);
+    // console.log(this.restaurantList);
+    const otherRestaurants = this.restaurantList.filter((restaurant) => restaurant._id !== tempRestaurant._id);
+    // console.log(otherRestaurants);
+    const restaurantsForDispatch = [tempRestaurant].concat(otherRestaurants);
+    console.log(restaurantsForDispatch);
 
     // update via reducer
     // update restaurant list
     // remove/add dish from menu list within dishes list
     // remove from restaurants dishes list not implemented
-
+    this.updateRestaurants(restaurantsForDispatch)
     // this.updateRestaurants()
 
   }
