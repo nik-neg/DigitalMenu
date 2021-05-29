@@ -7,7 +7,7 @@ a {
 }
 
 .card-container {
-  padding-bottom: 2.5%;
+  padding-bottom: 0.5%;
   .card {
     max-height: 100%;
     max-width: 100%;
@@ -33,6 +33,7 @@ a {
     border-radius: 5%;
     max-height: 95%;
     max-width: 100%;
+    padding-bottom: 2.5%;
     .card {
       margin: 0.5rem;
       top: 10px;
