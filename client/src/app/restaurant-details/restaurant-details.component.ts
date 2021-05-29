@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
@@ -8,7 +8,6 @@ import { Restaurant } from '../restaurant/entities/restaurant';
 import { Menu } from '../menu/entities/menu';
 import { setResetMaliciousRequest } from '../ngrx/actions/admin.actions';
 import { RestaurantStoreService } from '../services/restaurant-store.service';
-
 @Component({
   selector: 'app-restaurant-details',
   templateUrl: './restaurant-details.component.html',
@@ -24,6 +23,7 @@ export class RestaurantDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private apiClient: ApiClientService,
+    private router: Router,
     private store: Store< { restaurants: Restaurant[], maliciousRequest: boolean }>,
     private restaurantService: RestaurantStoreService
     ) {
@@ -57,6 +57,12 @@ export class RestaurantDetailsComponent implements OnInit {
 
   async resetMaliciousRequest(maliciousRequest: boolean): Promise<void> {
     this.store.dispatch(setResetMaliciousRequest({ maliciousRequest }));
+  }
+
+  backToMainPage() {
+    return this.router.navigate(
+      [`/`],
+    );
   }
 
   async ngOnInit() {

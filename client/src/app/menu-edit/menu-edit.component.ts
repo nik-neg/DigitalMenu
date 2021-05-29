@@ -1,5 +1,5 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild, ɵɵtrustConstantResourceUrl } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router'
 import { Restaurant } from '../restaurant/entities/restaurant';
 import { Menu } from '../menu/entities/menu';
 import { Dish } from '../dish/entities/dish';
@@ -7,6 +7,7 @@ import { RestaurantStoreService } from '../services/restaurant-store.service';
 import { ApiClientService } from '../services/api-client.service';
 import { UpdateDishDTO } from '../dish/dto/update-dish.dto';
 import { Store } from '@ngrx/store';
+
 import {
   updateRestaurants,
 } from '../ngrx/actions/admin.actions';
@@ -25,10 +26,9 @@ export class MenuEditComponent implements OnInit {
   values: string = '';
   restaurantList: Restaurant [] = [];
 
-
-
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private restaurantService: RestaurantStoreService,
     private apiClient: ApiClientService,
     private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean } }>
@@ -42,8 +42,6 @@ export class MenuEditComponent implements OnInit {
         this.menuId = url[3].path;
       });
    }
-
-  //  get diagnostic() { return JSON.stringify(this.updateRestaurantMenusDTO); }
 
    async getRestaurantDetails() {
     const restaurant = await this.restaurantService.getRestaurant(this.restaurantId);
@@ -164,7 +162,6 @@ export class MenuEditComponent implements OnInit {
     // find menu which has been updated
     let indexMenu;
     let otherMenus;
-    // TODO: refactor to function findObject
     if(menuName) {
       [indexMenu, otherMenus] = this.findIndexOfMenuAndOtherMenus(restaurantForUpdate, menuName, 'name');
     } else {
@@ -199,11 +196,11 @@ export class MenuEditComponent implements OnInit {
     this.updateRestaurants(restaurantsForDispatch)
   }
 
-
-
-
-
-
+  restaurantDetails() {
+    return this.router.navigate(
+      [`restaurants/${this.restaurant._id}`],
+    );
+  }
 
   async ngOnInit(): Promise<void> {
     await this.restaurantService.getRestaurants();

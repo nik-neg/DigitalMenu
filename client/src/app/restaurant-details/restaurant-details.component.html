@@ -7,5 +7,8 @@
       >
         <app-menu *ngIf="restaurant" [menu]="menu" [restaurantId]="restaurant._id" [isAdmin]="restaurant.isAdmin"></app-menu>
       </div>
+      <div class="col back-button">
+        <button class="btn btn-dark btn-block" type="button" (click)="backToMainPage()">Back</button>
+      </div>
     </div>
 </div>
