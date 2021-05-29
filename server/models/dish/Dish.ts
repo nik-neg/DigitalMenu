@@ -1,5 +1,4 @@
 import mongoose from 'mongoose';
-
 export interface IDish extends mongoose.Document {
   name: string;
   price: number;

@@ -1,6 +1,5 @@
 import IMenu from '../interfaces/imenu';
 import { Dish } from '../../dish/entities/dish';
-
 export class Menu implements IMenu {
   [key: string]: any;
 

@@ -10,7 +10,7 @@ export class RestaurantComponent implements OnInit {
 
   @Input() isAdmin = false;
 
-  @Input() id: any = '-1'; // Any neccessary, because of dependencies to to other components
+  @Input() id: any = '-1'; // any neccessary, because of dependencies to to other components
 
   constructor() {
 

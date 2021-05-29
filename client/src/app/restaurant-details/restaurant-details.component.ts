@@ -36,25 +36,6 @@ export class RestaurantDetailsComponent implements OnInit {
     this.route.params.forEach((params: Params) => {
       this.restaurantId = params._id;
 
-      // store service
-      // this.restaurantService.restaurantList$.subscribe((restaurants: Restaurant []) => {
-      //   console.log(restaurants, 'on init')
-      //   this.restaurant = restaurants.find((restaurant) => restaurant._id === this.restaurantId);
-      //   this.menus = this.restaurant?.menus;
-      // })
-
-      // store service for one restarant
-      // this.getRestaurantFromStore();
-
-      // store
-      // this.store.select('restaurants').pipe(take(1)).subscribe((restaurants) => {
-      //   console.log(restaurants);
-      //   if(restaurants?.length > 1) {
-      //     this.restaurant = restaurants.find((restaurant) => restaurant._id === this.restaurantId);
-      //     this.menus = this.restaurant?.menus;
-      //   }
-      // });
-
       // api call
       this.apiClient.getRestaurant(this.restaurantId)
         .subscribe((restaurant) => {

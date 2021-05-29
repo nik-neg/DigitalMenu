@@ -26,8 +26,6 @@ export class RestaurantStoreService {
   }
 
   async getRestaurant(restaurantId: string) : Promise<Restaurant | undefined> {
-    // const restaurant = this.restaurantList.find(restaurant => restaurant._id === restaurantId);
-    // if (restaurant) this.restaurant$.next(restaurant);
     return this.restaurantList.find(restaurant => restaurant._id === restaurantId);
   }
 

@@ -7,7 +7,6 @@ import { Restaurant } from '../restaurant/entities/restaurant';
 import { Menu } from './entities/menu';
 
 import { setResetMaliciousRequest } from '../ngrx/actions/admin.actions';
-
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -31,7 +30,7 @@ export class MenuComponent implements OnInit {
     this.sum = 0;
   }
 
-  calculateSum() {
+  async calculateSum(): Promise<void> {
     this.menu.dishes.forEach((dish) => {
       this.sum += dish.price !== undefined ? dish.price: 0;
     })
@@ -62,10 +61,9 @@ export class MenuComponent implements OnInit {
 
   editURL() {
     if (this.isAdmin) {
-      // TODO: flash data before redirect or check store
       return this.router.navigate(
         [`menu/${this.menu._id}`],
-        { relativeTo: this.route }, // queryParams: {id: this.restaurantId}
+        { relativeTo: this.route },
       );
     }
     return '/';

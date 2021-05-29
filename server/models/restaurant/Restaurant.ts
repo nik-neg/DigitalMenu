@@ -1,5 +1,4 @@
 import * as mongoose from 'mongoose';
-
 export interface IRestaurant extends mongoose.Document {
   name: string;
   location: string;

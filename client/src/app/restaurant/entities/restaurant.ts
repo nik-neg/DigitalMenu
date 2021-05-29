@@ -1,7 +1,6 @@
 import IRestaurant from '../interfaces/irestaurant';
 import { Dish } from '../../dish/entities/dish';
 import { Menu } from '../../menu/entities/menu';
-
 export class Restaurant implements IRestaurant {
   [key: string]: any;
 
@@ -30,12 +29,5 @@ export class Restaurant implements IRestaurant {
     this.isAdmin = isAdmin ? isAdmin : false;
     this.menus = [];
     this.dishes = [];
-  }
-
-  static parse(data: any) {
-    return Object.assign(
-      new Restaurant(),
-      data,
-    );
   }
 }

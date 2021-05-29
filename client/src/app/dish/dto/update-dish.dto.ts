@@ -1,4 +1,3 @@
-
 interface IUpdateDishDTO {
   menuName?: string;
   name?: string;

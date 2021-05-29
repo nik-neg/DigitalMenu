@@ -1,4 +1,3 @@
-
 interface IUpdateMenuDTO {
   _id?: string;
   restaurant?: string
@@ -6,8 +5,6 @@ interface IUpdateMenuDTO {
   price?: string;
   dishes?: [];
 }
-
-
 export class UpdateMenuDTO implements IUpdateMenuDTO {
   _id?: string;
   restaurant?: string

@@ -1,5 +1,4 @@
 import IDish from '../interfaces/idish';
-
 export class Dish implements IDish {
   [key: string]: any;
   _id?: string;

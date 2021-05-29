@@ -16,7 +16,6 @@ a {
 
   .card-body {
     width: 100%;
-    // max-height: 100%;
     .card-header {
       border-top: solid 2px black;
       border-right: solid 2px black;
@@ -35,13 +34,11 @@ a {
       }
     }
   }
-
 }
 
 h1 {
   margin-left: 11vw;
 }
-
 
 .col {
   background-color: rgb(0, 0, 0);
@@ -60,13 +57,11 @@ h1 {
   margin-left: 35%;
 }
 
-
 .sum {
   text-align: center;
   background-color: inherit;
   font-size: 5vw;
 }
-
 
 @media only screen and (max-width: 1050px) {
   .card-title {

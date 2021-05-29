@@ -1,5 +1,5 @@
 import {
-  AfterViewInit, Component, OnInit, ViewChild,
+  Component, OnInit,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Restaurant } from '../restaurant/entities/restaurant';
@@ -7,7 +7,6 @@ import { ApiClientService } from '../services/api-client.service';
 
 import {
   retrieveRestaurans,
-  // retrieveRestauransSuccess,
   updateRestaurants,
 } from '../ngrx/actions/admin.actions';
 
@@ -129,10 +128,6 @@ export class DashboardComponent implements OnInit {
       maliciousRequest,
     }));
   }
-
-  // async retrieveRestauransSuccess(): Promise<void> {
-  //   this.store.dispatch(retrieveRestauransSuccess());
-  // }
 
   updateRestaurants(restaurants: []) {
     this.store.dispatch(updateRestaurants({

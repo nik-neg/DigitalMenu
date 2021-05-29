@@ -56,7 +56,7 @@ const updateRules = {
   price: 'required|numeric',
   restaurantId:'required|string',
   menuId:'required|string',
-  dishes: 'required|array' // 'required|array' of strings ?
+  dishes: 'required|array'
 };
 
 export async function updateMenu(req: any, res: any) {

@@ -1,5 +1,4 @@
 import IDish from '../../dish/interfaces/idish';
-
 export default interface IMenu {
   _id?: string;
   name?: string;
