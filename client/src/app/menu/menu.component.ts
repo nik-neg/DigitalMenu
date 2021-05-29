@@ -20,12 +20,21 @@ export class MenuComponent implements OnInit {
 
   @Input() isAdmin: boolean | undefined = false;
 
+  sum: number;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean } }>,
   ) {
     this.menu = new Menu();
+    this.sum = 0;
+  }
+
+  calculateSum() {
+    this.menu.dishes.forEach((dish) => {
+      this.sum += dish.price !== undefined ? dish.price: 0;
+    })
   }
 
   async checkAdmin() {
@@ -65,5 +74,6 @@ export class MenuComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     await this.checkAdmin();
     await this.checkCredentials();
+    await this.calculateSum()
   }
 }
