@@ -15,3 +15,4 @@ with an alert.
 <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/bootstrap.svg" alt="drawing" width="50"/> | <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/nodejs.svg" alt="drawing" width="50"/> | <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/nodejs.svg" alt="drawing" width="50"/> | <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/mongoose.png" alt="drawing" width="50"/> | <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/typescript-icon.svg" alt="drawing" width="50"/>
 </td></tr>
 </table> 
+</table> 
