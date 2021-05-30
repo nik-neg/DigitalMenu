@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
   imagesTop = [
     {
       title: 'Cuba Life',
-      slogan: 'Madrid Center - Visit us',
+      slogan: 'Madrid - Visit us',
       imagePath: '../../assets/images/restaurants/cuba_life.jpg',
     },
     {

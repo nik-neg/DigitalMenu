@@ -199,6 +199,11 @@ export class MenuEditComponent implements OnInit {
   restaurantDetails() {
     return this.router.navigate(
       [`restaurants/${this.restaurant._id}`],
+      {
+        queryParams: {
+        isAdmin: this.restaurant.isAdmin
+        },
+      }
     );
   }
 
