@@ -18,10 +18,13 @@ a {
     .card-body {
       .card-title {
         font-family: $font-title-carousel-card;
+        font-size: 1.75vw;
       }
       .card-text {
         font-family: $font-card-subtitle;
         font-weight: bold;
+        font-size: 1vw;
+
       }
     }
   }
