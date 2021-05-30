@@ -6,10 +6,13 @@
         *ngFor="let menu of menus"
       >
         <app-menu *ngIf="restaurant" [menu]="menu" [restaurantId]="restaurant._id" [isAdmin]="restaurant.isAdmin"></app-menu>
+        <div class="col back-button">
+          <button class="btn btn-dark btn-block" type="button" (click)="backToMainPage()">Back</button>
+        </div>
       </div>
-      <div class="col back-button">
+      <!-- <div class="col back-button">
         <button class="btn btn-dark btn-block" type="button" (click)="backToMainPage()">Back</button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
