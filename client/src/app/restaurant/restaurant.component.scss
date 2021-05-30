@@ -12,9 +12,6 @@ a {
     max-height: 100%;
     max-width: 100%;
     padding-bottom: 8%;
-    .card-img-top {
-
-    }
     .card-body {
       .card-title {
         font-family: $font-title-carousel-card;
@@ -34,14 +31,8 @@ a {
 
 @media only screen and (max-width: 892px) {
   .card-container {
-
     .card {
       padding-bottom: 16%;
-      .card-img-top {
-
-      }
-      .card-body {
-      }
     }
   }
 }
