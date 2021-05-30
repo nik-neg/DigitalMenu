@@ -1,0 +1,7 @@
+  <div class="container carousel">
+    <ngb-carousel>
+      <ng-template ngbSlide *ngFor="let restaurant of restaurantList">
+          <app-carousel-item [restaurant]="restaurant"></app-carousel-item>
+      </ng-template>
+    </ngb-carousel>
+  </div>

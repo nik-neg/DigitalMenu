@@ -1,0 +1,37 @@
+<app-alert-timer [maliciousRequest]="maliciousRequest"></app-alert-timer>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Digital Menu</h1>
+    <p class="lead">Check out the most delicious restaurants in the world!</p>
+  </div>
+</div>
+<app-restaurant-list [restaurantList]="restaurantsTop"></app-restaurant-list>
+<div class="dot-container dot-container-top">
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
+<app-carousel [restaurantList]="restaurantsTop"></app-carousel>
+<div class="dot-container dot-container-bottom">
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
+<app-restaurant-list [restaurantList]="restaurantsBottom"></app-restaurant-list>
+<app-restaurant-list-small-devices
+  [restaurantList]="restaurantsTop"
+></app-restaurant-list-small-devices>
+<app-restaurant-list-small-devices
+  [restaurantList]="restaurantsBottom"
+></app-restaurant-list-small-devices>
+<div class="jumbotron jumbotron-fluid jumbotron-bottom">
+  <div class="container">
+    <h1 class="display-4">Digital Menu</h1>
+    <p class="lead">Copiright © 2021</p>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="details-container">
+  <img class="card-img-top restaurant-image" *ngIf="restaurant" [src]="restaurant.imagePath" alt="">
+  <div class="container fluid">
+    <div class="row">
+      <div
+        *ngFor="let menu of menus"
+      >
+        <app-menu *ngIf="restaurant" [menu]="menu" [restaurantId]="restaurant._id" [isAdmin]="restaurant.isAdmin"></app-menu>
+        <div class="col back-button">
+          <button class="btn btn-dark btn-block" type="button" (click)="backToMainPage()">Back</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

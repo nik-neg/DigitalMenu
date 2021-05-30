@@ -1,0 +1,79 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/colors';
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.card-container {
+  padding-bottom: 0.5%;
+  .card {
+    max-height: 100%;
+    max-width: 100%;
+    padding-bottom: 8%;
+    .card-img-top {
+
+    }
+    .card-body {
+      .card-title {
+        font-family: $font-title-carousel-card;
+        font-size: 1.75vw;
+      }
+      .card-text {
+        font-family: $font-card-subtitle;
+        font-weight: bold;
+        font-size: 1vw;
+      }
+      .card-text-update {
+        font-size: 1vw;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 892px) {
+  .card-container {
+
+    .card {
+      padding-bottom: 16%;
+      .card-img-top {
+
+      }
+      .card-body {
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 761px){
+  .card-container {
+    background-color: black;
+    border-radius: 5%;
+    max-height: 95%;
+    max-width: 100%;
+    padding-bottom: 2.5%;
+    .card {
+      margin: 0.5rem;
+      top: 10px;
+      border-radius: 5%;
+      .card-img-top {
+        border-radius: 5% 5% 0 0;
+      }
+      .card-body {
+        .card-title {
+          font-family: $font-title-carousel-card;
+          font-size: 4vw;
+        }
+        .card-text {
+          font-family: $font-card-subtitle;
+          font-weight: bold;
+          font-size: 3vw;
+        }
+        .card-text-update {
+          font-size: 2vw;
+        }
+      }
+    }
+  }
+}

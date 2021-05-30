@@ -1,0 +1,85 @@
+@import '../../styles/utils/colors';
+@import '../../styles/utils/variables';
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.card {
+  background-color: white;
+  border: solid 2px black;
+  padding: 1px;
+
+  .card-title {
+    font-family: $font-title-carousel-card;
+    font-size: 2.0rem;
+  }
+
+  .card-text {
+    font-family: $font-card-subtitle;
+    font-size: 2rem;
+  }
+
+  .card-body {
+    width: 100%;
+    .card-header {
+      border-top: solid 2px black;
+      border-right: solid 2px black;
+      border-left: solid 2px black;
+    }
+
+    li {
+      background-color: #fff8dc;
+      border-top: solid 2px black;
+      border-right: solid 2px black;
+      border-left: solid 2px black;
+    }
+    ul:last-child {
+      li:last-child {
+        border-bottom: solid 2px black;
+      }
+    }
+  }
+}
+
+h1 {
+  margin-left: 11vw;
+}
+
+.col {
+  background-color: rgb(0, 0, 0);
+  padding: 0.3%;
+  margin: 0.7rem;
+  border-radius: 1.5%;
+  display: flex;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  width: 30%;
+  margin: 2.5% 2.5% 2.5% 35%;
+}
+
+.sum {
+  text-align: center;
+  background-color: inherit;
+  font-size: 5vw;
+}
+
+@media only screen and (max-width: 1050px) {
+  .card-title {
+    font-size: 2.0vw;
+  }
+  .card-text {
+    font-size: 2.0vw;
+  }
+
+  .card-text-update {
+    font-size: 2.0vw;
+  }
+}

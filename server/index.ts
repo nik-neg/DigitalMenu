@@ -1,17 +1,28 @@
-import * as http from 'http'
+import * as http from 'http';
 
-import routeObj from './router';
+import * as dotenv from 'dotenv';
+import router from './router';
 
+import { connect } from './models/db';
+
+dotenv.config({ path: `${__dirname}/.env` });
 const hostname = 'localhost';
 const port = 3000;
 
-async function bootstrap() {
-  const server = http.createServer((req, res) => {
-    routeObj(req, res);
-  });
-  server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}`);
-  });
-}
-bootstrap();
-
+(async () => {
+  try {
+    connect();
+    const server = http.createServer((req: http.IncomingMessage, res: any) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+      router(req, res);
+    });
+    server.listen(port, hostname, () => {
+      console.log(`Server running at http://${hostname}:${port}`);
+    });
+  } catch (e) {
+    console.log(e);
+  }
+})();

@@ -1,0 +1,62 @@
+@import '../../styles/utils/variables';
+ngb-carousel .wrapper {
+  position: relative;
+  height: 0;
+  padding-top: 45%; /* Keep ratio for 900x500 images */
+}
+ngb-carousel .wrapper > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.carousel-caption {
+  color: white;
+  h3 {
+    font-family: $font-title-carousel-card;
+    font-size: 2.75rem;
+  }
+  p {
+    font-family: $font-subtitle-carousel;
+    font-size: 2rem;
+  }
+}
+
+img {
+  width: 90vw;
+  height: 30vw;
+}
+
+@media only screen and (max-width: 761px){
+  .carousel-caption {
+    top: 2.5%;
+    color: white;
+    h3 {
+      font-family: $font-title-carousel-card;
+      font-size: 2.75rem;
+    }
+    p {
+      font-family: $font-subtitle-carousel;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 442px){
+  .carousel-caption {
+    top: 2.5%;
+    color: white;
+    h3 {
+      font-family: $font-title-carousel-card;
+      font-size: 2.0rem;
+    }
+    p {
+      font-family: $font-subtitle-carousel;
+      font-size: 1.0rem;
+    }
+  }
+}
+
+

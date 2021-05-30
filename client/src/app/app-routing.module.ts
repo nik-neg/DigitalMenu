@@ -1,10 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RestaurantDetailsComponent } from './restaurant-details/restaurant-details.component';
+import { MenuEditComponent } from './menu-edit/menu-edit.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: '',
+    component: DashboardComponent,
+  },
+  {
+    path: 'restaurants/:_id',
+    component: RestaurantDetailsComponent,
+  },
+  {
+    path: 'restaurants/:_id/menu/:_id',
+    component: MenuEditComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

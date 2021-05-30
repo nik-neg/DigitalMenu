@@ -1,0 +1,19 @@
+
+<div class="row">
+  <div class="col col-sm" *ngFor="let dish of menu.dishes">
+    <div class="card">
+      <img class="card-img-top" [src]="dish.imagePath" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{menu.name}} : {{ dish.name }}</h5>
+        <p class="card-text">{{ dish.price | currency:'USD':'symbol'}}</p>
+        <p class="card-text-update"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm sum">
+    {{sum | currency:'USD':'symbol'}}
+  </div>
+</div>
+<button *ngIf="isAdmin" type="button" class="btn btn-dark" (click)="editURL()">Edit</button>

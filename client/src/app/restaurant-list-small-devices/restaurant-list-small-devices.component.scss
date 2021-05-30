@@ -1,0 +1,44 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/colors';
+
+@media only screen and (min-width:767px) {
+  .small-device-container {
+    display: none;
+  }
+}
+
+.dot-container {
+  text-align: center;
+
+  .dot-container-top {
+    text-align: center;
+  }
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  background-color: #eee;
+  border-radius: 50%;
+  margin:  0.7rem;
+  display: inline-block;
+}
+
+.card-body {
+  .card-title {
+    font-family: $font-title-carousel-card;
+  }
+  .card-text {
+    font-family: $font-card-subtitle;
+    font-weight: bold;
+  }
+}
+
+.col {
+  background-color: white;
+  padding: 0.5%;
+}
+
+.row {
+
+}
