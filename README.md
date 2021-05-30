@@ -9,8 +9,8 @@ with an alert.
 <tr><th>Tech Stack</th></tr>
 <tr><td>
 
- <sub> Angular </sub> |  <sub> Bootstrap </sub> | <sub> Node.js </sub> | <sub> MongoDB </sub> | <sub> Mongoose </sub> |  <sub> TypeScript </sub> 
-|--|--|--|--|--|--
-<img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/angular-icon.svg" alt="drawing" width="50"/> | <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/bootstrap.svg" alt="drawing" width="50"/> |  <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/nodejs.svg" alt="drawing" width="50"/> |  <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/mongodb.svg" alt="drawing" width="50"/> |  <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/mongoose.png" alt="drawing" width="50"/> |  <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/typescript-icon.svg" alt="drawing" width="50"/> </td></tr> </table> 
+ <sub> Angular </sub> |  <sub> NGRX </sub> | <sub> Bootstrap </sub> | <sub> Node.js </sub> | <sub> MongoDB </sub> | <sub> Mongoose </sub> |  <sub> TypeScript </sub> 
+|--|--|--|--|--|--|--
+<img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/angular-icon.svg" alt="drawing" width="50"/> | <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/ngrx.png" alt="drawing" width="50"/> | <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/bootstrap.svg" alt="drawing" width="50"/> |  <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/nodejs.svg" alt="drawing" width="50"/> |  <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/mongodb.svg" alt="drawing" width="50"/> |  <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/mongoose.png" alt="drawing" width="50"/> |  <img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/typescript-icon.svg" alt="drawing" width="50"/> </td></tr> </table> 
 
  </table> 
