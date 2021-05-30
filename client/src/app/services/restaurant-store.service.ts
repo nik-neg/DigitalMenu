@@ -11,8 +11,6 @@ export class RestaurantStoreService {
   private restaurantList: Restaurant [] = [];
   restaurantList$ = new BehaviorSubject< Restaurant []>([]);
 
-  private restaurant: Restaurant = new Restaurant();
-  restaurant$ = new BehaviorSubject<Restaurant>(new Restaurant());
   constructor(private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean } }>) { }
 
   async getRestaurants() {

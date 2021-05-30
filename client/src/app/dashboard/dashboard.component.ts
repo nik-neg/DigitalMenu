@@ -157,7 +157,6 @@ export class DashboardComponent implements OnInit {
           return restaurant;
         });
       });
-      // await this.retrieveRestaurans();
   }
 
   async ngOnInit(): Promise<void> {

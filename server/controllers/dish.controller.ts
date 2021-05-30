@@ -59,13 +59,9 @@ const updateDishRules = {
   restaurantId: 'required|string',
   menuId: 'required|string',
   dishId: 'required|string',
-  // name: 'required|string',
-  // price: 'required|numeric',
-  // imagePath: 'opt|string',
-
-
 };
 
+//TODO: refactor
 export async function updateDish(req: any, res: any) {
   const requestObject = req.body;
   const validation = validateInput(requestObject, updateDishRules);

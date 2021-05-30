@@ -4,7 +4,6 @@ import {
   retrieveRestauransSuccess,
   setResetMaliciousRequest,
   updateRestaurants,
-  getState
 } from '../actions/admin.actions';
 import { Restaurant } from '../../restaurant/entities/restaurant';
 

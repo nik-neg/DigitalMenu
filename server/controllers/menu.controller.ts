@@ -68,7 +68,6 @@ export async function updateMenu(req: any, res: any) {
       const updatedMenu = await Menu.findByIdAndUpdate(dto.menu, {
         name: dto.name,
         price: dto.price,
-        //TODO: update dishes?
       },
       { new: true }).exec();
       res.statusCode = 200;
