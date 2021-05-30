@@ -9,11 +9,6 @@ a {
   background-color: white;
   border: solid 2px black;
   padding: 1px;
-
-  .card-img-top {
-
-  }
-
   .card-body {
     width: 100%;
     .card-header {
@@ -57,10 +52,12 @@ a {
   padding: 0.3%;
   margin: 0.7rem;
   border-radius: 1.5%;
+  text-align: center;
 }
 
 .btn {
-  margin-left: 25%;
+  margin-left: 15%;
   margin-bottom: 5%;
-  max-width: 50%;
+  margin-top: 5%;
+  max-width: 70%;
 }

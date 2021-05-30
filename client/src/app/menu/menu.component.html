@@ -10,10 +10,11 @@
       </div>
     </div>
   </div>
-  <button *ngIf="isAdmin" type="button" class="btn btn-dark" (click)="editURL()">Edit</button>
+  <!-- <button *ngIf="isAdmin" type="button" class="btn btn-dark" (click)="editURL()">Edit</button> -->
 </div>
 <div class="row">
-  <div class="col col-sm sum">
+  <div class="col-sm sum">
     {{sum | currency:'USD':'symbol'}}
   </div>
 </div>
+<button *ngIf="isAdmin" type="button" class="btn btn-dark" (click)="editURL()">Edit</button>

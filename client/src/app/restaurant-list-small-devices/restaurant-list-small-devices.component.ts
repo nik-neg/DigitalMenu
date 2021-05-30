@@ -13,10 +13,6 @@ export class RestaurantListSmallDevicesComponent implements OnInit {
     this.restaurantList = [];
   }
 
-  showdetails = () => {
-    console.log('click');
-  };
-
   ngOnInit(): void {
   }
 }

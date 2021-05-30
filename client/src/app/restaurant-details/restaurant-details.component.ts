@@ -29,7 +29,6 @@ export class RestaurantDetailsComponent implements OnInit {
     ) {
     this.restaurant = new Restaurant();
     this.menus = [];
-    // this.getRestaurantDetails();
   }
 
   async getRestaurantDetails(): Promise<void> {
