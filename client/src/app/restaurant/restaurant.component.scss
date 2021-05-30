@@ -11,7 +11,7 @@ a {
   .card {
     max-height: 100%;
     max-width: 100%;
-
+    padding-bottom: 8%;
     .card-img-top {
 
     }
@@ -24,7 +24,23 @@ a {
         font-family: $font-card-subtitle;
         font-weight: bold;
         font-size: 1vw;
+      }
+      .card-text-update {
+        font-size: 1vw;
+      }
+    }
+  }
+}
 
+@media only screen and (max-width: 892px) {
+  .card-container {
+
+    .card {
+      padding-bottom: 16%;
+      .card-img-top {
+
+      }
+      .card-body {
       }
     }
   }
@@ -45,6 +61,18 @@ a {
         border-radius: 5% 5% 0 0;
       }
       .card-body {
+        .card-title {
+          font-family: $font-title-carousel-card;
+          font-size: 4vw;
+        }
+        .card-text {
+          font-family: $font-card-subtitle;
+          font-weight: bold;
+          font-size: 3vw;
+        }
+        .card-text-update {
+          font-size: 2vw;
+        }
       }
     }
   }

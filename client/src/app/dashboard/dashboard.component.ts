@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
     },
     {
       title: 'Burger Bar',
-      slogan: 'Miami - Try our Big Deal :)',
+      slogan: 'Miami - Big Deal :)',
       imagePath: './../assets/images/restaurants/burger_bar.jpg',
     },
     {
@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
     },
     {
       title: 'The Spot',
-      slogan: 'Nizza North - Magnifique!',
+      slogan: 'Nizza - Magnifique!',
       imagePath: '../../assets/images/restaurants/the_spot.jpg',
     },
     {
@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
     },
     {
       title: 'Green Lounge',
-      slogan: 'Tokyo Harajuku - Welcome :)',
+      slogan: 'Tokyo Harajuku - :)',
       imagePath: './../assets/images/restaurants/green_lounge.jpg',
     },
     {
@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
     },
     {
       title: 'Potato Crunch',
-      slogan: 'Miami Beach - Coming soon!',
+      slogan: 'Miami - Coming soon!',
       imagePath: './../assets/images/restaurants/potato_crunch.jpg',
     },
     {
@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit {
     },
     {
       title: 'Oyster Hunter',
-      slogan: 'Nizza South - Coming soon!',
+      slogan: 'Nizza - Coming soon!',
       imagePath: '../../assets/images/restaurants/oyster_hunter.jpg',
     },
     {
@@ -87,12 +87,12 @@ export class DashboardComponent implements OnInit {
     },
     {
       title: 'Veggie Master',
-      slogan: 'Tokyo Harajuku - Coming soon!',
+      slogan: 'Tokyo - Coming soon!',
       imagePath: './../assets/images/restaurants/veggie_master.jpg',
     },
     {
       title: 'Brewery King',
-      slogan: 'Rome West - Coming soon!',
+      slogan: 'Rome - Coming soon!',
       imagePath: '../../assets/images/restaurants/brewery_king.jpg',
     },
     {
