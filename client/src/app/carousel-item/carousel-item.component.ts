@@ -9,7 +9,7 @@ import { Restaurant } from '../restaurant/entities/restaurant';
 export class CarouselItemComponent implements OnInit {
   @Input() restaurant: Restaurant;
 
-  isAdmin = true;
+  isAdmin = false;
 
   constructor() {
     this.restaurant = new Restaurant();
