@@ -13,6 +13,7 @@ export class CarouselItemComponent implements OnInit {
 
   constructor() {
     this.restaurant = new Restaurant();
+    this.isAdmin = this.restaurant.isAdmin;
   }
 
   ngOnInit(): void {
