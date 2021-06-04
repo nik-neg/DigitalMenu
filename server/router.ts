@@ -98,7 +98,7 @@ export default function router(req: any, res: any) {
     req.on('data', (chunk: Buffer) => {
       data += chunk;
     });
-    req.on('end', async () => {
+    req.on('end', async () => { // check status 2xx ?
       res.end();
     });
   }

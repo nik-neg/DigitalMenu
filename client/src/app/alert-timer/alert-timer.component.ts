@@ -32,8 +32,6 @@ export class AlertTimerComponent implements OnInit {
 
   successMessage = '';
 
-  @ViewChild('staticAlert', { static: false }) staticAlert: NgbAlert | undefined ;
-
   @ViewChild('selfClosingAlert', { static: false }) selfClosingAlert: NgbAlert | undefined;
 
   ngOnInit(): void {
@@ -41,7 +39,6 @@ export class AlertTimerComponent implements OnInit {
   }
 
   registerAlert() {
-    setTimeout(() => this.staticAlert?.close(), 20000);
     this._success.subscribe((message) => this.successMessage = message);
     this._success.pipe(debounceTime(2500)).subscribe(() => {
       if (this.selfClosingAlert) {

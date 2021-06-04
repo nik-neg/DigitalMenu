@@ -6,7 +6,7 @@ import { Restaurant } from '../restaurant/entities/restaurant';
 import { ApiClientService } from '../services/api-client.service';
 
 import {
-  retrieveRestaurans,
+  retrieveRestaurants,
   updateRestaurants,
 } from '../ngrx/actions/admin.actions';
 
@@ -118,12 +118,12 @@ export class DashboardComponent implements OnInit {
     this.restaurantsBottom = [];
   }
 
-  async retrieveRestaurans(): Promise<void> {
+  async retrieveRestaurants(): Promise<void> {
     const restaurants = [
       ...this.restaurantsTop, ...this.restaurantsBottom,
     ];
     const { maliciousRequest } = this;
-    this.store.dispatch(retrieveRestaurans({
+    this.store.dispatch(retrieveRestaurants({
       restaurants,
       maliciousRequest,
     }));
@@ -160,7 +160,7 @@ export class DashboardComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.getRestaurants();
-    await this.retrieveRestaurans();
+    await this.getRestaurants();
+    await this.retrieveRestaurants();
   }
 }

@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Restaurant } from '../../restaurant/entities/restaurant';
 
-export const retrieveRestaurans = createAction(
+export const retrieveRestaurants = createAction(
   '[Login Page] Login',
   props<{ restaurants: Restaurant [], maliciousRequest: boolean }>(),
 );

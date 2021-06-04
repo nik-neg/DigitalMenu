@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import {
-  retrieveRestaurans,
+  retrieveRestaurants,
   retrieveRestauransSuccess,
   setResetMaliciousRequest,
   updateRestaurants,
@@ -17,7 +17,7 @@ export const initialState: {
 
 export function adminReducer(state: any, action: any) {
   switch (action.type) {
-    case retrieveRestaurans.type: {
+    case retrieveRestaurants.type: {
       return _loginReducer(
         state,
         action,
@@ -46,7 +46,7 @@ export function adminReducer(state: any, action: any) {
 const _loginReducer = createReducer(
   initialState,
   on(
-    retrieveRestaurans,
+    retrieveRestaurants,
     (state, { restaurants, maliciousRequest }) => ({
       restaurants,
       maliciousRequest,

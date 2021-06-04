@@ -44,7 +44,7 @@ export class RestaurantDetailsComponent implements OnInit {
     });
   }
 
-  getRestaurantFromStore() {
+  async getRestaurantFromStore() {
     const promisedRestaurant = this.restaurantService.getRestaurant(this.restaurantId);
     promisedRestaurant
     .then(restaurant => {
@@ -67,5 +67,6 @@ export class RestaurantDetailsComponent implements OnInit {
   async ngOnInit() {
     await this.restaurantService.getRestaurants();
     await this.getRestaurantDetails();
+    // await this.getRestaurantFromStore();
   }
 }

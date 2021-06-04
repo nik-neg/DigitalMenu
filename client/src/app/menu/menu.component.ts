@@ -24,7 +24,7 @@ export class MenuComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean } }>,
+    private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean }}>,
   ) {
     this.menu = new Menu();
     this.sum = 0;
