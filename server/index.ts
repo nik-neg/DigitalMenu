@@ -7,7 +7,7 @@ import { connect } from './models/db';
 
 dotenv.config({ path: `${__dirname}/.env` });
 const hostname = 'localhost';
-const port = 3000;
+const port = process.env.SERVER_PORT || 3000;
 
 (async () => {
   try {
@@ -19,7 +19,7 @@ const port = 3000;
       res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
       router(req, res);
     });
-    server.listen(port, hostname, () => {
+    server.listen(port, () => {
       console.log(`Server running at http://${hostname}:${port}`);
     });
   } catch (e) {

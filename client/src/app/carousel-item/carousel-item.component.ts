@@ -7,13 +7,11 @@ import { Restaurant } from '../restaurant/entities/restaurant';
   styleUrls: ['./carousel-item.component.scss'],
 })
 export class CarouselItemComponent implements OnInit {
-  @Input() restaurant: Restaurant;
-
-  isAdmin = false;
+  @Input()
+  restaurant!: Restaurant;
 
   constructor() {
     this.restaurant = new Restaurant();
-    this.isAdmin = this.restaurant.isAdmin;
   }
 
   ngOnInit(): void {

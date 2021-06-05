@@ -44,15 +44,15 @@ export class RestaurantDetailsComponent implements OnInit {
     });
   }
 
-  async getRestaurantFromStore() {
-    const promisedRestaurant = this.restaurantService.getRestaurant(this.restaurantId);
-    promisedRestaurant
-    .then(restaurant => {
-      this.restaurant = restaurant;
-      this.menus = restaurant?.menus;
-    })
-    .catch(err => console.log(err));
-  }
+  // async getRestaurantFromStore() {
+  //   const promisedRestaurant = this.restaurantService.getRestaurant(this.restaurantId);
+  //   promisedRestaurant
+  //   .then(restaurant => {
+  //     this.restaurant = restaurant;
+  //     this.menus = restaurant?.menus;
+  //   })
+  //   .catch(err => console.log(err));
+  // }
 
   async resetMaliciousRequest(maliciousRequest: boolean): Promise<void> {
     this.store.dispatch(setResetMaliciousRequest({ maliciousRequest }));

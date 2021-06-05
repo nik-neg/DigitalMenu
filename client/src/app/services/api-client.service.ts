@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { Restaurant } from './../restaurant/entities/restaurant';
 import { Dish } from '../dish/entities/dish';
 
@@ -9,7 +9,7 @@ import { Dish } from '../dish/entities/dish';
   providedIn: 'root',
 })
 export class ApiClientService {
-  private baseURL = 'http://localhost:3000';
+  private baseURL = 'http://localhost:3001';
 
   constructor(private http: HttpClient) { }
 
