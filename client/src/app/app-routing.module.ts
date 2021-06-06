@@ -10,11 +10,11 @@ const routes: Routes = [
     component: DashboardComponent,
   },
   {
-    path: 'restaurants/:_id',
+    path: 'restaurants/:name/:_id',
     component: RestaurantDetailsComponent,
   },
   {
-    path: 'restaurants/:_id/menu/:_id',
+    path: 'restaurants/:name/:_id/menu/:_id',
     component: MenuEditComponent,
   },
 ];

@@ -1,4 +1,4 @@
-<a routerLink='restaurants/{{restaurant._id}}' [queryParams]='{ isAdmin: restaurant.isAdmin }'>
+<a routerLink='restaurants/{{this.restaurantName}}/{{restaurant._id}}' [queryParams]='{ isAdmin: restaurant.isAdmin }'>
   <div class="wrapper">
     <img [src]="restaurant.imagePath" alt="Random first slide">
   </div>

@@ -8,6 +8,8 @@ import { ApiClientService } from '../services/api-client.service';
 import { UpdateDishDTO } from '../dish/dto/update-dish.dto';
 import { Store } from '@ngrx/store';
 
+import slugify from 'slugify';
+
 import {
   updateRestaurants,
 } from '../ngrx/actions/admin.actions';
@@ -26,6 +28,8 @@ export class MenuEditComponent implements OnInit {
   values: string = '';
   restaurantList: Restaurant [] = [];
 
+  restaurantName: string = 'placeholder';
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -38,15 +42,21 @@ export class MenuEditComponent implements OnInit {
       this.menus = [];
       this.menu = new Menu();
       this.route.url.subscribe(url => {
-        this.restaurantId = url[1].path;
-        this.menuId = url[3].path;
+        this.restaurantId = url[2].path;
+        this.menuId = url[4].path;
       });
    }
 
+  async slugifyName() {
+    this.restaurantName = this.restaurant.name;
+    this.restaurantName = slugify(this.restaurantName, {lower: true,});
+  }
+
    async getRestaurantDetails() {
     const restaurant = await this.restaurantService.getRestaurant(this.restaurantId);
+    console.log(restaurant);
     this.restaurant = restaurant;
-    this.menus = this.restaurant.menus;
+    this.menus = this.restaurant.menus; // TODO: undefined fix
     this.menu = this.restaurant.menus.filter((menu: any) => menu._id === this.menuId )[0];
    }
 
@@ -198,7 +208,7 @@ export class MenuEditComponent implements OnInit {
 
   restaurantDetails() {
     return this.router.navigate(
-      [`restaurants/${this.restaurant._id}`],
+      [`restaurants/${this.restaurantName}/${this.restaurant._id}`],
       {
         queryParams: {
         isAdmin: this.restaurant.isAdmin
@@ -210,5 +220,6 @@ export class MenuEditComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     await this.restaurantService.getRestaurants();
     await this.getRestaurantDetails();
+    await this.slugifyName();
   }
 }
