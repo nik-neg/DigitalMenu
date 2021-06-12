@@ -16,6 +16,7 @@ import {
 export class RestaurantStoreService {
   private restaurantList: Restaurant [] = [];
   restaurantList$ = new BehaviorSubject< Restaurant []>([]);
+  maliciousRequest$ =  new BehaviorSubject<boolean>(false);
 
   constructor(private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean } }>) { }
 
@@ -44,6 +45,17 @@ export class RestaurantStoreService {
 
   setMaliciousRequest(maliciousRequest: boolean): void {
     this.store.dispatch(setResetMaliciousRequest({ maliciousRequest }));
+  }
+
+  updateRestaurants(restaurants: Restaurant[]) {
+    this.store.dispatch(updateRestaurants({
+      restaurants,
+    }));
+  }
+
+  async getMaliciousRequestStatus(): Promise<void>{
+    this.store.select('store').pipe(take(1))
+    .subscribe((storeObject) => this.maliciousRequest$.next(storeObject?.maliciousRequest));
   }
 
 }
