@@ -14,7 +14,7 @@ import { RestaurantStoreService } from '../services/restaurant-store.service';
   styleUrls: ['./restaurant-details.component.scss'],
 })
 export class RestaurantDetailsComponent implements OnInit {
-  restaurant: Restaurant | undefined;
+  restaurant: Restaurant;
 
   menus: Menu[] | undefined;
 
@@ -24,7 +24,6 @@ export class RestaurantDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private apiClient: ApiClientService,
     private router: Router,
-    private store: Store< { restaurants: Restaurant[], maliciousRequest: boolean }>,
     private restaurantService: RestaurantStoreService
     ) {
     this.restaurant = new Restaurant();
@@ -33,6 +32,7 @@ export class RestaurantDetailsComponent implements OnInit {
 
   async getRestaurantDetails(): Promise<void> {
     this.route.params.forEach((params: Params) => {
+      console.log(params);
       this.restaurantId = params._id;
 
       // api call
@@ -44,18 +44,20 @@ export class RestaurantDetailsComponent implements OnInit {
     });
   }
 
-  // async getRestaurantFromStore() {
-  //   const promisedRestaurant = this.restaurantService.getRestaurant(this.restaurantId);
-  //   promisedRestaurant
-  //   .then(restaurant => {
-  //     this.restaurant = restaurant;
-  //     this.menus = restaurant?.menus;
-  //   })
-  //   .catch(err => console.log(err));
-  // }
+  async checkAdmin() {
+    const restaurant = await this.restaurantService.getRestaurant(this.restaurantId)
+    if(restaurant !== undefined) this.restaurant.isAdmin = restaurant.isAdmin;
+  }
 
-  async resetMaliciousRequest(maliciousRequest: boolean): Promise<void> {
-    this.store.dispatch(setResetMaliciousRequest({ maliciousRequest }));
+
+  async checkCredentials(): Promise<void> {
+    this.route.queryParams.subscribe((params) => {
+      if (params.isAdmin === 'true' && !this.restaurant.isAdmin) {
+        this.restaurantService.setMaliciousRequest(true);
+        return this.router.navigate(['/']);
+      }
+      return;
+    });
   }
 
   backToMainPage() {
@@ -67,6 +69,7 @@ export class RestaurantDetailsComponent implements OnInit {
   async ngOnInit() {
     await this.restaurantService.getRestaurants();
     await this.getRestaurantDetails();
-    // await this.getRestaurantFromStore();
+    await this.checkAdmin();
+    await this.checkCredentials();
   }
 }

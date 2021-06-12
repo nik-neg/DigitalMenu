@@ -104,7 +104,6 @@ export default function router(req: any, res: any) {
   }
   else if (req.method === 'PATCH') {
     const urlSplit = req.url.split("/");
-    console.log(urlSplit);
     const restaurantId = urlSplit[2];
     const menuId = urlSplit[4];
     const dishId = urlSplit[6];
