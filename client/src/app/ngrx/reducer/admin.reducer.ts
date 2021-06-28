@@ -13,7 +13,7 @@ export const initialState: {
 } = {
   restaurants: [],
   maliciousRequest: false,
-};
+}; // val for re-hydration modus
 
 export function adminReducer(state: any, action: any) {
   switch (action.type) {
