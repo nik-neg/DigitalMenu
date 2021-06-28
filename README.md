@@ -14,3 +14,6 @@ with an alert.
 [<img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/angular-icon.svg" alt="drawing" width="50"/>](https://angular.io/) | [<img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/ngrx.png" alt="drawing" width="50"/>](https://ngrx.io/) | [<img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/bootstrap.svg" alt="drawing" width="50"/>](https://getbootstrap.com/) |  [<img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/sass.svg" alt="drawing" width="50"/>](https://sass-lang.com/) | [<img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/nodejs.svg" alt="drawing" width="50"/>](https://nodejs.org/en/) |  [<img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/mongodb.svg" alt="drawing" width="50"/>](https://www.mongodb.com/) |  [<img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/mongoose.png" alt="drawing" width="50"/>](https://mongoosejs.com/) |  [<img src="https://github.com/nik-neg/digital-menu/blob//main/techstack_images/typescript-icon.svg" alt="drawing" width="50"/>](https://www.typescriptlang.org/) </td></tr> </table> 
 
  </table> 
+ 
+ # Main page
+![alt text](https://github.com/nik-neg/digital-menu/blob/refactor-store-service/app_images/1_main_page.png.png)
