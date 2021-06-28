@@ -17,3 +17,11 @@ with an alert.
  
  # Main page
 ![alt text](https://github.com/nik-neg/digital-menu/blob/main/app_images/1_main_page.png)
+![alt text](https://github.com/nik-neg/digital-menu/blob/main/app_images/2_main_page_carousel.png)
+
+# Restaurant Details Page
+![alt text](https://github.com/nik-neg/digital-menu/blob/main/app_images/3_restaurant_details_page.png)
+
+# Menu / Dish Edit Page
+![alt text](https://github.com/nik-neg/digital-menu/blob/main/app_images/4_menu_edit_page.png)
+
