@@ -16,4 +16,4 @@ with an alert.
  </table> 
  
  # Main page
-![alt text](https://github.com/nik-neg/appetize/blob/main/app_images/1_main_page.png.png)
+![alt text](https://github.com/nik-neg/digital-menu/blob/main/app_images/1_main_page.png.png)
