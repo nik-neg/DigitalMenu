@@ -35,7 +35,7 @@ export class MenuEditComponent implements OnInit {
     private router: Router,
     private restaurantService: RestaurantStoreService,
     private apiClient: ApiClientService,
-    private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean } }>
+    private restaurantStoreService: RestaurantStoreService
     ) {
       this.restaurant = new Restaurant();
       this.updateRestaurantMenusDTO = new UpdateDishDTO();
@@ -78,12 +78,6 @@ export class MenuEditComponent implements OnInit {
       }
      })
    }
-
-   updateRestaurants(restaurants: Restaurant[]) {
-    this.store.dispatch(updateRestaurants({
-      restaurants,
-    }));
-  }
 
   createBodyForUpdate(dishName: string, menuName: string, price: string) {
     this.updateRestaurantMenusDTO.name = dishName;
@@ -203,7 +197,7 @@ export class MenuEditComponent implements OnInit {
     const restaurantsForDispatch = [tempRestaurant].concat(otherRestaurants);
 
     // update store via reducer
-    this.updateRestaurants(restaurantsForDispatch)
+    this.restaurantStoreService.updateRestaurants(restaurantsForDispatch)
   }
 
   restaurantDetails() {

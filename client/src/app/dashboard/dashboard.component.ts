@@ -1,14 +1,9 @@
 import {
   Component, OnInit,
 } from '@angular/core';
-import { Store } from '@ngrx/store';
 import { Restaurant } from '../restaurant/entities/restaurant';
 import { ApiClientService } from '../services/api-client.service';
-
-import {
-  retrieveRestaurants,
-  updateRestaurants,
-} from '../ngrx/actions/admin.actions';
+import { RestaurantStoreService } from '../services/restaurant-store.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -112,27 +107,10 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private apiClient: ApiClientService,
-    private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean } }>,
+    private restaurantStoreService: RestaurantStoreService
   ) {
     this.restaurantsTop = [];
     this.restaurantsBottom = [];
-  }
-
-  async retrieveRestaurants(): Promise<void> {
-    const restaurants = [
-      ...this.restaurantsTop, ...this.restaurantsBottom,
-    ];
-    const { maliciousRequest } = this;
-    this.store.dispatch(retrieveRestaurants({
-      restaurants,
-      maliciousRequest,
-    }));
-  }
-
-  updateRestaurants(restaurants: []) {
-    this.store.dispatch(updateRestaurants({
-      restaurants,
-    }));
   }
 
   async getRestaurants(): Promise<void> {
@@ -161,6 +139,8 @@ export class DashboardComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     await this.getRestaurants();
-    await this.retrieveRestaurants();
+    await this.restaurantStoreService.retrieveRestaurants([
+      ...this.restaurantsTop, ...this.restaurantsBottom,
+    ]);
   }
 }

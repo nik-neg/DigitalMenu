@@ -7,6 +7,7 @@ import { Restaurant } from '../restaurant/entities/restaurant';
 import { Menu } from './entities/menu';
 
 import { setResetMaliciousRequest } from '../ngrx/actions/admin.actions';
+import { RestaurantStoreService } from '../services/restaurant-store.service';
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -15,7 +16,8 @@ import { setResetMaliciousRequest } from '../ngrx/actions/admin.actions';
 export class MenuComponent implements OnInit {
   @Input() menu: Menu;
 
-  @Input() restaurantId: string | undefined = '-1';
+  @Input()
+  restaurantId: string = '-1';
 
   @Input() isAdmin: boolean | undefined = false;
 
@@ -24,7 +26,6 @@ export class MenuComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean }}>,
   ) {
     this.menu = new Menu();
     this.sum = 0;
@@ -34,29 +35,6 @@ export class MenuComponent implements OnInit {
     this.menu.dishes.forEach((dish) => {
       this.sum += dish.price !== undefined ? dish.price: 0;
     })
-  }
-
-  async checkAdmin() {
-    this.store.select('store').pipe(take(1))
-      .subscribe((store) => {
-        if (store) {
-          this.isAdmin = store.restaurants.find((restaurant) => restaurant._id === this.restaurantId)?.isAdmin;
-        }
-      });
-  }
-
-  setMaliciousRequest(maliciousRequest: boolean): void {
-    this.store.dispatch(setResetMaliciousRequest({ maliciousRequest }));
-  }
-
-  async checkCredentials(): Promise<void> {
-    this.route.queryParams.subscribe((params) => {
-      if (params.isAdmin === 'true' && !this.isAdmin) {
-        this.setMaliciousRequest(true);
-        return this.router.navigate(['/']);
-      }
-      return;
-    });
   }
 
   editURL() {
@@ -70,8 +48,6 @@ export class MenuComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.checkAdmin();
-    await this.checkCredentials();
     await this.calculateSum()
   }
 }
