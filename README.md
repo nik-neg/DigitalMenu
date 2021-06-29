@@ -1,4 +1,4 @@
-# digital-menu
+# DigitalMenu
 
 A digital menu for existing restaurants with and without menus. For the admin
 user it is possible to change the menus and adjust the prices on the dishes,
