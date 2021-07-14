@@ -42,6 +42,7 @@ You can click on the restaurants cards to get to the restaurant details page.
 It's also possible to click on the restaurants in the carousel.
 For now only 2 restaurants are supported with logic, because of the local images and the
 amount to create the menus. Others are clickable, but there are no menus.
+Hint: This will be refactored in the future with a login/register page.
 
 Restaurant Cuba Life (admin version)
 Restaurant Burger Bar (customer version)
@@ -53,6 +54,8 @@ and copy the name of menu A, e.g. Main Course to the menu name of the dish,
 which should be updated. Then click update.You can also update the name and
 the prices, but let the $ sign untouched.
 Then please click the back button.
+Hint: This will be refactored in the future with a junction table, checkboxes
+and a price slider or so.
 
 # MALICIOUS ATTEMPT ALERT:
 If you go to the Burger Bar and change the parameter in the URL isAdmin=false to isAdmin=true,
