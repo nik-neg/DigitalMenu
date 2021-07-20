@@ -16,7 +16,7 @@ with an alert. Bare Node.js server solution with Data Transfer Objects and Valid
  </table> 
  
  # Register page
-![alt text](https://github.com/nik-neg/digital-menu/blob/main/app_images/0_register_page.png)
+![alt text](https://github.com/nik-neg/digital-menu/blob/login/app_images/0_register_page.png)
  
  # Main page
 ![alt text](https://github.com/nik-neg/digital-menu/blob/main/app_images/1_main_page.png)
