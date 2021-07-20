@@ -21,6 +21,7 @@ export class RestaurantStoreService {
   constructor(private store: Store<{ store: { restaurants: Restaurant[], maliciousRequest: boolean } }>) { }
 
 
+  // TODO: refactor to reducer
   async retrieveRestaurants(restaurants: Restaurant[]) {
     const maliciousRequest  = false;
     this.store.dispatch(retrieveRestaurants({
@@ -43,10 +44,11 @@ export class RestaurantStoreService {
     return this.restaurantList.find(restaurant => restaurant._id === restaurantId);
   }
 
+  // TODO: refactor to reducer
   setMaliciousRequest(maliciousRequest: boolean): void {
     this.store.dispatch(setResetMaliciousRequest({ maliciousRequest }));
   }
-
+  // TODO: refactor to reducer
   updateRestaurants(restaurants: Restaurant[]) {
     this.store.dispatch(updateRestaurants({
       restaurants,

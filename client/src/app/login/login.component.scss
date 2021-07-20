@@ -1,0 +1,47 @@
+html {
+  background: url('../../assets//images/login/login.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+}
+
+.container {
+  height: 100vw;
+}
+
+.image-container {
+  margin-left: 30%;
+  margin-bottom: 5%;
+  .logo {
+    height: 200px;
+    width: 200px;
+  }
+
+}
+
+.login {
+  display: block;
+  height: 400px;
+  width: 400px;
+  margin-left: 30%;
+  padding-top: 25%;
+}
+
+.input-group-text{
+  padding: 0.6rem;
+  color: white;
+}
+
+.form-control {
+  border-radius: 5px !important;
+}
+
+.login-action {
+  margin-left: 9%;
+  width: 91%;
+  color: white;
+
+}
+.login-action-link {
+  margin-left: 25%;
+}

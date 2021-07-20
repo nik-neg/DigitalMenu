@@ -22,6 +22,7 @@ import { environment } from '../environments/environment';
 import { RestaurantEffects } from './ngrx/effects/restaurant.effects';
 import { AlertTimerComponent } from './alert-timer/alert-timer.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     CarouselItemComponent,
     MenuEditComponent,
     AlertTimerComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
