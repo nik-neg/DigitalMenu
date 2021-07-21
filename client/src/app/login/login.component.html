@@ -6,7 +6,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 </head>
-  <div class="container">
+
+<div class="container">
+  <div class="row">
+    <div class="col col-lg-4">
+
+    </div>
+    <div class="col col-lg-4">
+
+    </div>
+    <div class="col col-lg-4">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-lg-4">
+
+    </div>
+    <div class="col col-lg-4">
+      <div class="container-login">
+        <div class="login">
+          <div class="image-container">
+            <img class="logo" src="../../assets/images/login/logo.png" alt="no logo">
+          </div>
+          <div class="input-group mb-3" *ngIf="!login">
+            <span class="input-group-text"><i class="fas fa-user"></i></span>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+            <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text"><i class="fas fa-key"></i></span>
+            <input type="text" class="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group mb-3">
+            <button type="button" class="btn btn-primary login-action">{{!login ? 'Register': 'Login'}}</button>
+          </div>
+          <div class="input-group mb-3">
+            <a href="/login" class="login-action login-action-link" (click)="signIn($event)">{{!login ? loginMessage : registerMessage }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-lg-4">
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-lg-4">
+
+    </div>
+    <div class="col col-lg-4">
+
+    </div>
+    <div class="col col-lg-4">
+
+    </div>
+  </div>
+</div>
+
+  <!-- <div class="container-login">
     <div class="login">
       <div class="image-container">
         <img class="logo" src="../../assets/images/login/logo.png" alt="no logo">
@@ -30,6 +91,6 @@
         <a href="" class="login-action login-action-link">Have already an account? Sign in!</a>
       </div>
     </div>
-  </div>
+  </div> -->
 </html>
 

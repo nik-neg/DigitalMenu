@@ -5,12 +5,12 @@ html {
   overflow: hidden;
 }
 
-.container {
+.container-login{
   height: 100vw;
 }
 
 .image-container {
-  margin-left: 30%;
+  margin-left: 25%;
   margin-bottom: 5%;
   .logo {
     height: 200px;
@@ -21,9 +21,9 @@ html {
 
 .login {
   display: block;
-  height: 400px;
-  width: 400px;
-  margin-left: 30%;
+  height: 350px;
+  width: 350px;
+  // margin-left: 30%;
   padding-top: 25%;
 }
 
@@ -43,5 +43,5 @@ html {
 
 }
 .login-action-link {
-  margin-left: 25%;
+  // margin-left: 25%;
 }
