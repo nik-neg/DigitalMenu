@@ -9,7 +9,7 @@ export interface IRestaurant extends mongoose.Document {
   menus: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Menu' }];
   dishes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Dish' }]
 }
-
+//
 export const RestaurantSchema = new mongoose.Schema({
   name: { type: String, required: true },
   location: { type: String, required: true },
