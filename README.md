@@ -5,7 +5,7 @@ user it is possible to change the menus and adjust the prices on the dishes,
 as well as their name. A malicious attempt will be redirected to the main page 
 with an alert. Bare Node.js server solution with Data Transfer Objects and Validation.
 
-`Hint`: Next step is refactoring the backend with NestJS, typeORM and PostgreSQL
+`Hint`: Next step is refactoring the backend with NestJS, typeORM and PostgreSQL. Further features postponed due to limited time schedule.
 
 <table>
 <tr><th>Tech Stack</th></tr>
